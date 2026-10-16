@@ -24,3 +24,4 @@ experiment/benchmarks/**/Dockerfile text eol=lf
 
 # Exported evidence retains byte identities across Windows/Linux checkouts.
 experiment/published/** -text whitespace=-trailing-space,-blank-at-eof
+experiment/fixtures/** -text whitespace=-trailing-space,-blank-at-eof

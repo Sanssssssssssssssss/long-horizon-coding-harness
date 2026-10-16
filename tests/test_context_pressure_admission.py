@@ -13,7 +13,7 @@ from agents.tools import format_file_window
 
 
 ROOT = Path(__file__).resolve().parents[1]
-RESEARCH = ROOT/'experiment/research'
+RESEARCH = ROOT/'experiment/fixtures/context'
 
 
 def load(name, path):
@@ -26,10 +26,10 @@ def load(name, path):
 @pytest.fixture(params=['before', 'after'])
 def rig(request, tmp_path):
     patched = request.param == 'after'
-    directory = '20261015-context-pressure-admission' if patched else '20261015-observed-window-packing'
-    projector = load('pressure_'+request.param, RESEARCH/directory/'working_set.py')
+    filename = 'pressure_admission.py' if patched else 'window_packing.py'
+    projector = load('pressure_'+request.param, RESEARCH/filename)
     projector.ORDER = ('code.py',)
-    pages = load('pressure_pages', RESEARCH/'20261015-observed-window-packing/observed_pages.py').ObservedPages()
+    pages = load('pressure_pages', RESEARCH/'observed_pages.py').ObservedPages()
     source = '\n'.join(f'value_{index:04d} = "observed implementation content with distinct value {index:04d}"' for index in range(2200))
     path = tmp_path/'code.py'
     path.write_text(source, encoding='utf-8')

@@ -22,10 +22,12 @@ The runtime uses Python 3.12, asyncio, OpenAI/Anthropic SDKs, typed execution re
 | Cohort | Result | Boundary |
 |---|---|---|
 | SCB `circuit_eval`, continuous 8-stage development | Historical best **561/566** checks; latest candidate **527/566**, 240 solve responses | One development task; earlier candidate 510/566. Late-stage stagnation remains unresolved. |
-| SkillLearnBench subset | **12/20** tasks passed official checks; 5/20 finished naturally | Five task families; a Skill loaded in 8/20 test runs. No fresh no-Skill control. |
+| Selected SkillLearnBench families | **12/16** tasks passed official checks; 5/16 finished naturally | Four families after excluding GDP; a Skill loaded in 8/16 runs. Original cohort: 12/20. No fresh no-Skill control. |
 | Truncated-summary recovery | Same recorded input completed with an 8192-token retry cap; 5888 output tokens | One real API replay, plus 35 offline regressions; separate from the full-task score. |
 
 [Protocols, per-stage scores, usage and retained failures](docs/evaluation.md) · [Published trace metadata and receipts](experiment/published/20261016/README.md)
+
+The [active Skill cohort](benchmarks/cohorts/skilllearn-v1.json) selects DBSCAN tuning, earthquake/plate calculation, offer generation and scheduling. [Full-benchmark forecasts](experiment/published/20261017-scope/README.md) are planning estimates derived from this selected subset.
 
 ## Run
 

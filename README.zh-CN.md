@@ -14,10 +14,12 @@
 | 实验 | 已记录成绩 | 范围 |
 |---|---|---|
 | SCB `circuit_eval` 连续 8 阶段 | 历史最好 **561/566**；最新 **527/566**，240 次主模型响应 | 同一开发任务；上轮 510/566，后期停滞尚未解决 |
-| SkillLearnBench 子集 | **12/20** 官方通过，5/20 自然收尾 | 5 类任务各 4 个测试实例，8/20 实际加载 Skill；缺少新一轮无 Skill 对照 |
+| SkillLearnBench 当前四类场景 | **12/16** 官方通过，5/16 自然收尾 | 移除 GDP 后的筛选子集，8/16 实际加载 Skill；原始完整记录为 12/20，缺少无 Skill 对照 |
 | 摘要截断恢复 | 原失败输入在 8192 上限下完整返回 5888 输出 tokens | 一次真实 API 回放及 35 项专项回归，独立于完整任务分数 |
 
 结果按任务、检查项、自然收尾和 tokens 分别报告。[阶段曲线、条件与剩余失败](docs/evaluation.md) · [可核对的公开日志](experiment/published/20261016/README.md)
+
+[当前场景清单](benchmarks/cohorts/skilllearn-v1.json)保留 DBSCAN、地震板块计算、Offer 生成和排程；[完整 benchmark 预测](experiment/published/20261017-scope/README.md)列出按任务类别推算的估计与条件。
 
 ```powershell
 git clone https://github.com/Sanssssssssssssssss/long-horizon-coding-harness.git

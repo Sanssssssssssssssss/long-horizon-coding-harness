@@ -1,0 +1,112 @@
+{
+  "entries": [
+    {
+      "original": "experiment/research/20261012-skill-context-results-round2/context_run.py",
+      "current": "experiment/fixtures/context/context_run.py",
+      "original_sha256": "bbefefb3f581b1a77561657db0acfb8c1bef74ee490895b601940d1b7d61ebfe",
+      "current_sha256": "bbefefb3f581b1a77561657db0acfb8c1bef74ee490895b601940d1b7d61ebfe"
+    },
+    {
+      "original": "experiment/research/20261012-skill-context-results-round2/prepare_context.py",
+      "current": "experiment/fixtures/context/prepare_context.py",
+      "original_sha256": "274c61795bbcb90e80d3ab9c029c69e680c52ce8ec77a706322fabcc21944559",
+      "current_sha256": "274c61795bbcb90e80d3ab9c029c69e680c52ce8ec77a706322fabcc21944559"
+    },
+    {
+      "original": "experiment/research/20261012-skill-context-results-round2/working_context.py",
+      "current": "experiment/fixtures/context/working_context.py",
+      "original_sha256": "11d12b9f942caeabbec508799c44bc96ab3517fa2bbf5aef4040d95515bd37e0",
+      "current_sha256": "11d12b9f942caeabbec508799c44bc96ab3517fa2bbf5aef4040d95515bd37e0"
+    },
+    {
+      "original": "experiment/research/20261012-skill-context-results-round2/skill-ready-to-report-023/working_set.py",
+      "current": "experiment/fixtures/context/working_set_base.py",
+      "original_sha256": "942a107062475edd74ec6853b8cec2ba8ee7f73d93b29450face7e0c0f2b43c4",
+      "current_sha256": "942a107062475edd74ec6853b8cec2ba8ee7f73d93b29450face7e0c0f2b43c4"
+    },
+    {
+      "original": "experiment/research/20261014-context-full-pair/caller.py",
+      "current": "experiment/fixtures/context/caller.py",
+      "original_sha256": "1bdfcf6cffd788b7318132e5a18b7e3a9ab05fc4c04d600e4ec92d2f8e142892",
+      "current_sha256": "09e3abaf8aa346bb612bded62dcba5bd720eadb6b4a03f617c31dca182d108a3"
+    },
+    {
+      "original": "experiment/research/20261014-context-observation-pages/observed_pages.py",
+      "current": "experiment/fixtures/context/observed_pages_base.py",
+      "original_sha256": "6d88b1c1e929a386acf4a137b96f924ab7b1269a79b06f69ed42439120fcef6d",
+      "current_sha256": "6d88b1c1e929a386acf4a137b96f924ab7b1269a79b06f69ed42439120fcef6d"
+    },
+    {
+      "original": "experiment/research/20261015-context-pressure-admission/working_set.py",
+      "current": "experiment/fixtures/context/pressure_admission.py",
+      "original_sha256": "fba57f39daabd129b886ca41792ea378dfba45d98fe992b25023f2cc8c62b29a",
+      "current_sha256": "fba57f39daabd129b886ca41792ea378dfba45d98fe992b25023f2cc8c62b29a"
+    },
+    {
+      "original": "experiment/research/20261015-fold-overhead/working_set.py",
+      "current": "experiment/fixtures/context/history_budget.py",
+      "original_sha256": "bc0899741fddfc04b334d584fe5a6fed529c439f78e4b3860cd53fc03074ab6d",
+      "current_sha256": "bc0899741fddfc04b334d584fe5a6fed529c439f78e4b3860cd53fc03074ab6d"
+    },
+    {
+      "original": "experiment/research/20261015-observed-page-admission/working_set.py",
+      "current": "experiment/fixtures/context/page_admission.py",
+      "original_sha256": "befea799fdaad70fe5c03b748350c99587a2572f12e09eaee027b1bace736dce",
+      "current_sha256": "befea799fdaad70fe5c03b748350c99587a2572f12e09eaee027b1bace736dce"
+    },
+    {
+      "original": "experiment/research/20261015-observed-window-packing/working_set.py",
+      "current": "experiment/fixtures/context/window_packing.py",
+      "original_sha256": "82d208c7b21fe5328b873c7fedcec360d0d6ad7388519ca4cb752749a2f0b98c",
+      "current_sha256": "82d208c7b21fe5328b873c7fedcec360d0d6ad7388519ca4cb752749a2f0b98c"
+    },
+    {
+      "original": "experiment/research/20261015-observed-window-packing/observed_pages.py",
+      "current": "experiment/fixtures/context/observed_pages.py",
+      "original_sha256": "91bec6fa4003e87cc156e9cf82ae97711eff1795b422a2f6375208fb04824057",
+      "current_sha256": "91bec6fa4003e87cc156e9cf82ae97711eff1795b422a2f6375208fb04824057"
+    },
+    {
+      "original": "experiment/research/20261015-verification-split/split_checks.py",
+      "current": "experiment/fixtures/context/split_checks.py",
+      "original_sha256": "eaff62225817c9445f73e8d0999fe911e4e816dce5c03cc8e5a090dc1cf201c5",
+      "current_sha256": "eaff62225817c9445f73e8d0999fe911e4e816dce5c03cc8e5a090dc1cf201c5"
+    },
+    {
+      "original": "experiment/research/20261011-native-fold-pilot-003/published/runs/pilot-003/folds/001/before.json",
+      "current": "experiment/fixtures/folding/001/before.json",
+      "original_sha256": "43ae0222cef0ab2322db7b7e57f88e3b44ddcfad5df5204690122bc3d70829ef",
+      "current_sha256": "43ae0222cef0ab2322db7b7e57f88e3b44ddcfad5df5204690122bc3d70829ef"
+    },
+    {
+      "original": "experiment/research/20261011-native-fold-pilot-003/published/runs/pilot-003/folds/001/receipt.json",
+      "current": "experiment/fixtures/folding/001/receipt.json",
+      "original_sha256": "6ddd925a751084c91e1213f6b29dea9c349ceb620fa61321689d4f0bfdb4b650",
+      "current_sha256": "6ddd925a751084c91e1213f6b29dea9c349ceb620fa61321689d4f0bfdb4b650"
+    },
+    {
+      "original": "experiment/research/20261011-native-fold-pilot-003/published/runs/pilot-003/folds/002/before.json",
+      "current": "experiment/fixtures/folding/002/before.json",
+      "original_sha256": "efeb5d06d3c1de9a71ffd3657cf908b50ecc31da0e3ab8d57e71461f38ada19f",
+      "current_sha256": "efeb5d06d3c1de9a71ffd3657cf908b50ecc31da0e3ab8d57e71461f38ada19f"
+    },
+    {
+      "original": "experiment/research/20261011-native-fold-pilot-003/published/runs/pilot-003/folds/002/receipt.json",
+      "current": "experiment/fixtures/folding/002/receipt.json",
+      "original_sha256": "02e9314359a81455c384c865769d726154affa76ae0c19adb487655bd587311e",
+      "current_sha256": "02e9314359a81455c384c865769d726154affa76ae0c19adb487655bd587311e"
+    },
+    {
+      "original": "experiment/research/20261011-native-fold-pilot-003/published/runs/pilot-003/folds/003/before.json",
+      "current": "experiment/fixtures/folding/003/before.json",
+      "original_sha256": "92e83b1bddcf49f95d9c83ec943f229b531a87dd47f224e7c73e208469cb2254",
+      "current_sha256": "92e83b1bddcf49f95d9c83ec943f229b531a87dd47f224e7c73e208469cb2254"
+    },
+    {
+      "original": "experiment/research/20261011-native-fold-pilot-003/published/runs/pilot-003/folds/003/receipt.json",
+      "current": "experiment/fixtures/folding/003/receipt.json",
+      "original_sha256": "ae88c7676d1143ed9c3e171e06581c83d17fdcceb4d2c3b57e8ef084ec753e48",
+      "current_sha256": "ae88c7676d1143ed9c3e171e06581c83d17fdcceb4d2c3b57e8ef084ec753e48"
+    }
+  ]
+}

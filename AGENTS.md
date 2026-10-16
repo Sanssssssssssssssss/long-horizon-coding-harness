@@ -6,3 +6,5 @@
 - Run tests with `.venv/Scripts/python.exe -B -m pytest` on Windows. `pytest.ini` provides the artifact paths; `-B` avoids bytecode beside source files. A separate `--basetemp` must also stay under `experiment/cache/`.
 - Keep credentials local and ignored. Do not stage generated output wholesale. Retain the existing `.venv` and standard root configuration needed by Python, Git, Docker and VS Code.
 - Publish compact, verified evidence under `experiment/published/`. Keep teaching notes, CV material, full model payloads and local research workspaces out of the tracked publication. Preserve their local copies and frozen artifact bytes.
+- Keep all regression entrypoints in `tests/`, historical comparison fixtures in `experiment/fixtures/`, and active cohort definitions in `benchmarks/cohorts/`. Production modules must not load executable source from dated research directories. Preserve original cohort scores when selecting a new subset; label forecasts as estimates.
+- The `research` remote retains private history. Never merge that history or push its refs to the public `origin`; publish reviewed changes on the public history.
