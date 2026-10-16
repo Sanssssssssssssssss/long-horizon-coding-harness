@@ -233,6 +233,7 @@ class Agent:
                  diff_check_command: str=_DEFAULT_DIFF_CHECK_COMMAND,
                  repair_task: TaskEnvelope | None=None,
                  skills_enabled: bool | None=None,
+                 skill_task_evaluator: Callable[[dict[str, Any]], Awaitable[dict[str, Any]]] | None=None,
                  is_sub_agent: bool=False,
                  trace: TraceRecorder | None=None,
                  model_purpose: str="main",
@@ -244,6 +245,7 @@ class Agent:
         self.is_sub_agent = is_sub_agent
         self.trace = trace
         self.model_purpose = model_purpose
+        self._skill_task_evaluator = skill_task_evaluator
         self._mcp_enabled = not is_sub_agent and not _env_disabled("SANS_DISABLE_MCP")
         self._memory_enabled = not is_sub_agent and not _env_disabled("SANS_DISABLE_MEMORY")
         if skills_enabled is not None and not isinstance(skills_enabled, bool):
@@ -317,6 +319,10 @@ class Agent:
         self.current_turns = 0
         self.last_api_call_time = 0
         self.termination_reason: dict[str, str] | None = None
+        self.finish_reason: str | None = None
+        self._response_observed = False
+        # Shared by native sessions and benchmark checkpoint phases.
+        self._length_recoveries = 0
         self._operation_counts = _operation_counts or {"model_calls": 0, "tool_calls": 0}
         self._task_plan: list[dict[str, str]] = []
         self._stop_initial_repo_state: str | None = None
@@ -1069,8 +1075,45 @@ class Agent:
             }
             self._verification_history.append(dict(self._last_verification))
 
+    def _guard_openai_response(self, response: dict) -> dict:
+        choice = (response.get("choices") or [{}])[0]
+        self.finish_reason = choice.get("raw_finish_reason", choice.get("finish_reason"))
+        self._response_observed = True
+        if self.finish_reason not in {"stop", "tool_calls"}:
+            response = copy.deepcopy(response)
+            if response.get("choices"):
+                response["choices"][0].setdefault("message", {})["tool_calls"] = []
+        return response
+
+    def _guard_anthropic_response(self, response):
+        self.finish_reason = getattr(response, "stop_reason", None)
+        self._response_observed = True
+        if self.finish_reason not in {"end_turn", "tool_use"}:
+            response = copy.copy(response)
+            response.content = [block for block in response.content if getattr(block, "type", None) != "tool_use"]
+        return response
+
+    def _incomplete_response_feedback(self) -> str | None:
+        if self.finish_reason in {"length", "max_tokens"} and self._length_recoveries < 2:
+            self._length_recoveries += 1
+            if self.trace:
+                self.trace.event("model.truncation_recovery", component="model", purpose=self.model_purpose,
+                                 attributes={"finish_reason": self.finish_reason,
+                                             "recovery": self._length_recoveries, "limit": 2})
+            return (
+                "The previous response was truncated by the output limit; its tool batch was rejected. "
+                "Inspect actual earlier tool receipts and current files before continuing. "
+                "Continue with small edits, smaller tool arguments and concise output. "
+                "Verify the current result before finishing."
+            )
+        self.termination_reason = {"kind": "incomplete_response", "detail": self.finish_reason or "missing_finish_reason"}
+        return None
+
     @activity("completion")
     async def _run_stop_hooks(self) -> str | None:
+        if (self._finalization_calls is None and self._response_observed
+                and self.finish_reason not in {"stop", "end_turn"}):
+            return self._incomplete_response_feedback()
         current = await self._probe_repo_state()
         if not self._stop_repo_state_seen and current is not None:
             self._stop_initial_repo_state = current
@@ -1519,11 +1562,19 @@ class Agent:
             required_target_skill=os.environ.get("SANS_EVOLUTION_TARGET_SKILL", ""),
             execution_evidence=window.get("execution_evidence") or [],
             replay_messages=window.get("replay_messages"),
+            task_evaluator=self._skill_task_evaluator,
         )
+        if self.trace:
+            self.trace.event("skill.candidate_decision", component="skill", purpose="learning",
+                             status="ok" if result.get("ok") else "error",
+                             attributes={"action": result.get("action"), "skill": result.get("skill"),
+                                         "promotion_status": (result.get("promotion") or {}).get("status")})
         if result.get("ok"):
             if result.get("action") in {"add", "merge"}:
                 self._refresh_runtime_system_prompt()
                 print_info(f"Online skill {result.get('action')}: {result.get('skill')}")
+            elif result.get("action") == "staged":
+                print_info(f"Skill candidate saved: {result.get('skill')}; awaiting task evaluation. Use /skill-candidates.")
         elif result.get("action") not in {"add_denied", "merge_denied"}:
             print_error(f"Online skill evolution failed: {result.get('error') or result}")
         return result
@@ -3022,6 +3073,8 @@ class Agent:
                         "_source_user_text": None,
                     })
                     continue
+                if self.termination_reason and self.termination_reason.get("kind") == "incomplete_response":
+                    self._discard_output_since(output_marks)
                 if not self.is_sub_agent:
                     print_cost(
                         self.total_input_tokens,
@@ -3260,7 +3313,7 @@ class Agent:
                 )
                 return response
 #调用 _do()，如果遇到可重试错误，就由 _with_retry() 负责重试。
-        return await _with_retry(_do, max_retries=self.model_retry_limit)
+        return self._guard_anthropic_response(await _with_retry(_do, max_retries=self.model_retry_limit))
 
     #openAI后端
 
@@ -3354,6 +3407,8 @@ class Agent:
                         "_source_user_text": None,
                     })
                     continue
+                if self.termination_reason and self.termination_reason.get("kind") == "incomplete_response":
+                    self._discard_output_since(output_marks)
                 if not self.is_sub_agent:
                     print_cost(
                         self.total_input_tokens,
@@ -3663,7 +3718,7 @@ class Agent:
                 )
                 return response
 
-        return await _with_retry(_do, max_retries=self.model_retry_limit)
+        return self._guard_openai_response(await _with_retry(_do, max_retries=self.model_retry_limit))
 
     async def _confirm_dangerous(self, command: str) -> bool:
         print_confirmation(command)

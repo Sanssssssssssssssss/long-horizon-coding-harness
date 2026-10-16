@@ -26,13 +26,14 @@ git clone https://github.com/Sanssssssssssssssss/long-horizon-coding-harness.git
 cd long-horizon-coding-harness
 python -m venv .venv
 .venv/Scripts/python.exe -m pip install -r requirements.lock.txt
+.venv/Scripts/python.exe -m pip install --no-deps -e .
 Copy-Item .env.example .env
 # 配置一个模型提供方后启动：
-.venv/Scripts/python.exe -B -m agents.main --thinking
+.venv/Scripts/sans.exe --thinking
 ```
 
-CLI 名称为 `sans`，支持 `/plan`、`/skills`、`/compact`、`/trace`、`/exit`。[运行配置](docs/running.md)
+CLI 名称为 `sans`，支持 `/plan`、`/skills`、`/skill-candidates`、`/compact`、`/trace`、`/exit`。用 `sans --version` 查看安装版本，`--max-model-calls`、`--max-tool-calls` 和 `--request-timeout` 控制运行上限。[运行配置](docs/running.md)
 
 源码放在 `agents/`，实验适配器在 `benchmarks/`，回归在 `tests/`，维护文档在 `docs/`，研究证据及运行产物统一在 `experiment/`。默认 CLI 使用原生运行时；`ContinuationFoldingLoop` 是实验策略。候选晋级的执行评分依赖研究适配器。
 
-[测试](TESTING.md) · [贡献](CONTRIBUTING.md) · [安全边界](SECURITY.md) · [来源与许可状态](SNAPSHOT_NOTICE.md)
+[测试](TESTING.md) · [变更记录](CHANGELOG.md) · [发布流程](docs/releases.md) · [贡献](CONTRIBUTING.md) · [安全边界](SECURITY.md) · [来源与许可状态](SNAPSHOT_NOTICE.md)

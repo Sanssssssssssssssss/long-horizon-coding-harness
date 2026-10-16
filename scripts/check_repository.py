@@ -6,6 +6,7 @@ from pathlib import Path
 import re
 import subprocess
 import sys
+import tomllib
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
@@ -19,8 +20,15 @@ def main():
     required = {'README.md', 'README.zh-CN.md', 'docs/README.md', 'docs/architecture.md',
         'docs/skills.md', 'docs/context-folding.md', 'docs/evaluation.md', 'docs/running.md',
         'TESTING.md', 'tests/INDEX.md', 'CONTRIBUTING.md', 'SECURITY.md', 'THIRD_PARTY_NOTICES.md',
-        'SNAPSHOT_NOTICE.md', '.env.example', 'requirements.lock.txt', '.github/workflows/checks.yml'}
+        'SNAPSHOT_NOTICE.md', '.env.example', 'requirements.lock.txt', '.github/workflows/checks.yml',
+        'pyproject.toml', 'CHANGELOG.md', 'docs/releases.md', '.github/PULL_REQUEST_TEMPLATE.md'}
     assert required <= files, f'Missing publication files: {sorted(required - files)}'
+    package = tomllib.loads((ROOT / 'pyproject.toml').read_text(encoding='utf-8'))
+    direct = {line.strip() for line in (ROOT / 'requirements.txt').read_text().splitlines()
+              if line.strip() and not line.lstrip().startswith('#')}
+    assert set(package['project']['dependencies']) == direct, 'Package dependencies drifted from requirements.txt'
+    assert package['project']['scripts'] == {'sans': 'agents.main:main'}
+    assert package['tool']['hatch']['build']['targets']['wheel']['packages'] == ['agents']
     for name in files:
         assert name not in {'.env', '.mcp.json'}, name
         assert not any(part in {'.venv', '__pycache__', '.pytest_cache'} for part in Path(name).parts), name

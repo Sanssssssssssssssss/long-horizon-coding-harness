@@ -16,6 +16,8 @@ Evaluation must distinguish a discovered Skill, a loaded body, an observed invoc
 
 The example configuration disables automatic evolution for initial use. Set `SANS_AUTO_SKILL_EVOLUTION=1` only when feedback-driven local updates are intended. Evolution and session state remain local; see [running](running.md).
 
+Native extraction stages candidates. `/skill-candidates` reads persisted receipts and checks their candidate and active-file hashes, showing pending, active or changed identities without model calls. An embedding application can pass `Agent(skill_task_evaluator=async_evaluate)`; the callback receives the staged snapshot and must return the complete task-level receipt required by `promote_staged_skill`. It owns the isolated task execution and budget. Missing, incomplete or mismatched evaluation leaves the candidate staged. `/skill-eval` is response-replay analysis and does not activate staged candidates.
+
 ## Current evidence
 
 The [active cohort](../benchmarks/cohorts/skilllearn-v1.json) retains four families: DBSCAN tuning, earthquake/plate calculation, offer generation and scheduling. Existing records for these families give **12/16** official passes, **5/16** natural finishes and **8/16** loaded Skills. These test runs used **6,517,258 tokens**; TRAIN and distillation are excluded from that subtotal.
