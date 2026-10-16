@@ -24,6 +24,6 @@ Sessions live under `experiment/runtime/sessions/`; CLI traces and usage summari
 
 MCP is optional: copy `.mcp.example.json` to `.mcp.json` and configure the intended servers. Git, ripgrep and task-specific programs must be available to the selected tools. Container benchmarks require their own prepared images and grader dependencies.
 
-Offline verification uses [TESTING.md](../TESTING.md). A source checkout does not automatically download benchmark workspaces or launch paid evaluations. Research runners live in `benchmarks/`; retained experiment support files are listed in `experiment/README.md`.
+Offline verification uses [TESTING.md](../TESTING.md). A source checkout does not automatically download benchmark workspaces or launch paid evaluations. Research runners live in `benchmarks/`; historical comparison fixtures are in `experiment/fixtures/`. Legacy research commands can require local frozen task data. Active Skill task selection is recorded in `benchmarks/cohorts/skilllearn-v1.json`; `python -B scripts/skill_cohort.py` summarizes its recorded evidence without model calls.
 
 Tool permissions are application policies. Run untrusted tasks in a separately isolated operating-system/container environment appropriate to the workload.

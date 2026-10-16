@@ -33,8 +33,8 @@ async def write(agent, inp):
 
 @pytest.fixture
 def rig(tmp_path, monkeypatch):
-    caller = load('split_test_caller', ROOT/'experiment/research/20261014-context-full-pair/caller.py')
-    split = load('split_test_adapter', ROOT/'experiment/research/20261015-verification-split/split_checks.py')
+    caller = load('split_test_caller', ROOT/'experiment/fixtures/context/caller.py')
+    split = load('split_test_adapter', ROOT/'experiment/fixtures/context/split_checks.py')
     monkeypatch.chdir(tmp_path)
     monkeypatch.setenv('PYTHONDONTWRITEBYTECODE', '1')
     monkeypatch.setenv('PYTEST_DISABLE_PLUGIN_AUTOLOAD', '1')

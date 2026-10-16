@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "id": "skilllearn-four-families-v1",
+  "upstream": "https://github.com/cxcscmu/SkillLearnBench",
+  "revision": "726e1f79b96b0cb3d729d0e55a1c847e0b5353ae",
+  "evidence": "experiment/published/20261016/skill/summary.json",
+  "families": {
+    "dbscan-parameter-tuning": [2, 3, 4, 5],
+    "earthquake-plate-calculation": [2, 3, 4, 5],
+    "offer-letter-generator": [2, 3, 4, 5],
+    "schedule-planning": [2, 3, 4, 5]
+  },
+  "excluded_families": ["weighted-gdp-calculation"],
+  "selection": "Maintainer scope change after the recorded runs on 2026-10-17. Historical 20-instance evidence remains immutable. This manifest selects recorded instances; it does not launch evaluations.",
+  "model": "deepseek/deepseek-v4.1-flash"
+}

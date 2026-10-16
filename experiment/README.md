@@ -3,7 +3,8 @@
 | Location | Contents |
 |---|---|
 | [published/20261016](published/20261016/README.md) | Current scores, trace metadata, source hashes and manifest |
-| `research/` | Only the support code and frozen fixtures required by tracked regressions/adapters are published |
+| [fixtures/](fixtures/README.md) | Historical comparison implementations and recorded folding inputs for offline regressions |
+| `research/` | Ignored local research history; regression entrypoints live in `tests/` |
 | `runs/`, `runtime/` | Ignored local execution records, sessions and complete payloads |
 | `cache/`, `env/` | Ignored downloads, disposable workspaces and environments |
 | `archive/`, `maintenance/` | Ignored historical material, teaching notes and maintenance receipts |
