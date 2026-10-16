@@ -40,13 +40,15 @@ def stream_body(provider, reason, with_tool):
 
 
 @pytest.mark.parametrize("provider", ["openai", "anthropic"])
-@pytest.mark.parametrize("case", ["recover", "exhaust", "unknown", "normal", "budget"])
-def test_native_response_lifecycle(tmp_path, provider, case):
+@pytest.mark.parametrize("case,with_tool", [(case, with_tool)
+    for case in ("recover", "exhaust", "unknown") for with_tool in (False, True)]
+    + [("normal", True), ("budget", True)])
+def test_native_response_lifecycle(tmp_path, provider, case, with_tool):
     end, clipped, tool_end = (("stop", "length", "tool_calls") if provider == "openai"
                               else ("end_turn", "max_tokens", "tool_use"))
-    replies = {"recover": [(clipped, True), (end, False)],
-               "exhaust": [(clipped, True)] * 3,
-               "unknown": [(None, True)], "normal": [(tool_end, True), (end, False)],
+    replies = {"recover": [(clipped, with_tool), (end, False)],
+               "exhaust": [(clipped, with_tool)] * 3,
+               "unknown": [(None, with_tool)], "normal": [(tool_end, True), (end, False)],
                "budget": [(clipped, True)]}[case]
     requests, executed = [], []
     transport = httpx if provider == "openai" else httpx2
