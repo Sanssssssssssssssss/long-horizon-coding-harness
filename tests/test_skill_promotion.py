@@ -262,7 +262,8 @@ def test_matched_task_oracle_promotes_exact_staged_file(bank, action):
 
 
 @pytest.mark.parametrize("complete", [True, False])
-def test_online_ingest_uses_only_explicit_task_evaluator(bank, complete):
+@pytest.mark.parametrize("entrypoint", ["ingest", "agent"])
+def test_online_ingest_uses_only_explicit_task_evaluator(bank, complete, entrypoint, monkeypatch):
     from agents.online_skill_evolution import online_ingest
 
     calls = []
@@ -280,12 +281,40 @@ def test_online_ingest_uses_only_explicit_task_evaluator(bank, complete):
         evaluation["completed"] = complete
         return evaluation
 
-    result = asyncio.run(online_ingest(messages=[{"role": "user", "content": "Fix batch validation."}],
-                                      side_query=model, execution_evidence=[{"id": "trusted-check"}],
-                                      task_evaluator=evaluate))
+    window = {"messages": [{"role": "user", "content": "Fix batch validation."}],
+              "execution_evidence": [{"id": "trusted-check"}]}
+    if entrypoint == "agent":
+        from agents.agent import Agent
+        monkeypatch.setenv("SANS_AUTO_SKILL_EVOLUTION", "1")
+        agent = Agent(api_key="test", custom_system_prompt="test", custom_tools=[],
+                      permission_mode="bypassPermissions", is_sub_agent=True,
+                      skill_task_evaluator=evaluate)
+        monkeypatch.setattr(agent, "_build_side_query", lambda **kwargs: model)
+        async def run():
+            try:
+                return await agent._run_online_skill_evolution(window)
+            finally:
+                await agent.shutdown()
+        result = asyncio.run(run())
+    else:
+        result = asyncio.run(online_ingest(**window, side_query=model, task_evaluator=evaluate))
     assert len(calls) == 1
     assert result["action"] == ("add" if complete else "staged")
     assert bool(skills.get_skill_by_name("check-first")) is complete
+
+
+def test_candidate_status_uses_persisted_hashes_and_reports_damaged_receipt(bank):
+    from agents.online_skill_evolution import list_staged_skills
+    staged = maintain()
+    assert list_staged_skills()[0]["status"] == "pending_evaluation"
+    promote_staged_skill(staged, receipt(bank, staged))
+    assert list_staged_skills()[0]["status"] == "active"
+    Path(staged["active_file"]).write_text("changed", encoding="utf-8")
+    assert list_staged_skills()[0]["status"] == "baseline_changed"
+    Path(staged["candidate_file"]).write_text("changed candidate", encoding="utf-8")
+    assert list_staged_skills()[0]["status"] == "candidate_changed"
+    Path(staged["candidate_file"]).with_name("stage.json").write_text("{", encoding="utf-8")
+    assert list_staged_skills()[0]["status"] == "invalid_receipt"
 
 
 @pytest.mark.parametrize("source", ["user", "execution", None])

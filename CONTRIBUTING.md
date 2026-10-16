@@ -9,3 +9,5 @@ Runtime code belongs in `agents/`, benchmark adapters in `benchmarks/`, regressi
 5. Publish a compact evidence packet with a manifest. Keep full model payloads, credentials, downloaded workspaces, personal notes and teaching materials local.
 
 Use a pull request for `main` and complete the Windows/Linux checks. Review the [source provenance](SNAPSHOT_NOTICE.md) and [security boundaries](SECURITY.md) before contributing or publishing artifacts.
+
+Shared provider and tool guarantees belong in `agents/`; benchmark policies should reuse them. Verify the installed CLI for entrypoint or dependency changes. Keep user-facing behavior changes in [CHANGELOG.md](CHANGELOG.md) and follow the [release procedure](docs/releases.md).

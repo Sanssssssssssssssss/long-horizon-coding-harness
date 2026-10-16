@@ -64,9 +64,6 @@ class _FoldingLoop(Agent):
         self._reserved_tokens = 0
         self._budget_fold_clock = None
         self._budget_fold_user_instructions = None
-        self.finish_reason = None
-        # Two stop-feedback recoveries per instance, shared across its checkpoint phases.
-        self._length_recoveries = 0
         kwargs.setdefault("model_retry_limit", 0)
         super().__init__(**kwargs)
         self._historical_observations = {}
@@ -389,40 +386,18 @@ class _FoldingLoop(Agent):
     async def _call_openai_stream(self):
         self._admit_decision()
         response = await super()._call_openai_stream()
-        choice = (response.get("choices") or [{}])[0]
-        self.finish_reason = choice.get("raw_finish_reason", choice.get("finish_reason"))
         self.decision_clock["completed"] += 1
-        if self.finish_reason in {"length", "max_tokens"}:
-            response = copy.deepcopy(response)
-            response["choices"][0]["message"]["tool_calls"] = []
-        return response
+        return self._guard_openai_response(response)
 
     async def _call_anthropic_stream(self):
         self._admit_decision()
         response = await super()._call_anthropic_stream()
-        self.finish_reason = getattr(response, "stop_reason", None)
         self.decision_clock["completed"] += 1
-        if self.finish_reason in {"length", "max_tokens"}:
-            response = copy.copy(response)
-            response.content = [block for block in response.content if getattr(block, "type", None) != "tool_use"]
-        return response
+        return self._guard_anthropic_response(response)
 
     async def _run_stop_hooks(self):
         if self._finalization_calls is None and self.finish_reason not in {"stop", "end_turn"}:
-            if self.finish_reason in {"length", "max_tokens"} and self._length_recoveries < 2:
-                self._length_recoveries += 1
-                if self.trace:
-                    self.trace.event("model.truncation_recovery", component="model", purpose=self.model_purpose,
-                                     attributes={"finish_reason": self.finish_reason,
-                                                 "recovery": self._length_recoveries, "limit": 2})
-                return (
-                    "The previous response was truncated by the output limit; its tool batch was rejected. "
-                    "Inspect actual earlier tool receipts and current files before continuing. "
-                    "Continue with small edits, smaller tool "
-                    "arguments and concise output. Verify the current result before finishing."
-                )
-            self.termination_reason = {"kind": "incomplete_response", "detail": self.finish_reason or "missing_finish_reason"}
-            return None
+            return self._incomplete_response_feedback()
         return await super()._run_stop_hooks()
 
 
