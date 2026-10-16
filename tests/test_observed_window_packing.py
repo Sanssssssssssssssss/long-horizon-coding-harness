@@ -11,7 +11,7 @@ from agents.tools import format_file_window
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DRAFT = ROOT/'experiment/research/20261015-observed-window-packing'
+DRAFT = ROOT/'experiment/fixtures/context'
 
 
 def module(name, path):
@@ -26,7 +26,7 @@ def observed(request, tmp_path):
     patched = request.param == 'after'
     folder = DRAFT if patched else ROOT/'agents'
     pages = module('observed_packing_'+request.param, folder/'observed_pages.py').ObservedPages()
-    projector = module('projected_packing_'+request.param, folder/'working_set.py')
+    projector = module('projected_packing_'+request.param, folder/('window_packing.py' if patched else 'working_set.py'))
     projector.ORDER = ('code.py',)
     text = '\n'.join(f'var_{index:04d} = "distinct observed source value {index:04d}"' for index in range(1500))
     path = tmp_path/'code.py'

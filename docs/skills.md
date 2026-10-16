@@ -18,6 +18,10 @@ The example configuration disables automatic evolution for initial use. Set `SAN
 
 ## Current evidence
 
-The SkillLearnBench subset contains five families with four test instances each. **12/20** passed official checks, **5/20** finished naturally, and **8/20** actually loaded a Skill. TRAIN, distillation and failed attempts total **9,996,940 tokens / 767 requests**. It has no fresh no-Skill control, so it does not measure Skill-induced uplift.
+The [active cohort](../benchmarks/cohorts/skilllearn-v1.json) retains four families: DBSCAN tuning, earthquake/plate calculation, offer generation and scheduling. Existing records for these families give **12/16** official passes, **5/16** natural finishes and **8/16** loaded Skills. These test runs used **6,517,258 tokens**; TRAIN and distillation are excluded from that subtotal.
+
+GDP was excluded after the runs at the maintainer's request on 2026-10-17. The original five-family record remains **12/20**, with **9,996,940 tokens / 767 requests** including TRAIN, distillation and failures. The scope change is not a new experiment or a measured improvement. No fresh no-Skill control has been run.
 
 [Per-task scores, activation and usage](../experiment/published/20261016/skill/summary.json) · [Evaluation boundaries](evaluation.md) · [Regression index](../tests/INDEX.md)
+
+Run `python -B scripts/skill_cohort.py` to reconstruct the selected result from the frozen source receipt. [Selected cohort and explicit forecasts](../experiment/published/20261017-scope/README.md)

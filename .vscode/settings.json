@@ -5,7 +5,7 @@
   "python.testing.unittestEnabled": false,
   "python.testing.pytestArgs": ["tests", "--basetemp=experiment/cache/pytest/vscode-tests"],
   "terminal.integrated.env.windows": {"PYTHONUTF8": "1", "PYTHONPYCACHEPREFIX": "${workspaceFolder}/experiment/cache/pycache", "SANS_SKILL_EVOLUTION_DIR": "${workspaceFolder}/experiment/runtime/skill-evolution"},
-  "files.exclude": {"**/__pycache__": true, ".venv": true, "experiment/cache": true, "experiment/env": true},
+  "files.exclude": {"**/__pycache__": true, ".venv": true, "experiment/cache": true, "experiment/env": true, "experiment/research": true, "experiment/archive": true, "experiment/maintenance": true},
   "search.exclude": {"experiment/archive/**": true, "experiment/cache/**": true, "experiment/runs/**": true, "experiment/env/**": true, "experiment/runtime/**": true, "experiment/maintenance/**": true, "experiment/wiki/**": true, ".venv/**": true},
-  "files.watcherExclude": {"**/experiment/archive/**": true, "**/experiment/cache/**": true, "**/experiment/runs/**": true, "**/experiment/env/**": true, "**/experiment/runtime/**": true, "**/experiment/maintenance/**": true, "**/experiment/wiki/**": true, "**/.venv/**": true}
+  "files.watcherExclude": {"**/experiment/research/**": true, "**/experiment/archive/**": true, "**/experiment/cache/**": true, "**/experiment/runs/**": true, "**/experiment/env/**": true, "**/experiment/runtime/**": true, "**/experiment/maintenance/**": true, "**/experiment/wiki/**": true, "**/.venv/**": true}
 }

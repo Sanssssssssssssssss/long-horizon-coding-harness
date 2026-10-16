@@ -9,3 +9,5 @@
 | [Evaluation](evaluation.md) | Protocols, measurement units, results and unresolved failures |
 
 [Regression index](../tests/INDEX.md) · [Published evidence](../experiment/published/20261016/README.md)
+
+[Active Skill cohort and forecasts](../experiment/published/20261017-scope/README.md) · [Historical regression fixtures](../experiment/fixtures/README.md)

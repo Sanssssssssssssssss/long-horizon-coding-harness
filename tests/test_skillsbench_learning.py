@@ -12,7 +12,7 @@ import zipfile
 import pytest
 
 REPO = Path(__file__).resolve().parents[1]
-spec = importlib.util.spec_from_file_location("skillsbench_learning", REPO / "experiment/research/20261009-skill-folding/skillsbench/learn.py")
+spec = importlib.util.spec_from_file_location("skillsbench_learning", REPO / "benchmarks/skillsbench_learning.py")
 learn = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(learn)
 

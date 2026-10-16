@@ -41,7 +41,7 @@ jobs:
       - name: Check repository, evidence and test index
         run: python -B scripts/check_repository.py
       - name: Run offline regressions
-        run: python -B -m pytest tests experiment/research/20261007-two-directions experiment/research/20261007-small-capability/test_user_updates.py experiment/research/20261008-auto-research experiment/research/20261009-skill-folding/test_goal_anchor.py -q -W error::pytest.PytestUnhandledThreadExceptionWarning --basetemp=experiment/cache/t --junitxml=experiment/runs/ci/regression.xml
+        run: python -B -m pytest tests -q -W error::pytest.PytestUnhandledThreadExceptionWarning --basetemp=experiment/cache/t --junitxml=experiment/runs/ci/regression.xml
       - name: Check CLI entrypoint
         run: python -B -m agents.main --help
       - name: Check offline benchmark runner

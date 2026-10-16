@@ -1,0 +1,19 @@
+{
+  "entries": [
+    {
+      "path": "forecast.json",
+      "bytes": 15858,
+      "sha256": "fcb6009d14ea9e0227547d5c78c385218a94b8d3dfd134968e0804e340c41ffe"
+    },
+    {
+      "path": "selection.json",
+      "bytes": 2090,
+      "sha256": "02d8ac102f15359ee6db276449c2e598ac94c49fb44b4b9a3a30350ebd47cdc9"
+    },
+    {
+      "path": "upstream-inventory.json",
+      "bytes": 8099,
+      "sha256": "c0f8f69ae4263fb452678674ae9687a45e5b1f94dee80955b2981fd39bdb286b"
+    }
+  ]
+}

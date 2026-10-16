@@ -14,7 +14,7 @@ from benchmarks.context_folding import _FoldingLoop
 
 
 ROOT = Path(__file__).resolve().parents[1]
-RESEARCH = ROOT / 'experiment/research'
+RESEARCH = ROOT / 'experiment/fixtures/context'
 
 
 def load(name, path):
@@ -26,11 +26,9 @@ def load(name, path):
 
 @pytest.fixture
 def scenario(tmp_path):
-    if not (RESEARCH / '20261015-observed-page-admission/working_set.py').exists():
-        pytest.skip('This isolated research candidate is not present in this checkout.')
-    modules = [load('old_admission', RESEARCH / '20261015-fold-overhead/working_set.py'),
-               load('new_admission', RESEARCH / '20261015-observed-page-admission/working_set.py')]
-    pages = load('admission_pages', RESEARCH / '20261015-observed-window-packing/observed_pages.py').ObservedPages()
+    modules = [load('old_admission', RESEARCH / 'history_budget.py'),
+               load('new_admission', RESEARCH / 'page_admission.py')]
+    pages = load('admission_pages', RESEARCH / 'observed_pages.py').ObservedPages()
     path = tmp_path / 'code.py'
     source = '\n'.join(f'value_{i:04d} = {repr("observed implementation text " * 2)}' for i in range(1200))
     path.write_text(source, encoding='utf-8')
