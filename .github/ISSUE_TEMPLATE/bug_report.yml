@@ -1,0 +1,24 @@
+name: Bug report
+description: Report a reproducible runtime or benchmark failure
+body:
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Commit or sans --version, OS, Python version, provider and model. Omit credentials.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction and expected behavior
+      description: Include the smallest command or task that reproduces the problem.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Actual result and evidence
+      description: Share sanitized errors, termination reason and relevant trace event IDs. Keep full model payloads private. Distinguish offline replay from paid execution.
+    validations:
+      required: true
