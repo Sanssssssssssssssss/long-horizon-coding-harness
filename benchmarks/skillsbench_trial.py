@@ -28,7 +28,7 @@ from benchmarks.research_budget import ResearchBudget, usage_from_trace
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PREPARER = ROOT / 'experiment/research/20261009-skill-folding/skillsbench/prepare.py'
+PREPARER = ROOT / 'benchmarks/skillsbench_prepare.py'
 BANK_ROOT = '/app/.sans/skills'
 MODEL, BASE_URL = trial.MODEL, trial.BASE_URL
 LIMITS = {'solve_calls': 12, 'summary_calls': 4, 'total_model_calls': 16,

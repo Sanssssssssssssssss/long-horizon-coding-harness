@@ -87,7 +87,7 @@ def decode_records(records,*,field='value',destination='decoded',on_error='raise
 
 def fixtures():
     spec = importlib.util.spec_from_file_location("transfer_fixture", ROOT /
-        "experiment/research/20261008-auto-research/heldout_fixture.py")
+        "benchmarks/skill_transfer_fixtures.py")
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     originals = {name: getattr(module, name) for name in ("CORE", "TASK", "GOLD", "CHECKS")}

@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 from agents.telemetry import read_trace
 from benchmarks.research_budget import usage_from_trace
+from skill_cohort import summarize as summarize_skill_cohort
 
 
 def main():
@@ -23,12 +24,12 @@ def main():
     for name in files:
         assert name not in {'.env', '.mcp.json'}, name
         assert not any(part in {'.venv', '__pycache__', '.pytest_cache'} for part in Path(name).parts), name
-        assert not name.startswith(('wiki/', 'experiment/archive/', 'experiment/cache/',
+        assert not name.startswith(('wiki/', 'experiment/research/', 'experiment/archive/', 'experiment/cache/',
             'experiment/runs/', 'experiment/runtime/', 'experiment/maintenance/')), name
         if name.endswith('.py'):
             ast.parse((ROOT / name).read_text(encoding='utf-8'), filename=name)
     index = (ROOT / 'tests/INDEX.md').read_text(encoding='utf-8')
-    suites = [name for name in files if name.startswith(('tests/', 'experiment/research/'))
+    suites = [name for name in files if name.startswith('tests/')
               and Path(name).name.startswith('test_') and name.endswith('.py')]
     for name in suites:
         assert Path(name).name in index, f'Test index missing {name}'
@@ -36,6 +37,8 @@ def main():
     documents = {name for name in required if name.endswith('.md')}
     documents |= {name for name in files if name.startswith('docs/') and name.endswith('.md')}
     documents |= {'experiment/README.md', 'experiment/published/20261016/README.md'}
+    documents |= {name for name in files if name.startswith(('experiment/published/', 'experiment/fixtures/'))
+                  and name.endswith('/README.md')}
     links = 0
     for name in documents:
         path = ROOT / name
@@ -61,6 +64,21 @@ def main():
             assert sha256(item.read_bytes()).hexdigest() == entry['sha256'], str(item)
             assert item.stat().st_size == entry['bytes']
             artifacts += 1
+
+    fixtures = json.loads((ROOT / 'experiment/fixtures/manifest.json').read_bytes())
+    for entry in fixtures['entries']:
+        assert entry['current'] in files
+        assert sha256((ROOT / entry['current']).read_bytes()).hexdigest() == entry['current_sha256']
+    scope = ROOT / 'experiment/published/20261017-scope'
+    assert summarize_skill_cohort() == json.loads((scope / 'selection.json').read_bytes())
+    forecast = json.loads((scope / 'forecast.json').read_bytes())
+    inventory = json.loads((scope / 'upstream-inventory.json').read_bytes())
+    assert forecast['kind'] == 'judgment_forecast' and forecast['new_model_calls'] == 0
+    assert sum(inventory['families'].values()) == inventory['catalog_instances'] == 100
+    for kind in ('catalog', 'heldout'):
+        for key in ('instances', 'unseen', 'expected', 'low', 'high'):
+            assert abs(sum(row[kind][key] for row in forecast['rows']) - forecast[kind][key]) < 1e-6
+    assert forecast['catalog']['instances'] == 94 and forecast['heldout']['instances'] == 75
 
     packet = ROOT / 'experiment/published/20261016'
     runs = [*packet.glob('context/*/receipt.json'), *packet.glob('skill/runs/*/receipt.json')]

@@ -19,6 +19,8 @@ The latest run contains 240 solve responses and 36 installed folds. Its 39 remai
 
 ## Skill cohort
 
+The current [cohort manifest](../benchmarks/cohorts/skilllearn-v1.json) retains four families and 16 recorded test instances. They passed **12/16 (75%)**, finished naturally in **5/16**, and loaded a Skill in **8/16**. Test-only usage is **6,517,258 tokens**. GDP was removed from the active scope after the recorded runs; the original evidence below remains available.
+
 SkillLearnBench: **20 test instances, five families**, four test instances per family. Published TRAIN records cover four distinct instances; the GDP instance appears twice because the second record is an offline regrade. The two recorded revisions complete one combined subset; shared usage is counted once.
 
 | Measure | Result |
@@ -29,6 +31,8 @@ SkillLearnBench: **20 test instances, five families**, four test instances per f
 | TRAIN, distillation and evaluation usage | 9,996,940 tokens / 767 requests |
 
 No fresh no-Skill control was run for this subset. GDP grading corrections were offline regrades, with the original run identity retained. Schedule tasks used a positive scoring-contract fixture rather than an official reference solver. These limitations travel with the score.
+
+[2026-10-17 scope and forecast](../experiment/published/20261017-scope/README.md) records the selected result, the full upstream inventory and family-level planning estimates. Forecasts are not included in measured benchmark totals.
 
 ## Verification layers
 

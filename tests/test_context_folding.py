@@ -18,7 +18,7 @@ from benchmarks.context_folding import ContextFoldingAgent, _BranchAgent, _Foldi
 @pytest.mark.parametrize("number", [1, 2, 3])
 def test_periodic_admission_uses_archived_history_from_actual_trace(tmp_path, monkeypatch, number):
     root = Path(__file__).resolve().parents[1]
-    folder = root / "experiment/research/20261011-native-fold-pilot-003/published/runs/pilot-003/folds" / f"{number:03}"
+    folder = root / "experiment/fixtures/folding" / f"{number:03}"
     receipt = json.loads((folder / "receipt.json").read_text(encoding="utf-8"))
     before = json.loads((folder / "before.json").read_text(encoding="utf-8"))
     parts = receipt["parts"]
