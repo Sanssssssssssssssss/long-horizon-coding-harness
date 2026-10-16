@@ -1,0 +1,24 @@
+{
+  "calls": 58,
+  "tokens": 2301063,
+  "truncated_calls": 15,
+  "truncated_call_tokens": 663055,
+  "truncated_end_seqs": [
+    291,
+    295,
+    551,
+    1817,
+    1821,
+    2216,
+    2329,
+    2333,
+    2354,
+    2974,
+    2978,
+    2995,
+    2999,
+    3016,
+    3063
+  ],
+  "scope": "Actual summary request charges in the completed frozen run. Not a measured saving from the later retry-capacity fix."
+}

@@ -1,0 +1,98 @@
+{
+  "upstream": "726e1f79b96b0cb3d729d0e55a1c847e0b5353ae",
+  "model": "deepseek/deepseek-v4.1-flash",
+  "families": {
+    "weighted-gdp-calculation": [
+      4,
+      5,
+      6
+    ],
+    "schedule-planning": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "offer-letter-generator": [
+      2,
+      3,
+      4,
+      5
+    ]
+  },
+  "train": {
+    "weighted-gdp-calculation": 1,
+    "schedule-planning": 1,
+    "offer-letter-generator": 1
+  },
+  "test_instances": 11,
+  "limits": {
+    "tokens": 500000,
+    "decisions": 36,
+    "calls": 44,
+    "input_tokens": 32768,
+    "output_tokens": 8192
+  },
+  "source_files": {
+    "agents/agent.py": "b004e2d43bb894c584494637f66b1c410f110fa24730205c1c6db7594ed5365b",
+    "agents/cli_display.py": "1ffe996bd5055218ef970355c28712b0260ed3e32c95da883c6e638267c6ced1",
+    "agents/cli_shell.py": "c996112857f982386329e14dd36436b154e59b004d8ee4620b32b25d39c420a0",
+    "agents/frontmatter.py": "8913d22fe5cc582bc5dcb8521ccf516d3ab5fac1ed3a1f6fc1238e2e2a3768ef",
+    "agents/main.py": "80c47a59efee6bd893eeb2709694e56a86f0ea5476aa03965c8e190a97f526e1",
+    "agents/mcp_client.py": "03b97b76750587f2265c57bbc593000f71bfa5c2dd3816fdf7a95effaad8ca3d",
+    "agents/memory.py": "9898a47e13eb888dbfd081bf6c59a4ccea6c70534c9ac1400a5c2a59c2d0c0e0",
+    "agents/observed_pages.py": "1e9d8a3d0577f1d325b2a0c83a771656dd89857cc18dc92a1e4c4f43ee0ff527",
+    "agents/online_skill_eval.py": "580f802625c1cfae2c7d8dbad5140fc86755c8939b99317ad3d4fb712bb4d098",
+    "agents/online_skill_evolution.py": "cd848053903277495f73ff2f4d36568b6d9810793fc43e7584ad1f136484429f",
+    "agents/prompt.py": "988fbc159efcc6ba99032ab3e5e457347aa7f9aeb723cb7ff490ce6036c594ef",
+    "agents/repair_state.py": "2faf977eb4d81634753661b95e4039d6644e898fe76453d5256f2e7414235d95",
+    "agents/session.py": "106ae384f2a3231b84189afce9355ec134b779b99a3d12cdb713e12f52ca39ea",
+    "agents/session_memory.py": "a5d4d25228fe67a28979b88482c803398c06ce6bb7354f4ecfd192cb9daf41a0",
+    "agents/skill_evolution.py": "0e4be7dc5c2447747f8955dbac72798ee33913b39e115388e6fd4fb4d9cd15e0",
+    "agents/skills.py": "9e8a7663fa6f08290deb973132a12dd0bc2be4d2195be4d28452159e7a213f2a",
+    "agents/subagent.py": "c69bec819d766e5336f8a413d76b335365b94bb20d8a26993b08d7434900f05f",
+    "agents/telemetry.py": "9cd62e332bfb634812c6679d6566c79e72894a67398d6625a8b8a38e605eb55e",
+    "agents/tool_result.py": "2f377e21073a7cde8587dd6161e299c74095e08233ae0d1f6de6f2bb6e6e60ce",
+    "agents/tools.py": "9da08a76fb3a7ed7e07cc555721c5a66e592d0f02104745ad5448a57e5f6b3cd",
+    "agents/ui.py": "3320c0556a460c3bbff54f1b905416146ccf63eb4499b44e48282b19ec2e95e8",
+    "agents/verification.py": "b2b7e6afd83c87bf815360965a47dfb8e7603630f1b9cf39c18fe0bf14504073",
+    "agents/working_set.py": "684b6d1ea5559dcda9eb14291550f917e03fb051ba8265de61ae2e714ca7709e",
+    "benchmarks/__init__.py": "77ea4392667c9cd2ce5986033a80f1f24f4fb91e0b3548dde139e6d82ad2f9d1",
+    "benchmarks/checkpoints.py": "343ca738cbfd9c1bd2d4f68d33ce134550002d945927ecefa0a5be509359843e",
+    "benchmarks/context_folding.py": "1213acf9569aa25491d0b1b3c442cca71911fdd95fdac4372e1031583122bf36",
+    "benchmarks/context_pilot.py": "12f0c8e168b43bca5f88cead3d05868b5fd072a1c2fdea869d6e00896e6ae3b8",
+    "benchmarks/continuation_folding.py": "9667499e73cc351209ee0066c2754ad4c2f9ca14a119e777c789ad74879ed623",
+    "benchmarks/execution_training.py": "0f8cf80dc4022cba7d65f3c6eaea7da7ac91ee57b5ddb0738fcce11105e99b94",
+    "benchmarks/folding_checkpoint.py": "2e0b945d3eb9c889f82d448aa693a868adcfa0e3d08dc03cb011afb0b777f88f",
+    "benchmarks/full_eval.py": "a3f33dd16f00f292ff62da4053da0928cea788a830bdd4cd18503fbecb502686",
+    "benchmarks/harbor_agent.py": "c47c416c9c8d6cf45fddab2e0a9c70c629c0e1ba2feb90ecbbc2feed75ac6f96",
+    "benchmarks/live.py": "63546b37f38405a3bb243710b5feff521302f4e1b1939f9611edcca93f68d4df",
+    "benchmarks/local.py": "02f00461222701240d7a65c4629f85bc2ce783aae48b4c4af1fc72b59552de1d",
+    "benchmarks/panel_run.py": "6b9da880e6383bfbb950eab3d745e671b60cc8338a9ac6c2287cb20a464a3fc3",
+    "benchmarks/probe.py": "182bc32baa39856842af0b0a055a8a6d1f383767fa524ba60f9387be66ff7df6",
+    "benchmarks/research_budget.py": "ef8e4081fa589aa7dd2f51be811aa32e2f8a84231144f556a8f07ce47d9b5c00",
+    "benchmarks/research_trial.py": "5dba5264c7c3ae556a4754fc8946e67ecf10526a59983b0a88c730c9a4e093bd",
+    "benchmarks/runner.py": "370d78ad2383d1ecd0f1444626f7c279dd7a2987c7c8120ef03f4c541b302e90",
+    "benchmarks/skill_compiler.py": "f20e1ca1fce4fd565e5464d1ae537306a75d5fc10e501cb596939e73a8840429",
+    "benchmarks/skill_transfer_eval.py": "1ad47e9d3667602c49bb7687b1823a193a929bada5af68122586183c6ae2a42c",
+    "benchmarks/skillsbench_trial.py": "42433c26878ad32141560249704970a85dc929c84c48655cd15f79180a7f3711",
+    "benchmarks/smoke.py": "2b7078d5977b7e2e5682e8ccb57f1274dc4f2207d0fe3e17035e991398ceadd6"
+  },
+  "source_archive_sha256": "7d586767128e1491a9a02ec09a97016fe377002b84bbb053dbe02a8e54659239",
+  "skill_policy": "Reuse original GDP TRAIN trajectory with corrected independent grade; failed TRAIN produces no Skill. Original GDP TEST3 retained with corrected independent grade. Other two families train once. Native TRAIN-only extraction, no TEST feedback.",
+  "folding": "Frozen native pressure-triggered plain compaction, no periodic folding. New folding repairs evaluated separately.",
+  "adaptations": [
+    "Python 3.10 shared office/geospatial image with pinned task dependencies; original DBSCAN image retained",
+    "No human-authored skills, no internet in actors; unchanged official Python tests in fresh containers",
+    "GDP verifier shell formula export reproduced with ssconvert before unchanged pytest",
+    "Schedule has no official reference solver: verifier contract fixture is a grading smoke test only",
+    "Recalculate a temporary xlsx with ssconvert, then export CSV grids from A1; original artifact and official Python tests unchanged."
+  ],
+  "limitations": [
+    "20 held-out instances across 5 task families; not the full 20-family benchmark",
+    "Selected for offline environment and deterministic scoring; no new no-skill baseline",
+    "DBSCAN TEST2/3 previously observed; no feedback from them added to frozen TRAIN skill",
+    "GDP instance2 has no committed Python verifier and is excluded before any model runs",
+    "GDP TRAIN remains failed after regrading. Original GDP TEST3 is retained without another model run; old and corrected grades are both preserved."
+  ]
+}

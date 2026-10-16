@@ -1,0 +1,20 @@
+services:
+  main:
+    build:
+      args:
+        HTTP_PROXY: "http://172.17.0.1:18080"
+        HTTPS_PROXY: "http://172.17.0.1:18080"
+        NO_PROXY: "localhost,127.0.0.1,::1"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - harness-freeze40-pip-cache:/root/.cache/pip
+      - harness-freeze40-uv-cache:/root/.cache/uv
+
+volumes:
+  harness-freeze40-pip-cache:
+    name: harness-freeze40-pip-cache
+    external: true
+  harness-freeze40-uv-cache:
+    name: harness-freeze40-uv-cache
+    external: true

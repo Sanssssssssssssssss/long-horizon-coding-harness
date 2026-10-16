@@ -1,0 +1,11 @@
+[Unit]
+Description=Forward benchmark containers to the Windows HTTP proxy
+After=docker.service
+Requires=docker.service
+
+[Service]
+ExecStart=/usr/bin/socat TCP4-LISTEN:18080,bind=172.17.0.1,fork,reuseaddr TCP4:127.0.0.1:10808
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,70 @@
+{
+  "task": "earthquake-plate-calculation-4",
+  "family": "earthquake-plate-calculation",
+  "instance": 4,
+  "split": "test",
+  "model": "deepseek/deepseek-v4.1-flash",
+  "protocol_sha256": "51f995ea522c363bfd638368e5d2c88456a141a355672d24e9d6fd2bf29d09c0",
+  "skill_sha256": null,
+  "termination": {
+    "kind": "input_budget",
+    "estimated_tokens": 34617,
+    "limit": 32768
+  },
+  "decisions": {
+    "completed": 14,
+    "last_periodic": 0
+  },
+  "grade": {
+    "exit_code": 1,
+    "total": 8,
+    "passed": 0,
+    "cases": [
+      {
+        "id": "test_outputs.TestEarthquakeTask::test_distance_within_tolerance",
+        "status": "error"
+      },
+      {
+        "id": "test_outputs.TestEarthquakeTask::test_earthquake_id_correct",
+        "status": "error"
+      },
+      {
+        "id": "test_outputs.TestEarthquakeTask::test_latitude_within_tolerance",
+        "status": "error"
+      },
+      {
+        "id": "test_outputs.TestEarthquakeTask::test_longitude_within_tolerance",
+        "status": "error"
+      },
+      {
+        "id": "test_outputs.TestEarthquakeTask::test_magnitude_within_tolerance",
+        "status": "error"
+      },
+      {
+        "id": "test_outputs.TestEarthquakeTask::test_output_file_and_structure",
+        "status": "error"
+      },
+      {
+        "id": "test_outputs.TestEarthquakeTask::test_place_correct",
+        "status": "error"
+      },
+      {
+        "id": "test_outputs.TestEarthquakeTask::test_time_correct",
+        "status": "error"
+      }
+    ],
+    "skipped": 0,
+    "task_pass": false
+  },
+  "usage": {
+    "known_tokens": 199535,
+    "physical_requests": 17,
+    "unknown_usage_requests": 0,
+    "unknown_reserved_tokens": 0
+  },
+  "natural_finish": false,
+  "completion_complete": false,
+  "environment_status": "qualified",
+  "trace_source_run": "experiment/runs/20261016-skilllearn-20/test-earthquake-plate-calculation-4",
+  "offline_regrade": false
+}

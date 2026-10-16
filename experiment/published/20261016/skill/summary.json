@@ -1,0 +1,451 @@
+{
+  "tasks": 20,
+  "passed": 12,
+  "natural_finish": 5,
+  "skill_loaded": 8,
+  "families": {
+    "dbscan-parameter-tuning": 4,
+    "earthquake-plate-calculation": 4,
+    "weighted-gdp-calculation": 4,
+    "offer-letter-generator": 4,
+    "schedule-planning": 4
+  },
+  "rows": [
+    {
+      "task": "dbscan-parameter-tuning-2",
+      "split": "test",
+      "family": "dbscan-parameter-tuning",
+      "pass": true,
+      "assertions": "8/8",
+      "natural": false,
+      "complete": false,
+      "skill": true,
+      "tokens": 453833,
+      "calls": 32,
+      "environment": "qualified",
+      "termination": {
+        "kind": "token_budget",
+        "detail": "request_reservation"
+      },
+      "path": "experiment\\runs\\20261016-skilllearn-20\\test-dbscan-parameter-tuning-2"
+    },
+    {
+      "task": "dbscan-parameter-tuning-3",
+      "split": "test",
+      "family": "dbscan-parameter-tuning",
+      "pass": true,
+      "assertions": "8/8",
+      "natural": true,
+      "complete": true,
+      "skill": true,
+      "tokens": 452321,
+      "calls": 36,
+      "environment": "qualified",
+      "termination": null,
+      "path": "experiment\\runs\\20261016-skilllearn-20\\test-dbscan-parameter-tuning-3"
+    },
+    {
+      "task": "dbscan-parameter-tuning-4",
+      "split": "test",
+      "family": "dbscan-parameter-tuning",
+      "pass": true,
+      "assertions": "8/8",
+      "natural": false,
+      "complete": false,
+      "skill": true,
+      "tokens": 461722,
+      "calls": 34,
+      "environment": "qualified",
+      "termination": {
+        "kind": "token_budget",
+        "detail": "request_reservation"
+      },
+      "path": "experiment\\runs\\20261016-skilllearn-20\\test-dbscan-parameter-tuning-4"
+    },
+    {
+      "task": "dbscan-parameter-tuning-5",
+      "split": "test",
+      "family": "dbscan-parameter-tuning",
+      "pass": true,
+      "assertions": "8/8",
+      "natural": false,
+      "complete": false,
+      "skill": true,
+      "tokens": 454914,
+      "calls": 35,
+      "environment": "qualified",
+      "termination": {
+        "kind": "token_budget",
+        "detail": "request_reservation"
+      },
+      "path": "experiment\\runs\\20261016-skilllearn-20\\test-dbscan-parameter-tuning-5"
+    },
+    {
+      "task": "earthquake-plate-calculation-2",
+      "split": "test",
+      "family": "earthquake-plate-calculation",
+      "pass": true,
+      "assertions": "8/8",
+      "natural": false,
+      "complete": false,
+      "skill": false,
+      "tokens": 471264,
+      "calls": 36,
+      "environment": "qualified",
+      "termination": {
+        "kind": "token_budget",
+        "detail": "request_reservation"
+      },
+      "path": "experiment\\runs\\20261016-skilllearn-20\\test-earthquake-plate-calculation-2"
+    },
+    {
+      "task": "earthquake-plate-calculation-3",
+      "split": "test",
+      "family": "earthquake-plate-calculation",
+      "pass": false,
+      "assertions": "7/8",
+      "natural": true,
+      "complete": true,
+      "skill": false,
+      "tokens": 354005,
+      "calls": 26,
+      "environment": "qualified",
+      "termination": null,
+      "path": "experiment\\runs\\20261016-skilllearn-20\\test-earthquake-plate-calculation-3"
+    },
+    {
+      "task": "earthquake-plate-calculation-4",
+      "split": "test",
+      "family": "earthquake-plate-calculation",
+      "pass": false,
+      "assertions": "0/8",
+      "natural": false,
+      "complete": false,
+      "skill": false,
+      "tokens": 199535,
+      "calls": 17,
+      "environment": "qualified",
+      "termination": {
+        "kind": "input_budget",
+        "estimated_tokens": 34617,
+        "limit": 32768
+      },
+      "path": "experiment\\runs\\20261016-skilllearn-20\\test-earthquake-plate-calculation-4"
+    },
+    {
+      "task": "earthquake-plate-calculation-5",
+      "split": "test",
+      "family": "earthquake-plate-calculation",
+      "pass": false,
+      "assertions": "0/8",
+      "natural": false,
+      "complete": false,
+      "skill": false,
+      "tokens": 463996,
+      "calls": 40,
+      "environment": "qualified",
+      "termination": {
+        "kind": "token_budget",
+        "detail": "request_reservation"
+      },
+      "path": "experiment\\runs\\20261016-skilllearn-20\\test-earthquake-plate-calculation-5"
+    },
+    {
+      "task": "weighted-gdp-calculation-3",
+      "split": "test",
+      "family": "weighted-gdp-calculation",
+      "pass": false,
+      "assertions": "16/27",
+      "natural": false,
+      "complete": false,
+      "skill": false,
+      "tokens": 473355,
+      "calls": 36,
+      "environment": "qualified",
+      "termination": {
+        "kind": "token_budget",
+        "detail": "request_reservation"
+      },
+      "path": "experiment\\runs\\20261016-skilllearn-20\\test-weighted-gdp-calculation-3"
+    },
+    {
+      "task": "earthquake-plate-calculation-1",
+      "split": "train",
+      "family": "earthquake-plate-calculation",
+      "pass": false,
+      "assertions": "7/8",
+      "natural": true,
+      "complete": true,
+      "skill": false,
+      "tokens": 441948,
+      "calls": 35,
+      "environment": "qualified",
+      "termination": null,
+      "path": "experiment\\runs\\20261016-skilllearn-20\\train-earthquake-plate-calculation-1"
+    },
+    {
+      "task": "weighted-gdp-calculation-1",
+      "split": "train",
+      "family": "weighted-gdp-calculation",
+      "pass": false,
+      "assertions": "15/27",
+      "natural": false,
+      "complete": false,
+      "skill": false,
+      "tokens": 467388,
+      "calls": 34,
+      "environment": "qualified",
+      "termination": {
+        "kind": "token_budget",
+        "detail": "request_reservation"
+      },
+      "path": "experiment\\runs\\20261016-skilllearn-20\\train-weighted-gdp-calculation-1"
+    },
+    {
+      "task": "offer-letter-generator-2",
+      "split": "test",
+      "family": "offer-letter-generator",
+      "pass": true,
+      "assertions": "29/29",
+      "natural": true,
+      "complete": true,
+      "skill": false,
+      "tokens": 398946,
+      "calls": 33,
+      "environment": "qualified",
+      "termination": null,
+      "path": "experiment\\runs\\20261016-skilllearn-20-v2\\test-offer-letter-generator-2"
+    },
+    {
+      "task": "offer-letter-generator-3",
+      "split": "test",
+      "family": "offer-letter-generator",
+      "pass": true,
+      "assertions": "29/29",
+      "natural": true,
+      "complete": true,
+      "skill": false,
+      "tokens": 281092,
+      "calls": 23,
+      "environment": "qualified",
+      "termination": null,
+      "path": "experiment\\runs\\20261016-skilllearn-20-v2\\test-offer-letter-generator-3"
+    },
+    {
+      "task": "offer-letter-generator-4",
+      "split": "test",
+      "family": "offer-letter-generator",
+      "pass": true,
+      "assertions": "29/29",
+      "natural": false,
+      "complete": false,
+      "skill": false,
+      "tokens": 467169,
+      "calls": 39,
+      "environment": "qualified",
+      "termination": {
+        "kind": "token_budget",
+        "detail": "request_reservation"
+      },
+      "path": "experiment\\runs\\20261016-skilllearn-20-v2\\test-offer-letter-generator-4"
+    },
+    {
+      "task": "offer-letter-generator-5",
+      "split": "test",
+      "family": "offer-letter-generator",
+      "pass": true,
+      "assertions": "29/29",
+      "natural": true,
+      "complete": true,
+      "skill": false,
+      "tokens": 184114,
+      "calls": 17,
+      "environment": "qualified",
+      "termination": null,
+      "path": "experiment\\runs\\20261016-skilllearn-20-v2\\test-offer-letter-generator-5"
+    },
+    {
+      "task": "schedule-planning-2",
+      "split": "test",
+      "family": "schedule-planning",
+      "pass": true,
+      "assertions": "2/2",
+      "natural": false,
+      "complete": true,
+      "skill": true,
+      "tokens": 472331,
+      "calls": 35,
+      "environment": "qualified",
+      "termination": {
+        "kind": "token_budget",
+        "detail": "request_reservation"
+      },
+      "path": "experiment\\runs\\20261016-skilllearn-20-v2\\test-schedule-planning-2"
+    },
+    {
+      "task": "schedule-planning-3",
+      "split": "test",
+      "family": "schedule-planning",
+      "pass": true,
+      "assertions": "2/2",
+      "natural": false,
+      "complete": false,
+      "skill": true,
+      "tokens": 463960,
+      "calls": 33,
+      "environment": "qualified",
+      "termination": {
+        "kind": "token_budget",
+        "detail": "request_reservation"
+      },
+      "path": "experiment\\runs\\20261016-skilllearn-20-v2\\test-schedule-planning-3"
+    },
+    {
+      "task": "schedule-planning-4",
+      "split": "test",
+      "family": "schedule-planning",
+      "pass": false,
+      "assertions": "0/2",
+      "natural": false,
+      "complete": false,
+      "skill": true,
+      "tokens": 469981,
+      "calls": 34,
+      "environment": "qualified",
+      "termination": {
+        "kind": "token_budget",
+        "detail": "request_reservation"
+      },
+      "path": "experiment\\runs\\20261016-skilllearn-20-v2\\test-schedule-planning-4"
+    },
+    {
+      "task": "schedule-planning-5",
+      "split": "test",
+      "family": "schedule-planning",
+      "pass": true,
+      "assertions": "2/2",
+      "natural": false,
+      "complete": false,
+      "skill": true,
+      "tokens": 468075,
+      "calls": 34,
+      "environment": "qualified",
+      "termination": {
+        "kind": "token_budget",
+        "detail": "request_reservation"
+      },
+      "path": "experiment\\runs\\20261016-skilllearn-20-v2\\test-schedule-planning-5"
+    },
+    {
+      "task": "weighted-gdp-calculation-4",
+      "split": "test",
+      "family": "weighted-gdp-calculation",
+      "pass": false,
+      "assertions": "10/27",
+      "natural": false,
+      "complete": false,
+      "skill": false,
+      "tokens": 457831,
+      "calls": 32,
+      "environment": "qualified",
+      "termination": {
+        "kind": "token_budget",
+        "detail": "request_reservation"
+      },
+      "path": "experiment\\runs\\20261016-skilllearn-20-v2\\test-weighted-gdp-calculation-4"
+    },
+    {
+      "task": "weighted-gdp-calculation-5",
+      "split": "test",
+      "family": "weighted-gdp-calculation",
+      "pass": false,
+      "assertions": "10/25",
+      "natural": false,
+      "complete": false,
+      "skill": false,
+      "tokens": 467847,
+      "calls": 35,
+      "environment": "qualified",
+      "termination": {
+        "kind": "token_budget",
+        "detail": "request_reservation"
+      },
+      "path": "experiment\\runs\\20261016-skilllearn-20-v2\\test-weighted-gdp-calculation-5"
+    },
+    {
+      "task": "weighted-gdp-calculation-6",
+      "split": "test",
+      "family": "weighted-gdp-calculation",
+      "pass": false,
+      "assertions": "10/27",
+      "natural": false,
+      "complete": false,
+      "skill": false,
+      "tokens": 471329,
+      "calls": 35,
+      "environment": "qualified",
+      "termination": {
+        "kind": "token_budget",
+        "detail": "request_reservation"
+      },
+      "path": "experiment\\runs\\20261016-skilllearn-20-v2\\test-weighted-gdp-calculation-6"
+    },
+    {
+      "task": "offer-letter-generator-1",
+      "split": "train",
+      "family": "offer-letter-generator",
+      "pass": false,
+      "assertions": "21/25",
+      "natural": true,
+      "complete": true,
+      "skill": false,
+      "tokens": 204560,
+      "calls": 19,
+      "environment": "qualified",
+      "termination": null,
+      "path": "experiment\\runs\\20261016-skilllearn-20-v2\\train-offer-letter-generator-1"
+    },
+    {
+      "task": "schedule-planning-1",
+      "split": "train",
+      "family": "schedule-planning",
+      "pass": true,
+      "assertions": "2/2",
+      "natural": false,
+      "complete": false,
+      "skill": false,
+      "tokens": 469275,
+      "calls": 36,
+      "environment": "qualified",
+      "termination": {
+        "kind": "token_budget",
+        "detail": "request_reservation"
+      },
+      "path": "experiment\\runs\\20261016-skilllearn-20-v2\\train-schedule-planning-1"
+    },
+    {
+      "task": "weighted-gdp-calculation-1",
+      "split": "train",
+      "family": "weighted-gdp-calculation",
+      "pass": false,
+      "assertions": "21/27",
+      "natural": false,
+      "complete": false,
+      "skill": false,
+      "tokens": 467388,
+      "calls": 34,
+      "environment": "qualified",
+      "termination": {
+        "kind": "token_budget",
+        "detail": "request_reservation"
+      },
+      "path": "experiment\\runs\\20261016-skilllearn-20-v2\\train-weighted-gdp-calculation-1"
+    }
+  ],
+  "usage_including_train_and_distillation": {
+    "known_api_tokens": 9996940,
+    "physical_requests": 767,
+    "unknown_usage_requests": 0
+  },
+  "limitations": "Five families with four test instances each; not 20 independent families. No fresh no-Skill control. Only eight test tasks loaded a Skill. No causal uplift claim."
+}

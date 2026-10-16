@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "error": null,
+  "live": true,
+  "usage": {
+    "known_tokens": 48704,
+    "physical_requests": 1,
+    "unknown_usage_requests": 0,
+    "unknown_reserved_tokens": 0
+  },
+  "original_request_sha256": "487fb409c6c71cf6e255b2b8f29b3d68a359669f6e44f0f1f278dede1a013531",
+  "observed_output_limits": [
+    8192
+  ],
+  "source_sha256": "426a7f703cf68973edc65d520d16133321a0d89b4c23b113f9df72712a964d94",
+  "scope": "Exact recorded summary input and system; increased retry cap only. Minimal stable state, not a solver replay or task-score claim."
+}

@@ -1,0 +1,9 @@
+{
+  "full_run_completed_before_application": true,
+  "full_run_receipt_sha256": "e407b91667b7e3660a312b268f45381a346ec53378d67433e1762c4413c50ff9",
+  "frozen_source_sha256": "c15e137d4bbce79c8f4401a5daa956c234886f89f221e4ac57908b14e364d1bd",
+  "patched_source_sha256": "426a7f703cf68973edc65d520d16133321a0d89b4c23b113f9df72712a964d94",
+  "matches_offline_qualified_candidate": true,
+  "regression_xml_sha256": "e67d6205ae722e39ebfedb71c88b7deb5e465e8501e11f50f62e5e6403b6f0f0",
+  "scope": "The 527/566 business score precedes this capacity fix."
+}

@@ -1,0 +1,1927 @@
+{
+  "arms": {
+    "baseline": {
+      "rows": [
+        {
+          "checkpoint": 1,
+          "solve_responses": 5,
+          "tokens": 109059,
+          "fold_count": 1,
+          "summary_attempts": 1,
+          "natural": true,
+          "current_complete": true,
+          "passed": 36,
+          "applicable": 36,
+          "excluded": 0,
+          "pass_fraction": 1.0,
+          "all_applicable_passed": true,
+          "new_checkpoint_passed": true,
+          "new_passed": 36,
+          "new_applicable": 36,
+          "old_ever_passed_applicable": 0,
+          "old_ever_passed_lost": 0,
+          "lost_ids": [],
+          "termination": null,
+          "error": null
+        },
+        {
+          "checkpoint": 2,
+          "solve_responses": 11,
+          "tokens": 281423,
+          "fold_count": 2,
+          "summary_attempts": 2,
+          "natural": true,
+          "current_complete": true,
+          "passed": 99,
+          "applicable": 99,
+          "excluded": 0,
+          "pass_fraction": 1.0,
+          "all_applicable_passed": true,
+          "new_checkpoint_passed": true,
+          "new_passed": 63,
+          "new_applicable": 63,
+          "old_ever_passed_applicable": 36,
+          "old_ever_passed_lost": 0,
+          "lost_ids": [],
+          "termination": null,
+          "error": null
+        },
+        {
+          "checkpoint": 3,
+          "solve_responses": 16,
+          "tokens": 507342,
+          "fold_count": 3,
+          "summary_attempts": 3,
+          "natural": true,
+          "current_complete": true,
+          "passed": 205,
+          "applicable": 205,
+          "excluded": 0,
+          "pass_fraction": 1.0,
+          "all_applicable_passed": true,
+          "new_checkpoint_passed": true,
+          "new_passed": 106,
+          "new_applicable": 106,
+          "old_ever_passed_applicable": 99,
+          "old_ever_passed_lost": 0,
+          "lost_ids": [],
+          "termination": null,
+          "error": null
+        },
+        {
+          "checkpoint": 4,
+          "solve_responses": 40,
+          "tokens": 1760815,
+          "fold_count": 14,
+          "summary_attempts": 14,
+          "natural": false,
+          "current_complete": false,
+          "passed": 418,
+          "applicable": 430,
+          "excluded": 0,
+          "pass_fraction": 0.9720930232558139,
+          "all_applicable_passed": false,
+          "new_checkpoint_passed": false,
+          "new_passed": 213,
+          "new_applicable": 225,
+          "old_ever_passed_applicable": 205,
+          "old_ever_passed_lost": 0,
+          "lost_ids": [],
+          "termination": {
+            "kind": "max_decisions"
+          },
+          "error": null
+        },
+        {
+          "checkpoint": 5,
+          "solve_responses": 64,
+          "tokens": 2673300,
+          "fold_count": 21,
+          "summary_attempts": 21,
+          "natural": false,
+          "current_complete": true,
+          "passed": 450,
+          "applicable": 457,
+          "excluded": 0,
+          "pass_fraction": 0.9846827133479212,
+          "all_applicable_passed": false,
+          "new_checkpoint_passed": false,
+          "new_passed": 26,
+          "new_applicable": 27,
+          "old_ever_passed_applicable": 418,
+          "old_ever_passed_lost": 0,
+          "lost_ids": [],
+          "termination": {
+            "kind": "max_decisions"
+          },
+          "error": null
+        },
+        {
+          "checkpoint": 6,
+          "solve_responses": 72,
+          "tokens": 3002313,
+          "fold_count": 24,
+          "summary_attempts": 24,
+          "natural": true,
+          "current_complete": true,
+          "passed": 500,
+          "applicable": 508,
+          "excluded": 0,
+          "pass_fraction": 0.984251968503937,
+          "all_applicable_passed": false,
+          "new_checkpoint_passed": false,
+          "new_passed": 50,
+          "new_applicable": 51,
+          "old_ever_passed_applicable": 450,
+          "old_ever_passed_lost": 0,
+          "lost_ids": [],
+          "termination": null,
+          "error": null
+        },
+        {
+          "checkpoint": 7,
+          "solve_responses": 79,
+          "tokens": 3306138,
+          "fold_count": 25,
+          "summary_attempts": 25,
+          "natural": false,
+          "current_complete": false,
+          "passed": 500,
+          "applicable": 529,
+          "excluded": 0,
+          "pass_fraction": 0.945179584120983,
+          "all_applicable_passed": false,
+          "new_checkpoint_passed": false,
+          "new_passed": 0,
+          "new_applicable": 21,
+          "old_ever_passed_applicable": 500,
+          "old_ever_passed_lost": 0,
+          "lost_ids": [],
+          "termination": {
+            "kind": "input_budget",
+            "estimated_tokens": 70407,
+            "limit": 65536
+          },
+          "error": null
+        },
+        {
+          "checkpoint": 8,
+          "solve_responses": 86,
+          "tokens": 3695940,
+          "fold_count": 26,
+          "summary_attempts": 26,
+          "natural": false,
+          "current_complete": false,
+          "passed": 500,
+          "applicable": 566,
+          "excluded": 0,
+          "pass_fraction": 0.8833922261484098,
+          "all_applicable_passed": false,
+          "new_checkpoint_passed": false,
+          "new_passed": 0,
+          "new_applicable": 37,
+          "old_ever_passed_applicable": 500,
+          "old_ever_passed_lost": 0,
+          "lost_ids": [],
+          "termination": {
+            "kind": "input_budget",
+            "estimated_tokens": 70883,
+            "limit": 65536
+          },
+          "error": null
+        }
+      ],
+      "retention_matrix": [
+        {
+          "endpoint": 1,
+          "requirement_checkpoint": 1,
+          "passed": 36,
+          "applicable": 36
+        },
+        {
+          "endpoint": 2,
+          "requirement_checkpoint": 1,
+          "passed": 36,
+          "applicable": 36
+        },
+        {
+          "endpoint": 2,
+          "requirement_checkpoint": 2,
+          "passed": 63,
+          "applicable": 63
+        },
+        {
+          "endpoint": 3,
+          "requirement_checkpoint": 1,
+          "passed": 36,
+          "applicable": 36
+        },
+        {
+          "endpoint": 3,
+          "requirement_checkpoint": 2,
+          "passed": 63,
+          "applicable": 63
+        },
+        {
+          "endpoint": 3,
+          "requirement_checkpoint": 3,
+          "passed": 106,
+          "applicable": 106
+        },
+        {
+          "endpoint": 4,
+          "requirement_checkpoint": 1,
+          "passed": 36,
+          "applicable": 36
+        },
+        {
+          "endpoint": 4,
+          "requirement_checkpoint": 2,
+          "passed": 63,
+          "applicable": 63
+        },
+        {
+          "endpoint": 4,
+          "requirement_checkpoint": 3,
+          "passed": 106,
+          "applicable": 106
+        },
+        {
+          "endpoint": 4,
+          "requirement_checkpoint": 4,
+          "passed": 213,
+          "applicable": 225
+        },
+        {
+          "endpoint": 5,
+          "requirement_checkpoint": 1,
+          "passed": 36,
+          "applicable": 36
+        },
+        {
+          "endpoint": 5,
+          "requirement_checkpoint": 2,
+          "passed": 63,
+          "applicable": 63
+        },
+        {
+          "endpoint": 5,
+          "requirement_checkpoint": 3,
+          "passed": 106,
+          "applicable": 106
+        },
+        {
+          "endpoint": 5,
+          "requirement_checkpoint": 4,
+          "passed": 219,
+          "applicable": 225
+        },
+        {
+          "endpoint": 5,
+          "requirement_checkpoint": 5,
+          "passed": 26,
+          "applicable": 27
+        },
+        {
+          "endpoint": 6,
+          "requirement_checkpoint": 1,
+          "passed": 36,
+          "applicable": 36
+        },
+        {
+          "endpoint": 6,
+          "requirement_checkpoint": 2,
+          "passed": 63,
+          "applicable": 63
+        },
+        {
+          "endpoint": 6,
+          "requirement_checkpoint": 3,
+          "passed": 106,
+          "applicable": 106
+        },
+        {
+          "endpoint": 6,
+          "requirement_checkpoint": 4,
+          "passed": 219,
+          "applicable": 225
+        },
+        {
+          "endpoint": 6,
+          "requirement_checkpoint": 5,
+          "passed": 26,
+          "applicable": 27
+        },
+        {
+          "endpoint": 6,
+          "requirement_checkpoint": 6,
+          "passed": 50,
+          "applicable": 51
+        },
+        {
+          "endpoint": 7,
+          "requirement_checkpoint": 1,
+          "passed": 36,
+          "applicable": 36
+        },
+        {
+          "endpoint": 7,
+          "requirement_checkpoint": 2,
+          "passed": 63,
+          "applicable": 63
+        },
+        {
+          "endpoint": 7,
+          "requirement_checkpoint": 3,
+          "passed": 106,
+          "applicable": 106
+        },
+        {
+          "endpoint": 7,
+          "requirement_checkpoint": 4,
+          "passed": 219,
+          "applicable": 225
+        },
+        {
+          "endpoint": 7,
+          "requirement_checkpoint": 5,
+          "passed": 26,
+          "applicable": 27
+        },
+        {
+          "endpoint": 7,
+          "requirement_checkpoint": 6,
+          "passed": 50,
+          "applicable": 51
+        },
+        {
+          "endpoint": 7,
+          "requirement_checkpoint": 7,
+          "passed": 0,
+          "applicable": 21
+        },
+        {
+          "endpoint": 8,
+          "requirement_checkpoint": 1,
+          "passed": 36,
+          "applicable": 36
+        },
+        {
+          "endpoint": 8,
+          "requirement_checkpoint": 2,
+          "passed": 63,
+          "applicable": 63
+        },
+        {
+          "endpoint": 8,
+          "requirement_checkpoint": 3,
+          "passed": 106,
+          "applicable": 106
+        },
+        {
+          "endpoint": 8,
+          "requirement_checkpoint": 4,
+          "passed": 219,
+          "applicable": 225
+        },
+        {
+          "endpoint": 8,
+          "requirement_checkpoint": 5,
+          "passed": 26,
+          "applicable": 27
+        },
+        {
+          "endpoint": 8,
+          "requirement_checkpoint": 6,
+          "passed": 50,
+          "applicable": 51
+        },
+        {
+          "endpoint": 8,
+          "requirement_checkpoint": 7,
+          "passed": 0,
+          "applicable": 21
+        },
+        {
+          "endpoint": 8,
+          "requirement_checkpoint": 8,
+          "passed": 0,
+          "applicable": 37
+        }
+      ],
+      "completed_endpoints": 3,
+      "late_completed_endpoints": 0,
+      "new_checkpoints_completed": 3,
+      "late_new_checkpoints_completed": 0,
+      "late_new_passed": 76,
+      "late_new_applicable": 136,
+      "late_mean_case_fraction": 0.9493766230303128,
+      "late_retained": 1868,
+      "late_retention_opportunities": 1868,
+      "natural_endpoints": 4,
+      "usage": {
+        "known_tokens": 3695940,
+        "physical_requests": 112,
+        "unknown_usage_requests": 0,
+        "unknown_reserved_tokens": 0
+      },
+      "source_unchanged": true,
+      "data_unchanged": true
+    },
+    "best": {
+      "rows": [
+        {
+          "checkpoint": 1,
+          "solve_responses": 11,
+          "tokens": 357388,
+          "fold_count": 0,
+          "summary_attempts": 0,
+          "natural": true,
+          "current_complete": true,
+          "passed": 36,
+          "applicable": 36,
+          "excluded": 0,
+          "pass_fraction": 1.0,
+          "all_applicable_passed": true,
+          "new_checkpoint_passed": true,
+          "new_passed": 36,
+          "new_applicable": 36,
+          "old_ever_passed_applicable": 0,
+          "old_ever_passed_lost": 0,
+          "lost_ids": [],
+          "termination": null,
+          "error": null
+        },
+        {
+          "checkpoint": 2,
+          "solve_responses": 24,
+          "tokens": 907791,
+          "fold_count": 2,
+          "summary_attempts": 2,
+          "natural": true,
+          "current_complete": true,
+          "passed": 99,
+          "applicable": 99,
+          "excluded": 0,
+          "pass_fraction": 1.0,
+          "all_applicable_passed": true,
+          "new_checkpoint_passed": true,
+          "new_passed": 63,
+          "new_applicable": 63,
+          "old_ever_passed_applicable": 36,
+          "old_ever_passed_lost": 0,
+          "lost_ids": [],
+          "termination": null,
+          "error": null
+        },
+        {
+          "checkpoint": 3,
+          "solve_responses": 43,
+          "tokens": 1828265,
+          "fold_count": 5,
+          "summary_attempts": 5,
+          "natural": true,
+          "current_complete": true,
+          "passed": 205,
+          "applicable": 205,
+          "excluded": 0,
+          "pass_fraction": 1.0,
+          "all_applicable_passed": true,
+          "new_checkpoint_passed": true,
+          "new_passed": 106,
+          "new_applicable": 106,
+          "old_ever_passed_applicable": 99,
+          "old_ever_passed_lost": 0,
+          "lost_ids": [],
+          "termination": null,
+          "error": null
+        },
+        {
+          "checkpoint": 4,
+          "solve_responses": 68,
+          "tokens": 3130838,
+          "fold_count": 10,
+          "summary_attempts": 10,
+          "natural": true,
+          "current_complete": true,
+          "passed": 430,
+          "applicable": 430,
+          "excluded": 0,
+          "pass_fraction": 1.0,
+          "all_applicable_passed": true,
+          "new_checkpoint_passed": true,
+          "new_passed": 225,
+          "new_applicable": 225,
+          "old_ever_passed_applicable": 205,
+          "old_ever_passed_lost": 0,
+          "lost_ids": [],
+          "termination": null,
+          "error": null
+        },
+        {
+          "checkpoint": 5,
+          "solve_responses": 114,
+          "tokens": 5464727,
+          "fold_count": 20,
+          "summary_attempts": 20,
+          "natural": true,
+          "current_complete": true,
+          "passed": 456,
+          "applicable": 457,
+          "excluded": 0,
+          "pass_fraction": 0.9978118161925602,
+          "all_applicable_passed": false,
+          "new_checkpoint_passed": false,
+          "new_passed": 26,
+          "new_applicable": 27,
+          "old_ever_passed_applicable": 430,
+          "old_ever_passed_lost": 0,
+          "lost_ids": [],
+          "termination": null,
+          "error": null
+        },
+        {
+          "checkpoint": 6,
+          "solve_responses": 134,
+          "tokens": 6433666,
+          "fold_count": 23,
+          "summary_attempts": 23,
+          "natural": true,
+          "current_complete": true,
+          "passed": 507,
+          "applicable": 508,
+          "excluded": 0,
+          "pass_fraction": 0.9980314960629921,
+          "all_applicable_passed": false,
+          "new_checkpoint_passed": true,
+          "new_passed": 51,
+          "new_applicable": 51,
+          "old_ever_passed_applicable": 456,
+          "old_ever_passed_lost": 0,
+          "lost_ids": [],
+          "termination": null,
+          "error": null
+        },
+        {
+          "checkpoint": 7,
+          "solve_responses": 182,
+          "tokens": 8985470,
+          "fold_count": 34,
+          "summary_attempts": 34,
+          "natural": false,
+          "current_complete": true,
+          "passed": 526,
+          "applicable": 529,
+          "excluded": 0,
+          "pass_fraction": 0.994328922495274,
+          "all_applicable_passed": false,
+          "new_checkpoint_passed": false,
+          "new_passed": 19,
+          "new_applicable": 21,
+          "old_ever_passed_applicable": 507,
+          "old_ever_passed_lost": 0,
+          "lost_ids": [],
+          "termination": {
+            "kind": "max_decisions"
+          },
+          "error": null
+        },
+        {
+          "checkpoint": 8,
+          "solve_responses": 230,
+          "tokens": 11757046,
+          "fold_count": 49,
+          "summary_attempts": 49,
+          "natural": false,
+          "current_complete": true,
+          "passed": 561,
+          "applicable": 566,
+          "excluded": 0,
+          "pass_fraction": 0.991166077738516,
+          "all_applicable_passed": false,
+          "new_checkpoint_passed": false,
+          "new_passed": 35,
+          "new_applicable": 37,
+          "old_ever_passed_applicable": 526,
+          "old_ever_passed_lost": 0,
+          "lost_ids": [],
+          "termination": {
+            "kind": "max_decisions"
+          },
+          "error": null
+        }
+      ],
+      "retention_matrix": [
+        {
+          "endpoint": 1,
+          "requirement_checkpoint": 1,
+          "passed": 36,
+          "applicable": 36
+        },
+        {
+          "endpoint": 2,
+          "requirement_checkpoint": 1,
+          "passed": 36,
+          "applicable": 36
+        },
+        {
+          "endpoint": 2,
+          "requirement_checkpoint": 2,
+          "passed": 63,
+          "applicable": 63
+        },
+        {
+          "endpoint": 3,
+          "requirement_checkpoint": 1,
+          "passed": 36,
+          "applicable": 36
+        },
+        {
+          "endpoint": 3,
+          "requirement_checkpoint": 2,
+          "passed": 63,
+          "applicable": 63
+        },
+        {
+          "endpoint": 3,
+          "requirement_checkpoint": 3,
+          "passed": 106,
+          "applicable": 106
+        },
+        {
+          "endpoint": 4,
+          "requirement_checkpoint": 1,
+          "passed": 36,
+          "applicable": 36
+        },
+        {
+          "endpoint": 4,
+          "requirement_checkpoint": 2,
+          "passed": 63,
+          "applicable": 63
+        },
+        {
+          "endpoint": 4,
+          "requirement_checkpoint": 3,
+          "passed": 106,
+          "applicable": 106
+        },
+        {
+          "endpoint": 4,
+          "requirement_checkpoint": 4,
+          "passed": 225,
+          "applicable": 225
+        },
+        {
+          "endpoint": 5,
+          "requirement_checkpoint": 1,
+          "passed": 36,
+          "applicable": 36
+        },
+        {
+          "endpoint": 5,
+          "requirement_checkpoint": 2,
+          "passed": 63,
+          "applicable": 63
+        },
+        {
+          "endpoint": 5,
+          "requirement_checkpoint": 3,
+          "passed": 106,
+          "applicable": 106
+        },
+        {
+          "endpoint": 5,
+          "requirement_checkpoint": 4,
+          "passed": 225,
+          "applicable": 225
+        },
+        {
+          "endpoint": 5,
+          "requirement_checkpoint": 5,
+          "passed": 26,
+          "applicable": 27
+        },
+        {
+          "endpoint": 6,
+          "requirement_checkpoint": 1,
+          "passed": 36,
+          "applicable": 36
+        },
+        {
+          "endpoint": 6,
+          "requirement_checkpoint": 2,
+          "passed": 63,
+          "applicable": 63
+        },
+        {
+          "endpoint": 6,
+          "requirement_checkpoint": 3,
+          "passed": 106,
+          "applicable": 106
+        },
+        {
+          "endpoint": 6,
+          "requirement_checkpoint": 4,
+          "passed": 225,
+          "applicable": 225
+        },
+        {
+          "endpoint": 6,
+          "requirement_checkpoint": 5,
+          "passed": 26,
+          "applicable": 27
+        },
+        {
+          "endpoint": 6,
+          "requirement_checkpoint": 6,
+          "passed": 51,
+          "applicable": 51
+        },
+        {
+          "endpoint": 7,
+          "requirement_checkpoint": 1,
+          "passed": 36,
+          "applicable": 36
+        },
+        {
+          "endpoint": 7,
+          "requirement_checkpoint": 2,
+          "passed": 63,
+          "applicable": 63
+        },
+        {
+          "endpoint": 7,
+          "requirement_checkpoint": 3,
+          "passed": 106,
+          "applicable": 106
+        },
+        {
+          "endpoint": 7,
+          "requirement_checkpoint": 4,
+          "passed": 225,
+          "applicable": 225
+        },
+        {
+          "endpoint": 7,
+          "requirement_checkpoint": 5,
+          "passed": 26,
+          "applicable": 27
+        },
+        {
+          "endpoint": 7,
+          "requirement_checkpoint": 6,
+          "passed": 51,
+          "applicable": 51
+        },
+        {
+          "endpoint": 7,
+          "requirement_checkpoint": 7,
+          "passed": 19,
+          "applicable": 21
+        },
+        {
+          "endpoint": 8,
+          "requirement_checkpoint": 1,
+          "passed": 36,
+          "applicable": 36
+        },
+        {
+          "endpoint": 8,
+          "requirement_checkpoint": 2,
+          "passed": 63,
+          "applicable": 63
+        },
+        {
+          "endpoint": 8,
+          "requirement_checkpoint": 3,
+          "passed": 106,
+          "applicable": 106
+        },
+        {
+          "endpoint": 8,
+          "requirement_checkpoint": 4,
+          "passed": 225,
+          "applicable": 225
+        },
+        {
+          "endpoint": 8,
+          "requirement_checkpoint": 5,
+          "passed": 26,
+          "applicable": 27
+        },
+        {
+          "endpoint": 8,
+          "requirement_checkpoint": 6,
+          "passed": 51,
+          "applicable": 51
+        },
+        {
+          "endpoint": 8,
+          "requirement_checkpoint": 7,
+          "passed": 19,
+          "applicable": 21
+        },
+        {
+          "endpoint": 8,
+          "requirement_checkpoint": 8,
+          "passed": 35,
+          "applicable": 37
+        }
+      ],
+      "completed_endpoints": 4,
+      "late_completed_endpoints": 0,
+      "new_checkpoints_completed": 5,
+      "late_new_checkpoints_completed": 1,
+      "late_new_passed": 131,
+      "late_new_applicable": 136,
+      "late_mean_case_fraction": 0.9953345781223356,
+      "late_retained": 1919,
+      "late_retention_opportunities": 1919,
+      "natural_endpoints": 6,
+      "usage": {
+        "known_tokens": 11757046,
+        "physical_requests": 279,
+        "unknown_usage_requests": 0,
+        "unknown_reserved_tokens": 0
+      },
+      "source_unchanged": true,
+      "data_unchanged": true
+    },
+    "previous": {
+      "rows": [
+        {
+          "checkpoint": 1,
+          "solve_responses": 11,
+          "tokens": 356195,
+          "fold_count": 0,
+          "summary_attempts": 0,
+          "natural": true,
+          "current_complete": true,
+          "passed": 36,
+          "applicable": 36,
+          "excluded": 0,
+          "pass_fraction": 1.0,
+          "all_applicable_passed": true,
+          "new_checkpoint_passed": true,
+          "new_passed": 36,
+          "new_applicable": 36,
+          "old_ever_passed_applicable": 0,
+          "old_ever_passed_lost": 0,
+          "lost_ids": [],
+          "termination": null,
+          "error": null
+        },
+        {
+          "checkpoint": 2,
+          "solve_responses": 22,
+          "tokens": 805357,
+          "fold_count": 2,
+          "summary_attempts": 2,
+          "natural": true,
+          "current_complete": true,
+          "passed": 99,
+          "applicable": 99,
+          "excluded": 0,
+          "pass_fraction": 1.0,
+          "all_applicable_passed": true,
+          "new_checkpoint_passed": true,
+          "new_passed": 63,
+          "new_applicable": 63,
+          "old_ever_passed_applicable": 36,
+          "old_ever_passed_lost": 0,
+          "lost_ids": [],
+          "termination": null,
+          "error": null
+        },
+        {
+          "checkpoint": 3,
+          "solve_responses": 39,
+          "tokens": 1596939,
+          "fold_count": 4,
+          "summary_attempts": 4,
+          "natural": true,
+          "current_complete": true,
+          "passed": 189,
+          "applicable": 205,
+          "excluded": 0,
+          "pass_fraction": 0.9219512195121952,
+          "all_applicable_passed": false,
+          "new_checkpoint_passed": false,
+          "new_passed": 91,
+          "new_applicable": 106,
+          "old_ever_passed_applicable": 99,
+          "old_ever_passed_lost": 1,
+          "lost_ids": [
+            [
+              "test_checkpoint_1",
+              "test_check_parse_errors_have_location[brackets-            input a[0]\\n            output y\\n            y = a\\n            ]"
+            ]
+          ],
+          "termination": null,
+          "error": null
+        },
+        {
+          "checkpoint": 4,
+          "solve_responses": 77,
+          "tokens": 3518949,
+          "fold_count": 9,
+          "summary_attempts": 9,
+          "natural": true,
+          "current_complete": true,
+          "passed": 414,
+          "applicable": 430,
+          "excluded": 0,
+          "pass_fraction": 0.9627906976744186,
+          "all_applicable_passed": false,
+          "new_checkpoint_passed": true,
+          "new_passed": 225,
+          "new_applicable": 225,
+          "old_ever_passed_applicable": 190,
+          "old_ever_passed_lost": 1,
+          "lost_ids": [
+            [
+              "test_checkpoint_1",
+              "test_check_parse_errors_have_location[brackets-            input a[0]\\n            output y\\n            y = a\\n            ]"
+            ]
+          ],
+          "termination": null,
+          "error": null
+        },
+        {
+          "checkpoint": 5,
+          "solve_responses": 125,
+          "tokens": 5857413,
+          "fold_count": 16,
+          "summary_attempts": 17,
+          "natural": false,
+          "current_complete": true,
+          "passed": 440,
+          "applicable": 457,
+          "excluded": 0,
+          "pass_fraction": 0.962800875273523,
+          "all_applicable_passed": false,
+          "new_checkpoint_passed": false,
+          "new_passed": 26,
+          "new_applicable": 27,
+          "old_ever_passed_applicable": 415,
+          "old_ever_passed_lost": 1,
+          "lost_ids": [
+            [
+              "test_checkpoint_1",
+              "test_check_parse_errors_have_location[brackets-            input a[0]\\n            output y\\n            y = a\\n            ]"
+            ]
+          ],
+          "termination": {
+            "kind": "max_decisions"
+          },
+          "error": null
+        },
+        {
+          "checkpoint": 6,
+          "solve_responses": 163,
+          "tokens": 7865805,
+          "fold_count": 21,
+          "summary_attempts": 28,
+          "natural": true,
+          "current_complete": true,
+          "passed": 491,
+          "applicable": 508,
+          "excluded": 0,
+          "pass_fraction": 0.9665354330708661,
+          "all_applicable_passed": false,
+          "new_checkpoint_passed": true,
+          "new_passed": 51,
+          "new_applicable": 51,
+          "old_ever_passed_applicable": 441,
+          "old_ever_passed_lost": 1,
+          "lost_ids": [
+            [
+              "test_checkpoint_1",
+              "test_check_parse_errors_have_location[brackets-            input a[0]\\n            output y\\n            y = a\\n            ]"
+            ]
+          ],
+          "termination": null,
+          "error": null
+        },
+        {
+          "checkpoint": 7,
+          "solve_responses": 199,
+          "tokens": 9593500,
+          "fold_count": 26,
+          "summary_attempts": 33,
+          "natural": true,
+          "current_complete": true,
+          "passed": 510,
+          "applicable": 529,
+          "excluded": 0,
+          "pass_fraction": 0.9640831758034026,
+          "all_applicable_passed": false,
+          "new_checkpoint_passed": false,
+          "new_passed": 19,
+          "new_applicable": 21,
+          "old_ever_passed_applicable": 492,
+          "old_ever_passed_lost": 1,
+          "lost_ids": [
+            [
+              "test_checkpoint_1",
+              "test_check_parse_errors_have_location[brackets-            input a[0]\\n            output y\\n            y = a\\n            ]"
+            ]
+          ],
+          "termination": null,
+          "error": null
+        },
+        {
+          "checkpoint": 8,
+          "solve_responses": 247,
+          "tokens": 12110585,
+          "fold_count": 33,
+          "summary_attempts": 43,
+          "natural": false,
+          "current_complete": false,
+          "passed": 510,
+          "applicable": 566,
+          "excluded": 0,
+          "pass_fraction": 0.901060070671378,
+          "all_applicable_passed": false,
+          "new_checkpoint_passed": false,
+          "new_passed": 0,
+          "new_applicable": 37,
+          "old_ever_passed_applicable": 511,
+          "old_ever_passed_lost": 1,
+          "lost_ids": [
+            [
+              "test_checkpoint_1",
+              "test_check_parse_errors_have_location[brackets-            input a[0]\\n            output y\\n            y = a\\n            ]"
+            ]
+          ],
+          "termination": {
+            "kind": "max_decisions"
+          },
+          "error": null
+        }
+      ],
+      "retention_matrix": [
+        {
+          "endpoint": 1,
+          "requirement_checkpoint": 1,
+          "passed": 36,
+          "applicable": 36
+        },
+        {
+          "endpoint": 2,
+          "requirement_checkpoint": 1,
+          "passed": 36,
+          "applicable": 36
+        },
+        {
+          "endpoint": 2,
+          "requirement_checkpoint": 2,
+          "passed": 63,
+          "applicable": 63
+        },
+        {
+          "endpoint": 3,
+          "requirement_checkpoint": 1,
+          "passed": 35,
+          "applicable": 36
+        },
+        {
+          "endpoint": 3,
+          "requirement_checkpoint": 2,
+          "passed": 63,
+          "applicable": 63
+        },
+        {
+          "endpoint": 3,
+          "requirement_checkpoint": 3,
+          "passed": 91,
+          "applicable": 106
+        },
+        {
+          "endpoint": 4,
+          "requirement_checkpoint": 1,
+          "passed": 35,
+          "applicable": 36
+        },
+        {
+          "endpoint": 4,
+          "requirement_checkpoint": 2,
+          "passed": 63,
+          "applicable": 63
+        },
+        {
+          "endpoint": 4,
+          "requirement_checkpoint": 3,
+          "passed": 91,
+          "applicable": 106
+        },
+        {
+          "endpoint": 4,
+          "requirement_checkpoint": 4,
+          "passed": 225,
+          "applicable": 225
+        },
+        {
+          "endpoint": 5,
+          "requirement_checkpoint": 1,
+          "passed": 35,
+          "applicable": 36
+        },
+        {
+          "endpoint": 5,
+          "requirement_checkpoint": 2,
+          "passed": 63,
+          "applicable": 63
+        },
+        {
+          "endpoint": 5,
+          "requirement_checkpoint": 3,
+          "passed": 91,
+          "applicable": 106
+        },
+        {
+          "endpoint": 5,
+          "requirement_checkpoint": 4,
+          "passed": 225,
+          "applicable": 225
+        },
+        {
+          "endpoint": 5,
+          "requirement_checkpoint": 5,
+          "passed": 26,
+          "applicable": 27
+        },
+        {
+          "endpoint": 6,
+          "requirement_checkpoint": 1,
+          "passed": 35,
+          "applicable": 36
+        },
+        {
+          "endpoint": 6,
+          "requirement_checkpoint": 2,
+          "passed": 63,
+          "applicable": 63
+        },
+        {
+          "endpoint": 6,
+          "requirement_checkpoint": 3,
+          "passed": 91,
+          "applicable": 106
+        },
+        {
+          "endpoint": 6,
+          "requirement_checkpoint": 4,
+          "passed": 225,
+          "applicable": 225
+        },
+        {
+          "endpoint": 6,
+          "requirement_checkpoint": 5,
+          "passed": 26,
+          "applicable": 27
+        },
+        {
+          "endpoint": 6,
+          "requirement_checkpoint": 6,
+          "passed": 51,
+          "applicable": 51
+        },
+        {
+          "endpoint": 7,
+          "requirement_checkpoint": 1,
+          "passed": 35,
+          "applicable": 36
+        },
+        {
+          "endpoint": 7,
+          "requirement_checkpoint": 2,
+          "passed": 63,
+          "applicable": 63
+        },
+        {
+          "endpoint": 7,
+          "requirement_checkpoint": 3,
+          "passed": 91,
+          "applicable": 106
+        },
+        {
+          "endpoint": 7,
+          "requirement_checkpoint": 4,
+          "passed": 225,
+          "applicable": 225
+        },
+        {
+          "endpoint": 7,
+          "requirement_checkpoint": 5,
+          "passed": 26,
+          "applicable": 27
+        },
+        {
+          "endpoint": 7,
+          "requirement_checkpoint": 6,
+          "passed": 51,
+          "applicable": 51
+        },
+        {
+          "endpoint": 7,
+          "requirement_checkpoint": 7,
+          "passed": 19,
+          "applicable": 21
+        },
+        {
+          "endpoint": 8,
+          "requirement_checkpoint": 1,
+          "passed": 35,
+          "applicable": 36
+        },
+        {
+          "endpoint": 8,
+          "requirement_checkpoint": 2,
+          "passed": 63,
+          "applicable": 63
+        },
+        {
+          "endpoint": 8,
+          "requirement_checkpoint": 3,
+          "passed": 91,
+          "applicable": 106
+        },
+        {
+          "endpoint": 8,
+          "requirement_checkpoint": 4,
+          "passed": 225,
+          "applicable": 225
+        },
+        {
+          "endpoint": 8,
+          "requirement_checkpoint": 5,
+          "passed": 26,
+          "applicable": 27
+        },
+        {
+          "endpoint": 8,
+          "requirement_checkpoint": 6,
+          "passed": 51,
+          "applicable": 51
+        },
+        {
+          "endpoint": 8,
+          "requirement_checkpoint": 7,
+          "passed": 19,
+          "applicable": 21
+        },
+        {
+          "endpoint": 8,
+          "requirement_checkpoint": 8,
+          "passed": 0,
+          "applicable": 37
+        }
+      ],
+      "completed_endpoints": 2,
+      "late_completed_endpoints": 0,
+      "new_checkpoints_completed": 4,
+      "late_new_checkpoints_completed": 1,
+      "late_new_passed": 96,
+      "late_new_applicable": 136,
+      "late_mean_case_fraction": 0.9486198887047924,
+      "late_retained": 1855,
+      "late_retention_opportunities": 1859,
+      "natural_endpoints": 6,
+      "usage": {
+        "known_tokens": 12110585,
+        "physical_requests": 291,
+        "unknown_usage_requests": 1,
+        "unknown_reserved_tokens": 370002
+      },
+      "source_unchanged": true,
+      "data_unchanged": true
+    },
+    "current": {
+      "rows": [
+        {
+          "checkpoint": 1,
+          "solve_responses": 10,
+          "tokens": 345508,
+          "fold_count": 0,
+          "summary_attempts": 0,
+          "natural": true,
+          "current_complete": true,
+          "passed": 36,
+          "applicable": 36,
+          "excluded": 0,
+          "pass_fraction": 1.0,
+          "all_applicable_passed": true,
+          "new_checkpoint_passed": true,
+          "new_passed": 36,
+          "new_applicable": 36,
+          "old_ever_passed_applicable": 0,
+          "old_ever_passed_lost": 0,
+          "lost_ids": [],
+          "termination": null,
+          "error": null
+        },
+        {
+          "checkpoint": 2,
+          "solve_responses": 18,
+          "tokens": 674098,
+          "fold_count": 1,
+          "summary_attempts": 1,
+          "natural": true,
+          "current_complete": true,
+          "passed": 99,
+          "applicable": 99,
+          "excluded": 0,
+          "pass_fraction": 1.0,
+          "all_applicable_passed": true,
+          "new_checkpoint_passed": true,
+          "new_passed": 63,
+          "new_applicable": 63,
+          "old_ever_passed_applicable": 36,
+          "old_ever_passed_lost": 0,
+          "lost_ids": [],
+          "termination": null,
+          "error": null
+        },
+        {
+          "checkpoint": 3,
+          "solve_responses": 34,
+          "tokens": 1535925,
+          "fold_count": 3,
+          "summary_attempts": 5,
+          "natural": true,
+          "current_complete": true,
+          "passed": 204,
+          "applicable": 205,
+          "excluded": 0,
+          "pass_fraction": 0.9951219512195122,
+          "all_applicable_passed": false,
+          "new_checkpoint_passed": true,
+          "new_passed": 106,
+          "new_applicable": 106,
+          "old_ever_passed_applicable": 99,
+          "old_ever_passed_lost": 1,
+          "lost_ids": [
+            [
+              "test_checkpoint_1",
+              "test_check_parse_errors_have_location[brackets-            input a[0]\\n            output y\\n            y = a\\n            ]"
+            ]
+          ],
+          "termination": null,
+          "error": null
+        },
+        {
+          "checkpoint": 4,
+          "solve_responses": 64,
+          "tokens": 3246786,
+          "fold_count": 8,
+          "summary_attempts": 17,
+          "natural": true,
+          "current_complete": true,
+          "passed": 429,
+          "applicable": 430,
+          "excluded": 0,
+          "pass_fraction": 0.9976744186046511,
+          "all_applicable_passed": false,
+          "new_checkpoint_passed": true,
+          "new_passed": 225,
+          "new_applicable": 225,
+          "old_ever_passed_applicable": 205,
+          "old_ever_passed_lost": 1,
+          "lost_ids": [
+            [
+              "test_checkpoint_1",
+              "test_check_parse_errors_have_location[brackets-            input a[0]\\n            output y\\n            y = a\\n            ]"
+            ]
+          ],
+          "termination": null,
+          "error": null
+        },
+        {
+          "checkpoint": 5,
+          "solve_responses": 112,
+          "tokens": 5778627,
+          "fold_count": 17,
+          "summary_attempts": 29,
+          "natural": false,
+          "current_complete": true,
+          "passed": 456,
+          "applicable": 457,
+          "excluded": 0,
+          "pass_fraction": 0.9978118161925602,
+          "all_applicable_passed": false,
+          "new_checkpoint_passed": true,
+          "new_passed": 27,
+          "new_applicable": 27,
+          "old_ever_passed_applicable": 430,
+          "old_ever_passed_lost": 1,
+          "lost_ids": [
+            [
+              "test_checkpoint_1",
+              "test_check_parse_errors_have_location[brackets-            input a[0]\\n            output y\\n            y = a\\n            ]"
+            ]
+          ],
+          "termination": {
+            "kind": "max_decisions"
+          },
+          "error": null
+        },
+        {
+          "checkpoint": 6,
+          "solve_responses": 144,
+          "tokens": 7358912,
+          "fold_count": 20,
+          "summary_attempts": 34,
+          "natural": true,
+          "current_complete": true,
+          "passed": 507,
+          "applicable": 508,
+          "excluded": 0,
+          "pass_fraction": 0.9980314960629921,
+          "all_applicable_passed": false,
+          "new_checkpoint_passed": true,
+          "new_passed": 51,
+          "new_applicable": 51,
+          "old_ever_passed_applicable": 457,
+          "old_ever_passed_lost": 1,
+          "lost_ids": [
+            [
+              "test_checkpoint_1",
+              "test_check_parse_errors_have_location[brackets-            input a[0]\\n            output y\\n            y = a\\n            ]"
+            ]
+          ],
+          "termination": null,
+          "error": null
+        },
+        {
+          "checkpoint": 7,
+          "solve_responses": 192,
+          "tokens": 9961708,
+          "fold_count": 27,
+          "summary_attempts": 47,
+          "natural": false,
+          "current_complete": true,
+          "passed": 527,
+          "applicable": 529,
+          "excluded": 0,
+          "pass_fraction": 0.996219281663516,
+          "all_applicable_passed": false,
+          "new_checkpoint_passed": false,
+          "new_passed": 20,
+          "new_applicable": 21,
+          "old_ever_passed_applicable": 508,
+          "old_ever_passed_lost": 1,
+          "lost_ids": [
+            [
+              "test_checkpoint_1",
+              "test_check_parse_errors_have_location[brackets-            input a[0]\\n            output y\\n            y = a\\n            ]"
+            ]
+          ],
+          "termination": {
+            "kind": "max_decisions"
+          },
+          "error": null
+        },
+        {
+          "checkpoint": 8,
+          "solve_responses": 240,
+          "tokens": 12889060,
+          "fold_count": 36,
+          "summary_attempts": 65,
+          "natural": false,
+          "current_complete": false,
+          "passed": 527,
+          "applicable": 566,
+          "excluded": 0,
+          "pass_fraction": 0.931095406360424,
+          "all_applicable_passed": false,
+          "new_checkpoint_passed": false,
+          "new_passed": 0,
+          "new_applicable": 37,
+          "old_ever_passed_applicable": 528,
+          "old_ever_passed_lost": 1,
+          "lost_ids": [
+            [
+              "test_checkpoint_1",
+              "test_check_parse_errors_have_location[brackets-            input a[0]\\n            output y\\n            y = a\\n            ]"
+            ]
+          ],
+          "termination": {
+            "kind": "max_decisions"
+          },
+          "error": null
+        }
+      ],
+      "retention_matrix": [
+        {
+          "endpoint": 1,
+          "requirement_checkpoint": 1,
+          "passed": 36,
+          "applicable": 36
+        },
+        {
+          "endpoint": 2,
+          "requirement_checkpoint": 1,
+          "passed": 36,
+          "applicable": 36
+        },
+        {
+          "endpoint": 2,
+          "requirement_checkpoint": 2,
+          "passed": 63,
+          "applicable": 63
+        },
+        {
+          "endpoint": 3,
+          "requirement_checkpoint": 1,
+          "passed": 35,
+          "applicable": 36
+        },
+        {
+          "endpoint": 3,
+          "requirement_checkpoint": 2,
+          "passed": 63,
+          "applicable": 63
+        },
+        {
+          "endpoint": 3,
+          "requirement_checkpoint": 3,
+          "passed": 106,
+          "applicable": 106
+        },
+        {
+          "endpoint": 4,
+          "requirement_checkpoint": 1,
+          "passed": 35,
+          "applicable": 36
+        },
+        {
+          "endpoint": 4,
+          "requirement_checkpoint": 2,
+          "passed": 63,
+          "applicable": 63
+        },
+        {
+          "endpoint": 4,
+          "requirement_checkpoint": 3,
+          "passed": 106,
+          "applicable": 106
+        },
+        {
+          "endpoint": 4,
+          "requirement_checkpoint": 4,
+          "passed": 225,
+          "applicable": 225
+        },
+        {
+          "endpoint": 5,
+          "requirement_checkpoint": 1,
+          "passed": 35,
+          "applicable": 36
+        },
+        {
+          "endpoint": 5,
+          "requirement_checkpoint": 2,
+          "passed": 63,
+          "applicable": 63
+        },
+        {
+          "endpoint": 5,
+          "requirement_checkpoint": 3,
+          "passed": 106,
+          "applicable": 106
+        },
+        {
+          "endpoint": 5,
+          "requirement_checkpoint": 4,
+          "passed": 225,
+          "applicable": 225
+        },
+        {
+          "endpoint": 5,
+          "requirement_checkpoint": 5,
+          "passed": 27,
+          "applicable": 27
+        },
+        {
+          "endpoint": 6,
+          "requirement_checkpoint": 1,
+          "passed": 35,
+          "applicable": 36
+        },
+        {
+          "endpoint": 6,
+          "requirement_checkpoint": 2,
+          "passed": 63,
+          "applicable": 63
+        },
+        {
+          "endpoint": 6,
+          "requirement_checkpoint": 3,
+          "passed": 106,
+          "applicable": 106
+        },
+        {
+          "endpoint": 6,
+          "requirement_checkpoint": 4,
+          "passed": 225,
+          "applicable": 225
+        },
+        {
+          "endpoint": 6,
+          "requirement_checkpoint": 5,
+          "passed": 27,
+          "applicable": 27
+        },
+        {
+          "endpoint": 6,
+          "requirement_checkpoint": 6,
+          "passed": 51,
+          "applicable": 51
+        },
+        {
+          "endpoint": 7,
+          "requirement_checkpoint": 1,
+          "passed": 35,
+          "applicable": 36
+        },
+        {
+          "endpoint": 7,
+          "requirement_checkpoint": 2,
+          "passed": 63,
+          "applicable": 63
+        },
+        {
+          "endpoint": 7,
+          "requirement_checkpoint": 3,
+          "passed": 106,
+          "applicable": 106
+        },
+        {
+          "endpoint": 7,
+          "requirement_checkpoint": 4,
+          "passed": 225,
+          "applicable": 225
+        },
+        {
+          "endpoint": 7,
+          "requirement_checkpoint": 5,
+          "passed": 27,
+          "applicable": 27
+        },
+        {
+          "endpoint": 7,
+          "requirement_checkpoint": 6,
+          "passed": 51,
+          "applicable": 51
+        },
+        {
+          "endpoint": 7,
+          "requirement_checkpoint": 7,
+          "passed": 20,
+          "applicable": 21
+        },
+        {
+          "endpoint": 8,
+          "requirement_checkpoint": 1,
+          "passed": 35,
+          "applicable": 36
+        },
+        {
+          "endpoint": 8,
+          "requirement_checkpoint": 2,
+          "passed": 63,
+          "applicable": 63
+        },
+        {
+          "endpoint": 8,
+          "requirement_checkpoint": 3,
+          "passed": 106,
+          "applicable": 106
+        },
+        {
+          "endpoint": 8,
+          "requirement_checkpoint": 4,
+          "passed": 225,
+          "applicable": 225
+        },
+        {
+          "endpoint": 8,
+          "requirement_checkpoint": 5,
+          "passed": 27,
+          "applicable": 27
+        },
+        {
+          "endpoint": 8,
+          "requirement_checkpoint": 6,
+          "passed": 51,
+          "applicable": 51
+        },
+        {
+          "endpoint": 8,
+          "requirement_checkpoint": 7,
+          "passed": 20,
+          "applicable": 21
+        },
+        {
+          "endpoint": 8,
+          "requirement_checkpoint": 8,
+          "passed": 0,
+          "applicable": 37
+        }
+      ],
+      "completed_endpoints": 2,
+      "late_completed_endpoints": 0,
+      "new_checkpoints_completed": 6,
+      "late_new_checkpoints_completed": 2,
+      "late_new_passed": 98,
+      "late_new_applicable": 136,
+      "late_mean_case_fraction": 0.9807895000698731,
+      "late_retained": 1919,
+      "late_retention_opportunities": 1923,
+      "natural_endpoints": 5,
+      "usage": {
+        "known_tokens": 12889060,
+        "physical_requests": 299,
+        "unknown_usage_requests": 1,
+        "unknown_reserved_tokens": 373316
+      },
+      "source_unchanged": true,
+      "data_unchanged": true
+    }
+  },
+  "purpose_usage": {
+    "main": {
+      "calls": 240,
+      "tokens": 10587997
+    },
+    "session_fold_continuation": {
+      "calls": 58,
+      "tokens": 2301063
+    }
+  },
+  "audit": [
+    {
+      "arm": "baseline",
+      "checkpoint": 1,
+      "xml_and_snapshot_match": true
+    },
+    {
+      "arm": "baseline",
+      "checkpoint": 2,
+      "xml_and_snapshot_match": true
+    },
+    {
+      "arm": "baseline",
+      "checkpoint": 3,
+      "xml_and_snapshot_match": true
+    },
+    {
+      "arm": "baseline",
+      "checkpoint": 4,
+      "xml_and_snapshot_match": true
+    },
+    {
+      "arm": "baseline",
+      "checkpoint": 5,
+      "xml_and_snapshot_match": true
+    },
+    {
+      "arm": "baseline",
+      "checkpoint": 6,
+      "xml_and_snapshot_match": true
+    },
+    {
+      "arm": "baseline",
+      "checkpoint": 7,
+      "xml_and_snapshot_match": true
+    },
+    {
+      "arm": "baseline",
+      "checkpoint": 8,
+      "xml_and_snapshot_match": true
+    },
+    {
+      "arm": "best",
+      "checkpoint": 1,
+      "xml_and_snapshot_match": true
+    },
+    {
+      "arm": "best",
+      "checkpoint": 2,
+      "xml_and_snapshot_match": true
+    },
+    {
+      "arm": "best",
+      "checkpoint": 3,
+      "xml_and_snapshot_match": true
+    },
+    {
+      "arm": "best",
+      "checkpoint": 4,
+      "xml_and_snapshot_match": true
+    },
+    {
+      "arm": "best",
+      "checkpoint": 5,
+      "xml_and_snapshot_match": true
+    },
+    {
+      "arm": "best",
+      "checkpoint": 6,
+      "xml_and_snapshot_match": true
+    },
+    {
+      "arm": "best",
+      "checkpoint": 7,
+      "xml_and_snapshot_match": true
+    },
+    {
+      "arm": "best",
+      "checkpoint": 8,
+      "xml_and_snapshot_match": true
+    },
+    {
+      "arm": "previous",
+      "checkpoint": 1,
+      "xml_and_snapshot_match": true
+    },
+    {
+      "arm": "previous",
+      "checkpoint": 2,
+      "xml_and_snapshot_match": true
+    },
+    {
+      "arm": "previous",
+      "checkpoint": 3,
+      "xml_and_snapshot_match": true
+    },
+    {
+      "arm": "previous",
+      "checkpoint": 4,
+      "xml_and_snapshot_match": true
+    },
+    {
+      "arm": "previous",
+      "checkpoint": 5,
+      "xml_and_snapshot_match": true
+    },
+    {
+      "arm": "previous",
+      "checkpoint": 6,
+      "xml_and_snapshot_match": true
+    },
+    {
+      "arm": "previous",
+      "checkpoint": 7,
+      "xml_and_snapshot_match": true
+    },
+    {
+      "arm": "previous",
+      "checkpoint": 8,
+      "xml_and_snapshot_match": true
+    },
+    {
+      "arm": "current",
+      "checkpoint": 1,
+      "xml_and_snapshot_match": true
+    },
+    {
+      "arm": "current",
+      "checkpoint": 2,
+      "xml_and_snapshot_match": true
+    },
+    {
+      "arm": "current",
+      "checkpoint": 3,
+      "xml_and_snapshot_match": true
+    },
+    {
+      "arm": "current",
+      "checkpoint": 4,
+      "xml_and_snapshot_match": true
+    },
+    {
+      "arm": "current",
+      "checkpoint": 5,
+      "xml_and_snapshot_match": true
+    },
+    {
+      "arm": "current",
+      "checkpoint": 6,
+      "xml_and_snapshot_match": true
+    },
+    {
+      "arm": "current",
+      "checkpoint": 7,
+      "xml_and_snapshot_match": true
+    },
+    {
+      "arm": "current",
+      "checkpoint": 8,
+      "xml_and_snapshot_match": true
+    }
+  ],
+  "conditions": "Current and previous candidate share 48 responses/stage, 15M allocation, 600s timeout; ordinary baseline has 24, 5M, 180s. Same fixed model and official task/grader. Known development task; no isolated component or generalization claim."
+}

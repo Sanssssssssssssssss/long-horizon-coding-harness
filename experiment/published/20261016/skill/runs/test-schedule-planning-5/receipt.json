@@ -1,0 +1,45 @@
+{
+  "task": "schedule-planning-5",
+  "family": "schedule-planning",
+  "instance": 5,
+  "split": "test",
+  "model": "deepseek/deepseek-v4.1-flash",
+  "protocol_sha256": "2ab2a5c8507fda899360984e5e06228544a03574faaf4450dc8b7333bc6aab63",
+  "skill_sha256": "bf9878582cca2ef0fd5f4a88b4b8a530e4a730035b6925681e12aa968c8adfd1",
+  "termination": {
+    "kind": "token_budget",
+    "detail": "request_reservation"
+  },
+  "decisions": {
+    "completed": 26,
+    "last_periodic": 0
+  },
+  "grade": {
+    "exit_code": 0,
+    "total": 2,
+    "passed": 2,
+    "cases": [
+      {
+        "id": "test_outputs::test_outputs",
+        "status": "passed"
+      },
+      {
+        "id": "test_outputs::test_email_recipients",
+        "status": "passed"
+      }
+    ],
+    "skipped": 0,
+    "task_pass": true
+  },
+  "usage": {
+    "known_tokens": 468075,
+    "physical_requests": 34,
+    "unknown_usage_requests": 0,
+    "unknown_reserved_tokens": 0
+  },
+  "natural_finish": false,
+  "completion_complete": false,
+  "environment_status": "qualified",
+  "trace_source_run": "experiment/runs/20261016-skilllearn-20-v2/test-schedule-planning-5",
+  "offline_regrade": false
+}

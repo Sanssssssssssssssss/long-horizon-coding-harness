@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "panel_id": "freeze40-cap40-v1",
+  "trial_budget": {"max_model_calls": 40, "max_tool_calls": 40},
+  "sources": {
+    "swebench_verified": {
+      "dataset": "SWE-bench/SWE-bench_Verified",
+      "revision": "78f471bf655a3137b2e8a75af1501690ec009ec3",
+      "split": "test",
+      "harbor_dataset": "swe-bench/swe-bench-verified",
+      "harbor_ref": "sha256:b934b0cc3dc800fe945eaf9f1623329db97ee3133c706d20644524c7759fb341"
+    },
+    "swebench_pro": {
+      "dataset": "ScaleAI/SWE-bench_Pro",
+      "revision": "7ab5114912baf22bb098818e604c02fe7ad2c11f",
+      "split": "test",
+      "harbor_dataset": "scale-ai/swe-bench-pro",
+      "harbor_ref": "sha256:88411d32ff27e53a4c1a7e29f0c2aeba180c8e5d60f221cab5ed56325f33549d"
+    },
+    "terminal_bench": {
+      "dataset": "terminal-bench/terminal-bench-2-1",
+      "revision": "7131e4375048a0e408a8fb404b5f499d726b695b",
+      "version": "6",
+      "harbor_dataset": "terminal-bench/terminal-bench-2-1",
+      "harbor_ref": "6"
+    }
+  },
+  "waves": [
+    {
+      "wave": 1,
+      "tasks": [
+        {"suite": "swebench_verified", "instance_id": "django__django-15022"},
+        {"suite": "swebench_verified", "instance_id": "django__django-15128"},
+        {"suite": "swebench_verified", "instance_id": "sympy__sympy-20438"},
+        {"suite": "swebench_verified", "instance_id": "sympy__sympy-14248"},
+        {"suite": "swebench_verified", "instance_id": "sphinx-doc__sphinx-10614"},
+        {"suite": "swebench_verified", "instance_id": "sphinx-doc__sphinx-8548"},
+        {"suite": "swebench_verified", "instance_id": "matplotlib__matplotlib-23299"},
+        {"suite": "swebench_verified", "instance_id": "matplotlib__matplotlib-25332"},
+        {"suite": "swebench_verified", "instance_id": "scikit-learn__scikit-learn-10297"},
+        {"suite": "swebench_verified", "instance_id": "scikit-learn__scikit-learn-13328"},
+        {"suite": "swebench_pro", "instance_id": "instance_ansible__ansible-5260527c4a71bfed99d803e687dd19619423b134-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5"},
+        {"suite": "swebench_pro", "instance_id": "instance_ansible__ansible-3db08adbb1cc6aa9941be5e0fc810132c6e1fa4b-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5"},
+        {"suite": "swebench_pro", "instance_id": "instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4"},
+        {"suite": "swebench_pro", "instance_id": "instance_qutebrowser__qutebrowser-c580ebf0801e5a3ecabc54f327498bb753c6d5f2-v2ef375ac784985212b1805e1d0431dc8f1b3c171"},
+        {"suite": "swebench_pro", "instance_id": "instance_flipt-io__flipt-36e62baffae2132f78f9d34dc300a9baa2d7ae0e"},
+        {"suite": "swebench_pro", "instance_id": "instance_gravitational__teleport-8302d467d160f869b77184e262adbe2fbc95d9ba-vce94f93ad1030e3136852817f2423c1b3ac37bc4"},
+        {"suite": "terminal_bench", "instance_id": "terminal-bench/fix-code-vulnerability", "image_digest": "sha256:d31348aa16b533a15f013420e4d9726dc529e6086adc7d6d48067d22cc18fe71"},
+        {"suite": "terminal_bench", "instance_id": "terminal-bench/fix-git", "image_digest": "sha256:16948b980df9d96de616a205f5acca1c5d395de83ff4f8ffabcafacb93226f2e"},
+        {"suite": "terminal_bench", "instance_id": "terminal-bench/git-multibranch", "image_digest": "sha256:7759a92a373c967dd31535975bad8659410644025673fe62385444fd2605c5fa"},
+        {"suite": "terminal_bench", "instance_id": "terminal-bench/kv-store-grpc", "image_digest": "sha256:973c5d4c111fb61a344457936f1c36400acd2d9e44389e7b319586fe23a7a307"}
+      ]
+    },
+    {
+      "wave": 2,
+      "tasks": [
+        {"suite": "swebench_verified", "instance_id": "astropy__astropy-14182"},
+        {"suite": "swebench_verified", "instance_id": "astropy__astropy-13579"},
+        {"suite": "swebench_verified", "instance_id": "pydata__xarray-7233"},
+        {"suite": "swebench_verified", "instance_id": "pydata__xarray-4356"},
+        {"suite": "swebench_verified", "instance_id": "pytest-dev__pytest-7490"},
+        {"suite": "swebench_verified", "instance_id": "pytest-dev__pytest-10081"},
+        {"suite": "swebench_verified", "instance_id": "pylint-dev__pylint-6386"},
+        {"suite": "swebench_verified", "instance_id": "psf__requests-6028"},
+        {"suite": "swebench_verified", "instance_id": "mwaskom__seaborn-3069"},
+        {"suite": "swebench_verified", "instance_id": "pallets__flask-5014"},
+        {"suite": "swebench_pro", "instance_id": "instance_future-architect__vuls-4a72295de7b91faa59d90a5bee91535bbe76755d"},
+        {"suite": "swebench_pro", "instance_id": "instance_navidrome__navidrome-3982ba725883e71d4e3e618c61d5140eeb8d850a"},
+        {"suite": "swebench_pro", "instance_id": "instance_element-hq__element-web-404c412bcb694f04ba0c4d5479541203d701bca0-vnan"},
+        {"suite": "swebench_pro", "instance_id": "instance_NodeBB__NodeBB-a917210c5b2c20637094545401f85783905c074c-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e"},
+        {"suite": "swebench_pro", "instance_id": "instance_protonmail__webclients-428cd033fede5fd6ae9dbc7ab634e010b10e4209"},
+        {"suite": "swebench_pro", "instance_id": "instance_tutao__tutanota-f373ac3808deefce8183dad8d16729839cc330c1-v2939aa9f4356f0dc9f523ee5ce19d09e08ab979b"},
+        {"suite": "terminal_bench", "instance_id": "terminal-bench/multi-source-data-merger", "image_digest": "sha256:70367c38732e1beda7b229968a48d60242277c2fa4db91339c3f064c4c230d49"},
+        {"suite": "terminal_bench", "instance_id": "terminal-bench/polyglot-rust-c", "image_digest": "sha256:a33dc72e2278d225513c0724abe2e4539653d5ee7e4c2a90ba2d676586ba9f3d"},
+        {"suite": "terminal_bench", "instance_id": "terminal-bench/pypi-server", "image_digest": "sha256:1a1e0542f58e2d3362fec17a9bbb98667717d9a4a3e9a4c8413d3150a4fa0ff1"},
+        {"suite": "terminal_bench", "instance_id": "terminal-bench/sqlite-with-gcov", "image_digest": "sha256:9f9bd57fbf9f4831e9031755e83aea6b9d60d2b2d54e8a12d48cff4dca3c231d"}
+      ]
+    }
+  ]
+}

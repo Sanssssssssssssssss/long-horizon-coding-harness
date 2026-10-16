@@ -1,0 +1,57 @@
+{
+  "case_id": "summary_retry_keeps_truncated_output_limit",
+  "checkpoint": 3,
+  "calls": [
+    {
+      "start_seq": 288,
+      "end_seq": 291,
+      "request_sha256": "cb1bc9d846d341a24b298ed1f0ab3a11e11db2450f77786f6c83d525aed40886",
+      "finish_reason": "length",
+      "usage": {
+        "input_tokens": 42817,
+        "output_tokens": 4096,
+        "cached_input_tokens": 2048,
+        "cache_miss_tokens": 40769,
+        "cache_creation_tokens": null,
+        "reasoning_tokens": 2098,
+        "total_tokens": 46913,
+        "provider_reported_cost": null
+      }
+    },
+    {
+      "start_seq": 292,
+      "end_seq": 295,
+      "request_sha256": "487fb409c6c71cf6e255b2b8f29b3d68a359669f6e44f0f1f278dede1a013531",
+      "finish_reason": "length",
+      "usage": {
+        "input_tokens": 42816,
+        "output_tokens": 4096,
+        "cached_input_tokens": 2048,
+        "cache_miss_tokens": 40768,
+        "cache_creation_tokens": null,
+        "reasoning_tokens": 2093,
+        "total_tokens": 46912,
+        "provider_reported_cost": null
+      }
+    },
+    {
+      "start_seq": 307,
+      "end_seq": 310,
+      "request_sha256": "67107e94a322d7f42a3d8639c8028a91567ed44511b2fa1f486873b5bec287bf",
+      "finish_reason": "stop",
+      "usage": {
+        "input_tokens": 42713,
+        "output_tokens": 1849,
+        "cached_input_tokens": 2432,
+        "cache_miss_tokens": 40281,
+        "cache_creation_tokens": null,
+        "reasoning_tokens": 239,
+        "total_tokens": 44562,
+        "provider_reported_cost": null
+      }
+    }
+  ],
+  "diagnosis": "Native generator sets retry_with_full_output after length, but continuation override ignores it and reuses 4096. Both first attempts are rejected without replacing raw history. Later changed-input attempt returns normally.",
+  "repair_boundary": "Keep in-flight frozen runtime unchanged. After complete run, qualify bounded increased capacity on the existing incomplete-output retry, include effective cap in cache identity, and replay the recorded failing prompt.",
+  "new_API_calls_for_diagnosis": 0
+}

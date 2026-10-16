@@ -1,0 +1,1368 @@
+{
+  "previous": {
+    "stages": [
+      {
+        "checkpoint": 1,
+        "main_responses": 11,
+        "first_mutating_tool_response": 4,
+        "mutating_file_calls": 3,
+        "generated_summaries": 0,
+        "first_implementation_edit_response": 4,
+        "implementation_edit_calls": 1,
+        "stall_guidance_request_seqs": [],
+        "scope_denials": 1,
+        "repeated_same_read_same_state": 1,
+        "fold_intervals": []
+      },
+      {
+        "checkpoint": 2,
+        "main_responses": 11,
+        "first_mutating_tool_response": 3,
+        "mutating_file_calls": 6,
+        "generated_summaries": 2,
+        "first_implementation_edit_response": 3,
+        "implementation_edit_calls": 4,
+        "stall_guidance_request_seqs": [],
+        "scope_denials": 0,
+        "repeated_same_read_same_state": 2,
+        "fold_intervals": [
+          {
+            "seq": 175,
+            "selected_receipts": [
+              "2d62b187d45e4b8fb9d8fca60fd626b1:e0003",
+              "2d62b187d45e4b8fb9d8fca60fd626b1:e0002",
+              "2d62b187d45e4b8fb9d8fca60fd626b1:e0001"
+            ],
+            "change_before_next_fold": true,
+            "main_responses_until_change_or_interval_end": 3
+          },
+          {
+            "seq": 258,
+            "selected_receipts": [
+              "2d62b187d45e4b8fb9d8fca60fd626b1:e0019",
+              "2d62b187d45e4b8fb9d8fca60fd626b1:e0018"
+            ],
+            "change_before_next_fold": true,
+            "main_responses_until_change_or_interval_end": 1
+          }
+        ]
+      },
+      {
+        "checkpoint": 3,
+        "main_responses": 17,
+        "first_mutating_tool_response": 5,
+        "mutating_file_calls": 5,
+        "generated_summaries": 2,
+        "first_implementation_edit_response": 5,
+        "implementation_edit_calls": 2,
+        "stall_guidance_request_seqs": [],
+        "scope_denials": 0,
+        "repeated_same_read_same_state": 0,
+        "fold_intervals": [
+          {
+            "seq": 363,
+            "selected_receipts": [
+              "96ea0f1f1e84409ba4efc97224413e1f:e0003",
+              "96ea0f1f1e84409ba4efc97224413e1f:e0005",
+              "96ea0f1f1e84409ba4efc97224413e1f:e0004"
+            ],
+            "change_before_next_fold": true,
+            "main_responses_until_change_or_interval_end": 4
+          },
+          {
+            "seq": 423,
+            "selected_receipts": [
+              "96ea0f1f1e84409ba4efc97224413e1f:e0015",
+              "96ea0f1f1e84409ba4efc97224413e1f:e0014"
+            ],
+            "change_before_next_fold": true,
+            "main_responses_until_change_or_interval_end": 2
+          }
+        ]
+      },
+      {
+        "checkpoint": 4,
+        "main_responses": 38,
+        "first_mutating_tool_response": 2,
+        "mutating_file_calls": 9,
+        "generated_summaries": 5,
+        "first_implementation_edit_response": 2,
+        "implementation_edit_calls": 7,
+        "stall_guidance_request_seqs": [],
+        "scope_denials": 0,
+        "repeated_same_read_same_state": 1,
+        "fold_intervals": [
+          {
+            "seq": 610,
+            "selected_receipts": [
+              "ceeaa82e2ba044b9b29cb8827baadef1:e0003",
+              "ceeaa82e2ba044b9b29cb8827baadef1:e0004",
+              "ceeaa82e2ba044b9b29cb8827baadef1:e0002"
+            ],
+            "change_before_next_fold": true,
+            "main_responses_until_change_or_interval_end": 2
+          },
+          {
+            "seq": 704,
+            "selected_receipts": [
+              "ceeaa82e2ba044b9b29cb8827baadef1:e0003",
+              "ceeaa82e2ba044b9b29cb8827baadef1:e0009",
+              "ceeaa82e2ba044b9b29cb8827baadef1:e0014",
+              "ceeaa82e2ba044b9b29cb8827baadef1:e0015",
+              "ceeaa82e2ba044b9b29cb8827baadef1:e0013"
+            ],
+            "change_before_next_fold": true,
+            "main_responses_until_change_or_interval_end": 7
+          },
+          {
+            "seq": 776,
+            "selected_receipts": [
+              "ceeaa82e2ba044b9b29cb8827baadef1:e0003",
+              "ceeaa82e2ba044b9b29cb8827baadef1:e0009",
+              "ceeaa82e2ba044b9b29cb8827baadef1:e0014",
+              "ceeaa82e2ba044b9b29cb8827baadef1:e0024",
+              "ceeaa82e2ba044b9b29cb8827baadef1:e0025",
+              "ceeaa82e2ba044b9b29cb8827baadef1:e0023"
+            ],
+            "change_before_next_fold": true,
+            "main_responses_until_change_or_interval_end": 7
+          },
+          {
+            "seq": 850,
+            "selected_receipts": [
+              "ceeaa82e2ba044b9b29cb8827baadef1:e0003",
+              "ceeaa82e2ba044b9b29cb8827baadef1:e0009",
+              "ceeaa82e2ba044b9b29cb8827baadef1:e0014",
+              "ceeaa82e2ba044b9b29cb8827baadef1:e0024",
+              "ceeaa82e2ba044b9b29cb8827baadef1:e0033",
+              "ceeaa82e2ba044b9b29cb8827baadef1:e0034",
+              "ceeaa82e2ba044b9b29cb8827baadef1:e0032"
+            ],
+            "change_before_next_fold": true,
+            "main_responses_until_change_or_interval_end": 2
+          },
+          {
+            "seq": 941,
+            "selected_receipts": [
+              "ceeaa82e2ba044b9b29cb8827baadef1:e0003",
+              "ceeaa82e2ba044b9b29cb8827baadef1:e0009",
+              "ceeaa82e2ba044b9b29cb8827baadef1:e0014",
+              "ceeaa82e2ba044b9b29cb8827baadef1:e0024",
+              "ceeaa82e2ba044b9b29cb8827baadef1:e0033",
+              "ceeaa82e2ba044b9b29cb8827baadef1:e0038",
+              "ceeaa82e2ba044b9b29cb8827baadef1:e0044",
+              "ceeaa82e2ba044b9b29cb8827baadef1:e0045",
+              "ceeaa82e2ba044b9b29cb8827baadef1:e0043"
+            ],
+            "change_before_next_fold": true,
+            "main_responses_until_change_or_interval_end": 2
+          }
+        ]
+      },
+      {
+        "checkpoint": 5,
+        "main_responses": 48,
+        "first_mutating_tool_response": 14,
+        "mutating_file_calls": 13,
+        "generated_summaries": 8,
+        "first_implementation_edit_response": 14,
+        "implementation_edit_calls": 12,
+        "stall_guidance_request_seqs": [],
+        "scope_denials": 0,
+        "repeated_same_read_same_state": 3,
+        "fold_intervals": [
+          {
+            "seq": 1097,
+            "selected_receipts": [
+              "9ff2a770b2564068b74468cf3b7165dc:e0003",
+              "9ff2a770b2564068b74468cf3b7165dc:e0004",
+              "9ff2a770b2564068b74468cf3b7165dc:e0002"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 6
+          },
+          {
+            "seq": 1176,
+            "selected_receipts": [
+              "9ff2a770b2564068b74468cf3b7165dc:e0003",
+              "9ff2a770b2564068b74468cf3b7165dc:e0013",
+              "9ff2a770b2564068b74468cf3b7165dc:e0012"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 0
+          },
+          {
+            "seq": 1183,
+            "selected_receipts": [
+              "9ff2a770b2564068b74468cf3b7165dc:e0003",
+              "9ff2a770b2564068b74468cf3b7165dc:e0013",
+              "9ff2a770b2564068b74468cf3b7165dc:e0012"
+            ],
+            "change_before_next_fold": true,
+            "main_responses_until_change_or_interval_end": 8
+          },
+          {
+            "seq": 1279,
+            "selected_receipts": [
+              "9ff2a770b2564068b74468cf3b7165dc:e0003",
+              "9ff2a770b2564068b74468cf3b7165dc:e0027",
+              "9ff2a770b2564068b74468cf3b7165dc:e0028",
+              "9ff2a770b2564068b74468cf3b7165dc:e0026"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 11
+          },
+          {
+            "seq": 1386,
+            "selected_receipts": [
+              "9ff2a770b2564068b74468cf3b7165dc:e0003",
+              "9ff2a770b2564068b74468cf3b7165dc:e0027",
+              "9ff2a770b2564068b74468cf3b7165dc:e0039",
+              "9ff2a770b2564068b74468cf3b7165dc:e0038"
+            ],
+            "change_before_next_fold": true,
+            "main_responses_until_change_or_interval_end": 6
+          },
+          {
+            "seq": 1462,
+            "selected_receipts": [
+              "9ff2a770b2564068b74468cf3b7165dc:e0003",
+              "9ff2a770b2564068b74468cf3b7165dc:e0027",
+              "9ff2a770b2564068b74468cf3b7165dc:e0050",
+              "9ff2a770b2564068b74468cf3b7165dc:e0051",
+              "9ff2a770b2564068b74468cf3b7165dc:e0049"
+            ],
+            "change_before_next_fold": true,
+            "main_responses_until_change_or_interval_end": 5
+          },
+          {
+            "seq": 1585,
+            "selected_receipts": [
+              "9ff2a770b2564068b74468cf3b7165dc:e0074",
+              "9ff2a770b2564068b74468cf3b7165dc:e0073"
+            ],
+            "change_before_next_fold": true,
+            "main_responses_until_change_or_interval_end": 7
+          },
+          {
+            "seq": 1676,
+            "selected_receipts": [
+              "9ff2a770b2564068b74468cf3b7165dc:e0075",
+              "9ff2a770b2564068b74468cf3b7165dc:e0089",
+              "9ff2a770b2564068b74468cf3b7165dc:e0088"
+            ],
+            "change_before_next_fold": true,
+            "main_responses_until_change_or_interval_end": 2
+          }
+        ]
+      },
+      {
+        "checkpoint": 6,
+        "main_responses": 38,
+        "first_mutating_tool_response": 15,
+        "mutating_file_calls": 6,
+        "generated_summaries": 11,
+        "first_implementation_edit_response": 15,
+        "implementation_edit_calls": 2,
+        "stall_guidance_request_seqs": [],
+        "scope_denials": 0,
+        "repeated_same_read_same_state": 2,
+        "fold_intervals": [
+          {
+            "seq": 1775,
+            "selected_receipts": [
+              "8224ce7c0bf0469b8734dbddb0a1cac4:e0003",
+              "8224ce7c0bf0469b8734dbddb0a1cac4:e0008",
+              "8224ce7c0bf0469b8734dbddb0a1cac4:e0007"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 0
+          },
+          {
+            "seq": 1782,
+            "selected_receipts": [
+              "8224ce7c0bf0469b8734dbddb0a1cac4:e0003",
+              "8224ce7c0bf0469b8734dbddb0a1cac4:e0008",
+              "8224ce7c0bf0469b8734dbddb0a1cac4:e0007"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 0
+          },
+          {
+            "seq": 1789,
+            "selected_receipts": [
+              "8224ce7c0bf0469b8734dbddb0a1cac4:e0003",
+              "8224ce7c0bf0469b8734dbddb0a1cac4:e0008",
+              "8224ce7c0bf0469b8734dbddb0a1cac4:e0007"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 1
+          },
+          {
+            "seq": 1808,
+            "selected_receipts": [
+              "8224ce7c0bf0469b8734dbddb0a1cac4:e0003",
+              "8224ce7c0bf0469b8734dbddb0a1cac4:e0010",
+              "8224ce7c0bf0469b8734dbddb0a1cac4:e0009"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 8
+          },
+          {
+            "seq": 1887,
+            "selected_receipts": [
+              "8224ce7c0bf0469b8734dbddb0a1cac4:e0003",
+              "8224ce7c0bf0469b8734dbddb0a1cac4:e0020",
+              "8224ce7c0bf0469b8734dbddb0a1cac4:e0019"
+            ],
+            "change_before_next_fold": true,
+            "main_responses_until_change_or_interval_end": 5
+          },
+          {
+            "seq": 1955,
+            "selected_receipts": [
+              "8224ce7c0bf0469b8734dbddb0a1cac4:e0003",
+              "8224ce7c0bf0469b8734dbddb0a1cac4:e0030",
+              "8224ce7c0bf0469b8734dbddb0a1cac4:e0031",
+              "8224ce7c0bf0469b8734dbddb0a1cac4:e0029"
+            ],
+            "change_before_next_fold": true,
+            "main_responses_until_change_or_interval_end": 3
+          },
+          {
+            "seq": 2058,
+            "selected_receipts": [
+              "8224ce7c0bf0469b8734dbddb0a1cac4:e0046",
+              "8224ce7c0bf0469b8734dbddb0a1cac4:e0051",
+              "8224ce7c0bf0469b8734dbddb0a1cac4:e0050"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 0
+          },
+          {
+            "seq": 2065,
+            "selected_receipts": [
+              "8224ce7c0bf0469b8734dbddb0a1cac4:e0046",
+              "8224ce7c0bf0469b8734dbddb0a1cac4:e0051",
+              "8224ce7c0bf0469b8734dbddb0a1cac4:e0050"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 0
+          },
+          {
+            "seq": 2072,
+            "selected_receipts": [
+              "8224ce7c0bf0469b8734dbddb0a1cac4:e0046",
+              "8224ce7c0bf0469b8734dbddb0a1cac4:e0051",
+              "8224ce7c0bf0469b8734dbddb0a1cac4:e0050"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 1
+          },
+          {
+            "seq": 2087,
+            "selected_receipts": [
+              "8224ce7c0bf0469b8734dbddb0a1cac4:e0046",
+              "8224ce7c0bf0469b8734dbddb0a1cac4:e0052",
+              "8224ce7c0bf0469b8734dbddb0a1cac4:e0051"
+            ],
+            "change_before_next_fold": true,
+            "main_responses_until_change_or_interval_end": 4
+          },
+          {
+            "seq": 2190,
+            "selected_receipts": [
+              "8224ce7c0bf0469b8734dbddb0a1cac4:e0046",
+              "8224ce7c0bf0469b8734dbddb0a1cac4:e0061",
+              "8224ce7c0bf0469b8734dbddb0a1cac4:e0069",
+              "8224ce7c0bf0469b8734dbddb0a1cac4:e0068"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 6
+          }
+        ]
+      },
+      {
+        "checkpoint": 7,
+        "main_responses": 36,
+        "first_mutating_tool_response": 17,
+        "mutating_file_calls": 5,
+        "generated_summaries": 5,
+        "first_implementation_edit_response": 17,
+        "implementation_edit_calls": 4,
+        "stall_guidance_request_seqs": [],
+        "scope_denials": 0,
+        "repeated_same_read_same_state": 0,
+        "fold_intervals": [
+          {
+            "seq": 2330,
+            "selected_receipts": [
+              "c31424430118420ca0b34ab7bf59986a:e0003",
+              "c31424430118420ca0b34ab7bf59986a:e0007",
+              "c31424430118420ca0b34ab7bf59986a:e0006"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 6
+          },
+          {
+            "seq": 2425,
+            "selected_receipts": [
+              "c31424430118420ca0b34ab7bf59986a:e0003",
+              "c31424430118420ca0b34ab7bf59986a:e0020",
+              "c31424430118420ca0b34ab7bf59986a:e0019"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 7
+          },
+          {
+            "seq": 2524,
+            "selected_receipts": [
+              "c31424430118420ca0b34ab7bf59986a:e0003",
+              "c31424430118420ca0b34ab7bf59986a:e0033",
+              "c31424430118420ca0b34ab7bf59986a:e0032"
+            ],
+            "change_before_next_fold": true,
+            "main_responses_until_change_or_interval_end": 2
+          },
+          {
+            "seq": 2593,
+            "selected_receipts": [
+              "c31424430118420ca0b34ab7bf59986a:e0003",
+              "c31424430118420ca0b34ab7bf59986a:e0037",
+              "c31424430118420ca0b34ab7bf59986a:e0044",
+              "c31424430118420ca0b34ab7bf59986a:e0045",
+              "c31424430118420ca0b34ab7bf59986a:e0043"
+            ],
+            "change_before_next_fold": true,
+            "main_responses_until_change_or_interval_end": 7
+          },
+          {
+            "seq": 2700,
+            "selected_receipts": [
+              "c31424430118420ca0b34ab7bf59986a:e0063",
+              "c31424430118420ca0b34ab7bf59986a:e0062"
+            ],
+            "change_before_next_fold": true,
+            "main_responses_until_change_or_interval_end": 4
+          }
+        ]
+      },
+      {
+        "checkpoint": 8,
+        "main_responses": 48,
+        "first_mutating_tool_response": 48,
+        "mutating_file_calls": 1,
+        "generated_summaries": 10,
+        "first_implementation_edit_response": 48,
+        "implementation_edit_calls": 1,
+        "stall_guidance_request_seqs": [],
+        "scope_denials": 0,
+        "repeated_same_read_same_state": 6,
+        "fold_intervals": [
+          {
+            "seq": 2808,
+            "selected_receipts": [
+              "f370cd2b2b244524a63eaf3d1fcbe1d9:e0003",
+              "f370cd2b2b244524a63eaf3d1fcbe1d9:e0004",
+              "f370cd2b2b244524a63eaf3d1fcbe1d9:e0002"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 8
+          },
+          {
+            "seq": 2911,
+            "selected_receipts": [
+              "f370cd2b2b244524a63eaf3d1fcbe1d9:e0003",
+              "f370cd2b2b244524a63eaf3d1fcbe1d9:e0017",
+              "f370cd2b2b244524a63eaf3d1fcbe1d9:e0016"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 7
+          },
+          {
+            "seq": 2998,
+            "selected_receipts": [
+              "f370cd2b2b244524a63eaf3d1fcbe1d9:e0003",
+              "f370cd2b2b244524a63eaf3d1fcbe1d9:e0027",
+              "f370cd2b2b244524a63eaf3d1fcbe1d9:e0026"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 7
+          },
+          {
+            "seq": 3087,
+            "selected_receipts": [
+              "f370cd2b2b244524a63eaf3d1fcbe1d9:e0003",
+              "f370cd2b2b244524a63eaf3d1fcbe1d9:e0036",
+              "f370cd2b2b244524a63eaf3d1fcbe1d9:e0035"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 8
+          },
+          {
+            "seq": 3206,
+            "selected_receipts": [
+              "f370cd2b2b244524a63eaf3d1fcbe1d9:e0003",
+              "f370cd2b2b244524a63eaf3d1fcbe1d9:e0053",
+              "f370cd2b2b244524a63eaf3d1fcbe1d9:e0052"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 7
+          },
+          {
+            "seq": 3301,
+            "selected_receipts": [
+              "f370cd2b2b244524a63eaf3d1fcbe1d9:e0003",
+              "f370cd2b2b244524a63eaf3d1fcbe1d9:e0065",
+              "f370cd2b2b244524a63eaf3d1fcbe1d9:e0064"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 6
+          },
+          {
+            "seq": 3386,
+            "selected_receipts": [
+              "f370cd2b2b244524a63eaf3d1fcbe1d9:e0003",
+              "f370cd2b2b244524a63eaf3d1fcbe1d9:e0077",
+              "f370cd2b2b244524a63eaf3d1fcbe1d9:e0076"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 4
+          },
+          {
+            "seq": 3447,
+            "selected_receipts": [
+              "f370cd2b2b244524a63eaf3d1fcbe1d9:e0003",
+              "f370cd2b2b244524a63eaf3d1fcbe1d9:e0084",
+              "f370cd2b2b244524a63eaf3d1fcbe1d9:e0083"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 0
+          },
+          {
+            "seq": 3454,
+            "selected_receipts": [
+              "f370cd2b2b244524a63eaf3d1fcbe1d9:e0003",
+              "f370cd2b2b244524a63eaf3d1fcbe1d9:e0084",
+              "f370cd2b2b244524a63eaf3d1fcbe1d9:e0083"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 0
+          },
+          {
+            "seq": 3461,
+            "selected_receipts": [
+              "f370cd2b2b244524a63eaf3d1fcbe1d9:e0003",
+              "f370cd2b2b244524a63eaf3d1fcbe1d9:e0084",
+              "f370cd2b2b244524a63eaf3d1fcbe1d9:e0083"
+            ],
+            "change_before_next_fold": true,
+            "main_responses_until_change_or_interval_end": 1
+          }
+        ]
+      }
+    ],
+    "identical_summaries_without_main_progress": [
+      {
+        "original_end_seq": 1175,
+        "duplicate_start_seq": 1179,
+        "duplicate_end_seq": 1182,
+        "request_sha256": "39f617c93706c8d3360767cfeb20bb9bbf15b0f0ae3e851001f2e64181b87a87",
+        "tokens": 42965
+      },
+      {
+        "original_end_seq": 1774,
+        "duplicate_start_seq": 1778,
+        "duplicate_end_seq": 1781,
+        "request_sha256": "f288c92a9ab61eee2c507369fe55126a7506955e5c8cf99c7bd3c20c3e2aa2b6",
+        "tokens": 36589
+      },
+      {
+        "original_end_seq": 1781,
+        "duplicate_start_seq": 1785,
+        "duplicate_end_seq": 1788,
+        "request_sha256": "f288c92a9ab61eee2c507369fe55126a7506955e5c8cf99c7bd3c20c3e2aa2b6",
+        "tokens": 36470
+      },
+      {
+        "original_end_seq": 2057,
+        "duplicate_start_seq": 2061,
+        "duplicate_end_seq": 2064,
+        "request_sha256": "27fb74f87d16ae5fa07178a5c9208b2bf4b932d188af8b2048afd17d160f51a1",
+        "tokens": 35746
+      },
+      {
+        "original_end_seq": 2064,
+        "duplicate_start_seq": 2068,
+        "duplicate_end_seq": 2071,
+        "request_sha256": "27fb74f87d16ae5fa07178a5c9208b2bf4b932d188af8b2048afd17d160f51a1",
+        "tokens": 35511
+      },
+      {
+        "original_end_seq": 3446,
+        "duplicate_start_seq": 3450,
+        "duplicate_end_seq": 3453,
+        "request_sha256": "0391836032a29247cfc20b499eb901f6fa497f43d2d4a757983bbbfa50ecf25e",
+        "tokens": 27147
+      },
+      {
+        "original_end_seq": 3453,
+        "duplicate_start_seq": 3457,
+        "duplicate_end_seq": 3460,
+        "request_sha256": "0391836032a29247cfc20b499eb901f6fa497f43d2d4a757983bbbfa50ecf25e",
+        "tokens": 26791
+      }
+    ],
+    "duplicate_summary_tokens": 241219,
+    "boundary": "Observed tool actions and receipts only; repeated reads can be intentional. Generated summaries may subsequently fail admission; actual installed fold counts are in endpoint receipts. A later edit does not prove summary semantic correctness. Duplicate call costs are observed costs, not a measured reduction from a repaired full run."
+  },
+  "current": {
+    "stages": [
+      {
+        "checkpoint": 1,
+        "main_responses": 10,
+        "first_mutating_tool_response": 2,
+        "mutating_file_calls": 4,
+        "generated_summaries": 0,
+        "first_implementation_edit_response": 2,
+        "implementation_edit_calls": 3,
+        "stall_guidance_request_seqs": [],
+        "scope_denials": 0,
+        "repeated_same_read_same_state": 0,
+        "fold_intervals": []
+      },
+      {
+        "checkpoint": 2,
+        "main_responses": 8,
+        "first_mutating_tool_response": 2,
+        "mutating_file_calls": 4,
+        "generated_summaries": 1,
+        "first_implementation_edit_response": 2,
+        "implementation_edit_calls": 3,
+        "stall_guidance_request_seqs": [],
+        "scope_denials": 0,
+        "repeated_same_read_same_state": 1,
+        "fold_intervals": [
+          {
+            "seq": 166,
+            "selected_receipts": [
+              "4ecbd343e1f6480f9334badeb052d16f:e0003",
+              "4ecbd343e1f6480f9334badeb052d16f:e0002",
+              "4ecbd343e1f6480f9334badeb052d16f:e0001"
+            ],
+            "change_before_next_fold": true,
+            "main_responses_until_change_or_interval_end": 2
+          }
+        ]
+      },
+      {
+        "checkpoint": 3,
+        "main_responses": 16,
+        "first_mutating_tool_response": 4,
+        "mutating_file_calls": 5,
+        "generated_summaries": 2,
+        "first_implementation_edit_response": 4,
+        "implementation_edit_calls": 1,
+        "stall_guidance_request_seqs": [],
+        "scope_denials": 0,
+        "repeated_same_read_same_state": 0,
+        "fold_intervals": [
+          {
+            "seq": 311,
+            "selected_receipts": [
+              "4daeb46d3de146d2b40dbeee3ebc96f6:e0003",
+              "4daeb46d3de146d2b40dbeee3ebc96f6:e0004",
+              "4daeb46d3de146d2b40dbeee3ebc96f6:e0002"
+            ],
+            "change_before_next_fold": true,
+            "main_responses_until_change_or_interval_end": 3
+          },
+          {
+            "seq": 359,
+            "selected_receipts": [
+              "4daeb46d3de146d2b40dbeee3ebc96f6:e0012",
+              "4daeb46d3de146d2b40dbeee3ebc96f6:e0011"
+            ],
+            "change_before_next_fold": true,
+            "main_responses_until_change_or_interval_end": 3
+          }
+        ]
+      },
+      {
+        "checkpoint": 4,
+        "main_responses": 30,
+        "first_mutating_tool_response": 4,
+        "mutating_file_calls": 8,
+        "generated_summaries": 11,
+        "first_implementation_edit_response": 4,
+        "implementation_edit_calls": 6,
+        "stall_guidance_request_seqs": [],
+        "scope_denials": 0,
+        "repeated_same_read_same_state": 1,
+        "fold_intervals": [
+          {
+            "seq": 556,
+            "selected_receipts": [
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0003",
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0004",
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0002"
+            ],
+            "change_before_next_fold": true,
+            "main_responses_until_change_or_interval_end": 4
+          },
+          {
+            "seq": 620,
+            "selected_receipts": [
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0003",
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0014",
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0015",
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0013"
+            ],
+            "change_before_next_fold": true,
+            "main_responses_until_change_or_interval_end": 2
+          },
+          {
+            "seq": 673,
+            "selected_receipts": [
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0003",
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0014",
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0020",
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0024",
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0025",
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0023",
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0022"
+            ],
+            "change_before_next_fold": true,
+            "main_responses_until_change_or_interval_end": 6
+          },
+          {
+            "seq": 751,
+            "selected_receipts": [
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0003",
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0014",
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0020",
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0024",
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0025",
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0035",
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0036",
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0034",
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0033"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 6
+          },
+          {
+            "seq": 820,
+            "selected_receipts": [
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0003",
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0014",
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0020",
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0024",
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0025",
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0035",
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0036",
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0044",
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0043"
+            ],
+            "change_before_next_fold": true,
+            "main_responses_until_change_or_interval_end": 2
+          },
+          {
+            "seq": 968,
+            "selected_receipts": [
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0069",
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0068"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 0
+          },
+          {
+            "seq": 972,
+            "selected_receipts": [
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0069",
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0068"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 0
+          },
+          {
+            "seq": 976,
+            "selected_receipts": [
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0069",
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0068"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 1
+          },
+          {
+            "seq": 995,
+            "selected_receipts": [
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0071",
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0070"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 0
+          },
+          {
+            "seq": 999,
+            "selected_receipts": [
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0071",
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0070"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 0
+          },
+          {
+            "seq": 1003,
+            "selected_receipts": [
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0071",
+              "efa45a5e4c554bbe96c626c6cd3782a0:e0070"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 1
+          }
+        ]
+      },
+      {
+        "checkpoint": 5,
+        "main_responses": 48,
+        "first_mutating_tool_response": 5,
+        "mutating_file_calls": 9,
+        "generated_summaries": 12,
+        "first_implementation_edit_response": 5,
+        "implementation_edit_calls": 8,
+        "stall_guidance_request_seqs": [
+          1249,
+          1261,
+          1273,
+          1285,
+          1297,
+          1324,
+          1328,
+          1351,
+          1359,
+          1371,
+          1379,
+          1391,
+          1409,
+          1427,
+          1445,
+          1464,
+          1484,
+          1502
+        ],
+        "scope_denials": 1,
+        "repeated_same_read_same_state": 6,
+        "fold_intervals": [
+          {
+            "seq": 1038,
+            "selected_receipts": [
+              "65dfbce7f2614cdfaaf94f208843be0c:e0003",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0004",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0002"
+            ],
+            "change_before_next_fold": true,
+            "main_responses_until_change_or_interval_end": 5
+          },
+          {
+            "seq": 1114,
+            "selected_receipts": [
+              "65dfbce7f2614cdfaaf94f208843be0c:e0003",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0016",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0017",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0015"
+            ],
+            "change_before_next_fold": true,
+            "main_responses_until_change_or_interval_end": 3
+          },
+          {
+            "seq": 1158,
+            "selected_receipts": [
+              "65dfbce7f2614cdfaaf94f208843be0c:e0003",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0016",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0023",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0024",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0022",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0021"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 8
+          },
+          {
+            "seq": 1247,
+            "selected_receipts": [
+              "65dfbce7f2614cdfaaf94f208843be0c:e0003",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0016",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0023",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0024",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0033",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0032"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 5
+          },
+          {
+            "seq": 1314,
+            "selected_receipts": [
+              "65dfbce7f2614cdfaaf94f208843be0c:e0003",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0016",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0023",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0024",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0043",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0042"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 0
+          },
+          {
+            "seq": 1318,
+            "selected_receipts": [
+              "65dfbce7f2614cdfaaf94f208843be0c:e0003",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0016",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0023",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0024",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0043",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0042"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 0
+          },
+          {
+            "seq": 1322,
+            "selected_receipts": [
+              "65dfbce7f2614cdfaaf94f208843be0c:e0003",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0016",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0023",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0024",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0043",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0042"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 1
+          },
+          {
+            "seq": 1349,
+            "selected_receipts": [
+              "65dfbce7f2614cdfaaf94f208843be0c:e0003",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0016",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0023",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0024",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0046",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0045"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 8
+          },
+          {
+            "seq": 1462,
+            "selected_receipts": [
+              "65dfbce7f2614cdfaaf94f208843be0c:e0003",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0016",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0023",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0024",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0060",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0059"
+            ],
+            "change_before_next_fold": true,
+            "main_responses_until_change_or_interval_end": 3
+          },
+          {
+            "seq": 1524,
+            "selected_receipts": [
+              "65dfbce7f2614cdfaaf94f208843be0c:e0003",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0016",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0023",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0069",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0070",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0068"
+            ],
+            "change_before_next_fold": true,
+            "main_responses_until_change_or_interval_end": 3
+          },
+          {
+            "seq": 1612,
+            "selected_receipts": [
+              "65dfbce7f2614cdfaaf94f208843be0c:e0003",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0016",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0023",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0024",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0069",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0087",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0088",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0086",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0085"
+            ],
+            "change_before_next_fold": true,
+            "main_responses_until_change_or_interval_end": 3
+          },
+          {
+            "seq": 1719,
+            "selected_receipts": [
+              "65dfbce7f2614cdfaaf94f208843be0c:e0103",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0105",
+              "65dfbce7f2614cdfaaf94f208843be0c:e0104"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 3
+          }
+        ]
+      },
+      {
+        "checkpoint": 6,
+        "main_responses": 32,
+        "first_mutating_tool_response": 12,
+        "mutating_file_calls": 4,
+        "generated_summaries": 3,
+        "first_implementation_edit_response": 12,
+        "implementation_edit_calls": 1,
+        "stall_guidance_request_seqs": [
+          1889,
+          1897,
+          1905,
+          1919,
+          2151
+        ],
+        "scope_denials": 0,
+        "repeated_same_read_same_state": 1,
+        "fold_intervals": [
+          {
+            "seq": 1843,
+            "selected_receipts": [
+              "a0390701f36449d58d4cc38191db7a1e:e0003",
+              "a0390701f36449d58d4cc38191db7a1e:e0010",
+              "a0390701f36449d58d4cc38191db7a1e:e0009"
+            ],
+            "change_before_next_fold": true,
+            "main_responses_until_change_or_interval_end": 8
+          },
+          {
+            "seq": 1944,
+            "selected_receipts": [
+              "a0390701f36449d58d4cc38191db7a1e:e0025",
+              "a0390701f36449d58d4cc38191db7a1e:e0024"
+            ],
+            "change_before_next_fold": true,
+            "main_responses_until_change_or_interval_end": 6
+          },
+          {
+            "seq": 2118,
+            "selected_receipts": [
+              "a0390701f36449d58d4cc38191db7a1e:e0039",
+              "a0390701f36449d58d4cc38191db7a1e:e0049",
+              "a0390701f36449d58d4cc38191db7a1e:e0048"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 7
+          }
+        ]
+      },
+      {
+        "checkpoint": 7,
+        "main_responses": 48,
+        "first_mutating_tool_response": 32,
+        "mutating_file_calls": 7,
+        "generated_summaries": 9,
+        "first_implementation_edit_response": 32,
+        "implementation_edit_calls": 7,
+        "stall_guidance_request_seqs": [
+          2313,
+          2338,
+          2361,
+          2373,
+          2385,
+          2403,
+          2422,
+          2430,
+          2442,
+          2450,
+          2458,
+          2466,
+          2485,
+          2497,
+          2505,
+          2517,
+          2529,
+          2544,
+          2552,
+          2560,
+          2568,
+          2576,
+          2584,
+          2592
+        ],
+        "scope_denials": 1,
+        "repeated_same_read_same_state": 3,
+        "fold_intervals": [
+          {
+            "seq": 2221,
+            "selected_receipts": [
+              "6c82ee8d7afa4fcb933f29333474ebd6:e0003",
+              "6c82ee8d7afa4fcb933f29333474ebd6:e0004",
+              "6c82ee8d7afa4fcb933f29333474ebd6:e0002"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 0
+          },
+          {
+            "seq": 2228,
+            "selected_receipts": [
+              "6c82ee8d7afa4fcb933f29333474ebd6:e0003",
+              "6c82ee8d7afa4fcb933f29333474ebd6:e0004",
+              "6c82ee8d7afa4fcb933f29333474ebd6:e0002"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 1
+          },
+          {
+            "seq": 2243,
+            "selected_receipts": [
+              "6c82ee8d7afa4fcb933f29333474ebd6:e0003",
+              "6c82ee8d7afa4fcb933f29333474ebd6:e0005",
+              "6c82ee8d7afa4fcb933f29333474ebd6:e0004"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 9
+          },
+          {
+            "seq": 2359,
+            "selected_receipts": [
+              "6c82ee8d7afa4fcb933f29333474ebd6:e0003",
+              "6c82ee8d7afa4fcb933f29333474ebd6:e0016",
+              "6c82ee8d7afa4fcb933f29333474ebd6:e0015"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 4
+          },
+          {
+            "seq": 2420,
+            "selected_receipts": [
+              "6c82ee8d7afa4fcb933f29333474ebd6:e0003",
+              "6c82ee8d7afa4fcb933f29333474ebd6:e0024",
+              "6c82ee8d7afa4fcb933f29333474ebd6:e0023"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 6
+          },
+          {
+            "seq": 2483,
+            "selected_receipts": [
+              "6c82ee8d7afa4fcb933f29333474ebd6:e0003",
+              "6c82ee8d7afa4fcb933f29333474ebd6:e0032",
+              "6c82ee8d7afa4fcb933f29333474ebd6:e0031"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 5
+          },
+          {
+            "seq": 2542,
+            "selected_receipts": [
+              "6c82ee8d7afa4fcb933f29333474ebd6:e0003",
+              "6c82ee8d7afa4fcb933f29333474ebd6:e0040",
+              "6c82ee8d7afa4fcb933f29333474ebd6:e0039"
+            ],
+            "change_before_next_fold": true,
+            "main_responses_until_change_or_interval_end": 7
+          },
+          {
+            "seq": 2636,
+            "selected_receipts": [
+              "6c82ee8d7afa4fcb933f29333474ebd6:e0003",
+              "6c82ee8d7afa4fcb933f29333474ebd6:e0051",
+              "6c82ee8d7afa4fcb933f29333474ebd6:e0053",
+              "6c82ee8d7afa4fcb933f29333474ebd6:e0052"
+            ],
+            "change_before_next_fold": true,
+            "main_responses_until_change_or_interval_end": 5
+          },
+          {
+            "seq": 2699,
+            "selected_receipts": [
+              "6c82ee8d7afa4fcb933f29333474ebd6:e0063",
+              "6c82ee8d7afa4fcb933f29333474ebd6:e0062"
+            ],
+            "change_before_next_fold": true,
+            "main_responses_until_change_or_interval_end": 7
+          }
+        ]
+      },
+      {
+        "checkpoint": 8,
+        "main_responses": 48,
+        "first_mutating_tool_response": null,
+        "mutating_file_calls": 0,
+        "generated_summaries": 12,
+        "first_implementation_edit_response": null,
+        "implementation_edit_calls": 0,
+        "stall_guidance_request_seqs": [
+          2920,
+          2934,
+          2948,
+          2962,
+          2983,
+          3004,
+          3023,
+          3031,
+          3039,
+          3047,
+          3081,
+          3096,
+          3108,
+          3120,
+          3128,
+          3136,
+          3148,
+          3167,
+          3179,
+          3191,
+          3209,
+          3227,
+          3246,
+          3258,
+          3276,
+          3295,
+          3307,
+          3314,
+          3321,
+          3328,
+          3340,
+          3352,
+          3366,
+          3380,
+          3399,
+          3407,
+          3424,
+          3448,
+          3468,
+          3484
+        ],
+        "scope_denials": 0,
+        "repeated_same_read_same_state": 4,
+        "fold_intervals": [
+          {
+            "seq": 2850,
+            "selected_receipts": [
+              "f3ca0affa7364cfb857e0fc3a3540875:e0003",
+              "f3ca0affa7364cfb857e0fc3a3540875:e0004",
+              "f3ca0affa7364cfb857e0fc3a3540875:e0002"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 14
+          },
+          {
+            "seq": 3021,
+            "selected_receipts": [
+              "f3ca0affa7364cfb857e0fc3a3540875:e0003",
+              "f3ca0affa7364cfb857e0fc3a3540875:e0016",
+              "f3ca0affa7364cfb857e0fc3a3540875:e0015"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 4
+          },
+          {
+            "seq": 3068,
+            "selected_receipts": [
+              "f3ca0affa7364cfb857e0fc3a3540875:e0003",
+              "f3ca0affa7364cfb857e0fc3a3540875:e0021",
+              "f3ca0affa7364cfb857e0fc3a3540875:e0020"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 0
+          },
+          {
+            "seq": 3075,
+            "selected_receipts": [
+              "f3ca0affa7364cfb857e0fc3a3540875:e0003",
+              "f3ca0affa7364cfb857e0fc3a3540875:e0021",
+              "f3ca0affa7364cfb857e0fc3a3540875:e0020"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 0
+          },
+          {
+            "seq": 3079,
+            "selected_receipts": [
+              "f3ca0affa7364cfb857e0fc3a3540875:e0003",
+              "f3ca0affa7364cfb857e0fc3a3540875:e0021",
+              "f3ca0affa7364cfb857e0fc3a3540875:e0020"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 1
+          },
+          {
+            "seq": 3094,
+            "selected_receipts": [
+              "f3ca0affa7364cfb857e0fc3a3540875:e0003",
+              "f3ca0affa7364cfb857e0fc3a3540875:e0022",
+              "f3ca0affa7364cfb857e0fc3a3540875:e0021"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 6
+          },
+          {
+            "seq": 3165,
+            "selected_receipts": [
+              "f3ca0affa7364cfb857e0fc3a3540875:e0003",
+              "f3ca0affa7364cfb857e0fc3a3540875:e0032",
+              "f3ca0affa7364cfb857e0fc3a3540875:e0031"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 5
+          },
+          {
+            "seq": 3244,
+            "selected_receipts": [
+              "f3ca0affa7364cfb857e0fc3a3540875:e0003",
+              "f3ca0affa7364cfb857e0fc3a3540875:e0042",
+              "f3ca0affa7364cfb857e0fc3a3540875:e0041"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 3
+          },
+          {
+            "seq": 3293,
+            "selected_receipts": [
+              "f3ca0affa7364cfb857e0fc3a3540875:e0003",
+              "f3ca0affa7364cfb857e0fc3a3540875:e0048",
+              "f3ca0affa7364cfb857e0fc3a3540875:e0047"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 9
+          },
+          {
+            "seq": 3397,
+            "selected_receipts": [
+              "f3ca0affa7364cfb857e0fc3a3540875:e0003",
+              "f3ca0affa7364cfb857e0fc3a3540875:e0058",
+              "f3ca0affa7364cfb857e0fc3a3540875:e0057"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 2
+          },
+          {
+            "seq": 3422,
+            "selected_receipts": [
+              "f3ca0affa7364cfb857e0fc3a3540875:e0003",
+              "f3ca0affa7364cfb857e0fc3a3540875:e0059",
+              "f3ca0affa7364cfb857e0fc3a3540875:e0058"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 1
+          },
+          {
+            "seq": 3446,
+            "selected_receipts": [
+              "f3ca0affa7364cfb857e0fc3a3540875:e0003",
+              "f3ca0affa7364cfb857e0fc3a3540875:e0059",
+              "f3ca0affa7364cfb857e0fc3a3540875:e0058"
+            ],
+            "change_before_next_fold": false,
+            "main_responses_until_change_or_interval_end": 3
+          }
+        ]
+      }
+    ],
+    "identical_summaries_without_main_progress": [],
+    "duplicate_summary_tokens": 0,
+    "boundary": "Observed tool actions and receipts only; repeated reads can be intentional. Generated summaries may subsequently fail admission; actual installed fold counts are in endpoint receipts. A later edit does not prove summary semantic correctness. Duplicate call costs are observed costs, not a measured reduction from a repaired full run."
+  }
+}

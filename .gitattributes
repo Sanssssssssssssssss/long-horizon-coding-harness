@@ -1,0 +1,26 @@
+*.md whitespace=-trailing-space
+*.svg whitespace=-trailing-space
+*.pdf binary
+
+# Published evidence hashes refer to exact bytes, including original line endings.
+experiment/research/20261007-two-directions/published/** -text
+experiment/research/**/published/** -text whitespace=-trailing-space,-blank-at-eof
+experiment/research/**/supplement-*/** -text whitespace=-trailing-space,-blank-at-eof
+experiment/research/20261009-skill-folding/** -text whitespace=-trailing-space,-blank-at-eof
+experiment/research/20261009-outcome-recovery/** -text whitespace=-trailing-space,-blank-at-eof
+
+# Frozen reports and patches retain the whitespace emitted by their original tools.
+experiment/research/**/*.xml whitespace=-trailing-space,-blank-at-eof
+experiment/research/**/*.patch whitespace=-trailing-space,-blank-at-eof
+experiment/research/**/*.diff whitespace=-trailing-space,-blank-at-eof
+experiment/research/**/*.json whitespace=-trailing-space,-blank-at-eof
+experiment/research/**/*.jsonl whitespace=-trailing-space,-blank-at-eof
+experiment/research/**/*.txt whitespace=-trailing-space,-blank-at-eof
+
+# Harbor scripts must remain executable in Linux after a Windows checkout.
+experiment/benchmarks/**/*.sh text eol=lf
+experiment/benchmarks/**/*.patch text eol=lf whitespace=-trailing-space
+experiment/benchmarks/**/Dockerfile text eol=lf
+
+# Exported evidence retains byte identities across Windows/Linux checkouts.
+experiment/published/** -text whitespace=-trailing-space,-blank-at-eof

@@ -1,0 +1,66 @@
+{
+  "case_id": "late_reading_then_truncated_first_patch",
+  "checkpoint": 8,
+  "main_responses": 48,
+  "first_successful_implementation_edit": null,
+  "implementation_snapshot_unchanged": true,
+  "implementation_sha256": "d31c36aa03c6133999d0b99e5b898017f3da006b9b74cf972e8decf4c1152c1a",
+  "new_official_checks": {
+    "passed": 0,
+    "total": 37
+  },
+  "tool_counts": {
+    "read_file": 58,
+    "run_shell": 1,
+    "read_observation": 11,
+    "grep_search": 6
+  },
+  "last_call": {
+    "start_seq": 3484,
+    "end_seq": 3487,
+    "request_sha256": "9c2638d3b3d9e8302fbab92af3a869c3a5ef81af776a4663e0da7fdf5fa49805",
+    "response_sha256": "2592cd7285df5141422917ba23bfdbf87bee94dade097ac3fc95895d36bc265d",
+    "finish_reason": "length",
+    "usage": {
+      "input_tokens": 42135,
+      "output_tokens": 32768,
+      "cached_input_tokens": 16384,
+      "cache_miss_tokens": 25751,
+      "cache_creation_tokens": null,
+      "reasoning_tokens": 32667,
+      "total_tokens": 74903,
+      "provider_reported_cost": null
+    }
+  },
+  "tool_errors": [
+    {
+      "seq": 2841,
+      "purpose": "run_shell",
+      "attributes": {
+        "tool_name": "run_shell",
+        "primitive_operation": true,
+        "repo_state_before": "70d71d6f1e5ae9d4adf87e95f2ef78056d6f367b89e7eb86b0fbd2721701b641",
+        "repo_state_after": "70d71d6f1e5ae9d4adf87e95f2ef78056d6f367b89e7eb86b0fbd2721701b641",
+        "state_changed": false,
+        "no_progress": false
+      }
+    },
+    {
+      "seq": 3491,
+      "purpose": "run_shell",
+      "attributes": {
+        "tool_name": "run_shell",
+        "primitive_operation": true,
+        "repo_state_before": "70d71d6f1e5ae9d4adf87e95f2ef78056d6f367b89e7eb86b0fbd2721701b641",
+        "repo_state_after": "70d71d6f1e5ae9d4adf87e95f2ef78056d6f367b89e7eb86b0fbd2721701b641",
+        "state_changed": false,
+        "no_progress": false
+      }
+    }
+  ],
+  "summary_retained_next_action_seqs": [
+    3421,
+    3445
+  ],
+  "scope": "Checkpoint 8 summaries preserved the next action, edit anchor, and a minimum implementation path. Its implementation hash stayed unchanged and its last attempted patch was truncated. This locates an execution failure, not proof that all earlier reading was unnecessary or that folding alone caused it."
+}
