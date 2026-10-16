@@ -211,6 +211,8 @@ def test_openai_stream_records_text_tool_timing_and_exact_usage(
     assert len([event for event in events if event["event_type"] == "model.call.error"]) == 1
     assert len(terminal) == 1
     assert terminal[0]["attributes"]["raw_finish_reason"] == finish_reason
+    raw = json.loads((trace.blob_dir / terminal[0]["payload_ref"]["sha256"]).read_bytes())
+    assert raw["tool_calls"][0]["id"] == "call-1"
     assert terminal[0]["metrics"]["provider_usage"] == {
         "input_tokens": 7,
         "output_tokens": 3,

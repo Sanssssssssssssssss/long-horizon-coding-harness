@@ -362,8 +362,10 @@ def test_cli_observes_incomplete_model_stream_without_changing_response(monkeypa
                 function=SimpleNamespace(name="run_shell", arguments='{"command":'))])
             arguments_seen.set()
             await allow_finish.wait()
-            yield chunk(tool_calls=[SimpleNamespace(index=0, id=None,
+            completed = chunk(tool_calls=[SimpleNamespace(index=0, id=None,
                 function=SimpleNamespace(name=None, arguments='"echo ok"}'))])
+            completed.choices[0].finish_reason = "tool_calls"
+            yield completed
             yield SimpleNamespace(choices=[], usage=SimpleNamespace(prompt_tokens=10, completion_tokens=2, total_tokens=12))
 
         async def create(**_kwargs):
