@@ -36,12 +36,13 @@ git clone https://github.com/Sanssssssssssssssss/long-horizon-coding-harness.git
 cd long-horizon-coding-harness
 python -m venv .venv
 .venv/Scripts/python.exe -m pip install -r requirements.lock.txt
+.venv/Scripts/python.exe -m pip install --no-deps -e .
 Copy-Item .env.example .env
 # Configure one provider in .env, then:
-.venv/Scripts/python.exe -B -m agents.main --thinking
+.venv/Scripts/sans.exe --thinking
 ```
 
-On Linux/macOS, use `.venv/bin/python` and `cp`. The CLI is named `sans`; `/plan`, `/skills`, `/compact`, `/trace` and `/exit` are available. [Configuration and operation](docs/running.md)
+On Linux/macOS, use `.venv/bin/python`, `.venv/bin/sans` and `cp`. `/plan`, `/skills`, `/skill-candidates`, `/compact`, `/trace` and `/exit` are available. Use `sans --version` to identify an installation. [Configuration and operation](docs/running.md)
 
 ## Repository
 
@@ -56,6 +57,6 @@ experiment/   Published evidence, regression fixtures and ignored local runs
 
 The default CLI uses the native runtime. `ContinuationFoldingLoop` is an experimental benchmark policy; its results do not imply that it is the CLI default. Candidate promotion and executable grading require the configured research adapters. Permissions constrain tool use; they are not an OS sandbox.
 
-[Testing](TESTING.md) · [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md) · [Source provenance](SNAPSHOT_NOTICE.md) · [Attribution](THIRD_PARTY_NOTICES.md)
+[Testing](TESTING.md) · [Changelog](CHANGELOG.md) · [Releases](docs/releases.md) · [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md) · [Source provenance](SNAPSHOT_NOTICE.md) · [Attribution](THIRD_PARTY_NOTICES.md)
 
 The repository is publicly viewable. Upstream attribution is retained; no project-wide redistribution license is asserted.

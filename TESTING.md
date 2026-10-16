@@ -7,9 +7,12 @@ python -B scripts/check_repository.py
 python -B -m pytest tests -q -W error::pytest.PytestUnhandledThreadExceptionWarning --basetemp=experiment/cache/t
 python -B -m agents.main --help
 python -B -m benchmarks.smoke --runs-root experiment/runs --run-id offline-smoke
+python -B scripts/check_install.py
 ```
 
 CI runs on Windows and Linux. All regression entrypoints are under `tests/`; test reports and temporary repositories belong under `experiment/`. The [suite index](tests/INDEX.md) groups regression sources by behavior. [Historical fixtures](experiment/fixtures/README.md) retain original data bytes and relocation identities.
+
+The installation check downloads build/runtime dependencies as needed, builds the wheel and exercises the installed CLI in a fresh environment. It makes no model calls. CI retains its receipt and wheel alongside regression XML. Native provider recovery tests use real SDK parsers with local HTTP transports; their usage figures are synthetic. [Release procedure](docs/releases.md)
 
 `check_repository.py` checks the tracked-file boundary, Python syntax, documentation links, test-index coverage, published manifests, per-case score totals and trace-derived usage. It makes no model calls.
 

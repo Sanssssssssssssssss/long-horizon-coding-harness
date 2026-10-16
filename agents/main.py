@@ -17,6 +17,7 @@ from urllib.parse import urlparse
 from dotenv import find_dotenv, load_dotenv
 
 from .agent import Agent
+from . import __version__
 from .cli_display import cli_session
 from .ui import (
     print_welcome,
@@ -49,7 +50,7 @@ from .online_skill_eval import format_online_skill_eval_async
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         prog="sans",
-        description="Sans — a minimal coding agent",
+        description="Sans — Long-Horizon Coding Harness",
         add_help=False,
     )
     parser.add_argument("prompt", nargs="*", help="One-shot prompt")
@@ -64,6 +65,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--no-trace", action="store_true", help="Disable local execution trace")
     parser.add_argument("--max-cost", type=float, default=None, help="Max USD spend")
     parser.add_argument("--max-turns", type=int, default=None, help="Max agentic turns")
+    parser.add_argument("--max-model-calls", type=int, default=None, help="Max solve model calls")
+    parser.add_argument("--max-tool-calls", type=int, default=None, help="Max tool calls")
+    parser.add_argument("--max-output-tokens", type=int, default=None, help="Max output tokens per call")
+    parser.add_argument("--request-timeout", type=float, default=None, help="Model request timeout in seconds")
+    parser.add_argument("--version", action="version", version=f"sans {__version__}")
     parser.add_argument("--help", "-h", action="store_true", help="Show help")
     return parser.parse_args()
 
@@ -241,6 +247,12 @@ async def run_repl(agent: Agent) -> None:
         if inp == "/skill-stats":
             print_info(skill_stats())
             continue
+        if inp == "/skill-candidates":
+            from .online_skill_evolution import list_staged_skills
+            candidates = list_staged_skills()
+            print_info("\n".join(f"{row['skill']}: {row['status']}\n  {row['receipt']}" for row in candidates)
+                       or "No staged Skill candidates.")
+            continue
         if inp == "/skill-eval":
             side_query = agent._build_side_query(max_tokens=2400, purpose="evaluator_assist")
             print_info(await format_online_skill_eval_async(side_query=side_query))
@@ -383,7 +395,7 @@ def main() -> None:
         # 自定义帮助文本，展示 Sans 支持的启动参数和 REPL 内置命令。
         print("""
 Sans
-Usage: python -m agents.main [options] [prompt]
+Usage: sans [options] [prompt]
 
 Options:
   --yolo, -y          Skip all confirmation prompts (bypassPermissions mode)
@@ -397,6 +409,11 @@ Options:
   --no-trace          Disable local execution trace
   --max-cost USD      Stop when estimated cost exceeds this amount
   --max-turns N       Stop after N agentic turns
+  --max-model-calls N Limit solve model calls, including truncation recovery
+  --max-tool-calls N  Limit tool calls
+  --max-output-tokens N  Limit output tokens per model call
+  --request-timeout S Set model request timeout in seconds
+  --version          Show installed version
   --help, -h          Show this help
 
 REPL commands:
@@ -409,7 +426,8 @@ REPL commands:
   /memory             List saved memories
   /skills             List available skills
   /skill-stats        Show skill usage and evolution stats
-  /skill-eval         Evaluate online skill evolution quality
+  /skill-candidates   Inspect pending and active Skill candidates (offline)
+  /skill-eval         Evaluate response replay quality (uses the model API)
   /extract_now        Extract the current pending online skill window: /extract_now [hint]
   /skill-feedback     Record feedback: /skill-feedback <skill> <rating> [note]
   /skill-evolve       Evolve a skill: /skill-evolve <skill> <durable lesson>
@@ -469,6 +487,8 @@ Examples:
                 agent = Agent(
                     permission_mode=permission_mode, model=model, thinking=args.thinking,
                     max_cost_usd=args.max_cost, max_turns=args.max_turns,
+                    max_model_calls=args.max_model_calls, max_tool_calls=args.max_tool_calls,
+                    max_output_tokens=args.max_output_tokens, model_call_timeout_seconds=args.request_timeout,
                     api_base=resolved_api_base if resolved_use_openai else None,
                     anthropic_base_url=resolved_api_base if not resolved_use_openai else None,
                     api_key=resolved_api_key, trace=trace,

@@ -1,0 +1,34 @@
+[build-system]
+requires = ["hatchling==1.32.4"]
+build-backend = "hatchling.build"
+
+[project]
+name = "long-horizon-coding-harness"
+dynamic = ["version"]
+description = "Procedural memory and context folding for long-running coding agents"
+readme = "README.md"
+requires-python = ">=3.12"
+license-files = ["SNAPSHOT_NOTICE.md", "THIRD_PARTY_NOTICES.md"]
+dependencies = [
+  "anthropic>=0.25.0",
+  "openai>=2.54.0,<3",
+  "python-dotenv>=1.0.0",
+  "rich>=13.0.0",
+]
+
+[project.scripts]
+sans = "agents.main:main"
+
+[project.urls]
+Repository = "https://github.com/Sanssssssssssssssss/long-horizon-coding-harness"
+Documentation = "https://github.com/Sanssssssssssssssss/long-horizon-coding-harness/tree/main/docs"
+Issues = "https://github.com/Sanssssssssssssssss/long-horizon-coding-harness/issues"
+
+[tool.hatch.version]
+path = "agents/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["agents"]
+
+[tool.hatch.build.targets.sdist]
+include = ["/agents", "/pyproject.toml", "/README.md", "/SNAPSHOT_NOTICE.md", "/THIRD_PARTY_NOTICES.md"]

@@ -291,6 +291,32 @@ def _stage_candidate(
     return staged
 
 
+def list_staged_skills() -> list[dict[str, Any]]:
+    """Inspect candidate identities without model calls or activating instructions."""
+    from .skill_evolution import get_evolution_dir
+
+    rows = []
+    for path in sorted((get_evolution_dir() / "candidates").glob("*/stage.json")):
+        try:
+            staged = json.loads(path.read_text(encoding="utf-8"))
+            proposal = path.with_name("SKILL.md")
+            if not isinstance(staged, dict) or not staged.get("candidate_sha256"):
+                raise ValueError("invalid candidate receipt")
+            active_hash = _file_hash(Path(staged["active_file"]))
+            status = "pending_evaluation"
+            if _file_hash(proposal) != staged["candidate_sha256"]:
+                status = "candidate_changed"
+            elif active_hash == staged["candidate_sha256"]:
+                status = "active"
+            elif active_hash != staged.get("baseline_sha256"):
+                status = "baseline_changed"
+            rows.append({"skill": staged.get("skill", path.parent.name), "status": status,
+                         "receipt": str(path), "candidate_sha256": staged["candidate_sha256"]})
+        except (OSError, ValueError, KeyError, TypeError):
+            rows.append({"skill": path.parent.name, "status": "invalid_receipt", "receipt": str(path)})
+    return rows
+
+
 def promote_staged_skill(staged: dict[str, Any], evaluation: dict[str, Any] | None = None) -> dict[str, Any]:
     """Accept only receipts from a trusted local task evaluator, never a response-text judge."""
     from .online_skill_eval import _promotion_decision

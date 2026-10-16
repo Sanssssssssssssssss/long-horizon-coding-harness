@@ -7,6 +7,7 @@
 | [Context folding](context-folding.md) | Compression, execution evidence, observation recovery and failure handling |
 | [Running](running.md) | Environment, provider configuration, CLI and local artifacts |
 | [Evaluation](evaluation.md) | Protocols, measurement units, results and unresolved failures |
+| [Releases](releases.md) | Versioning, installation verification, CI artifacts and publication procedure |
 
 [Regression index](../tests/INDEX.md) · [Published evidence](../experiment/published/20261016/README.md)
 

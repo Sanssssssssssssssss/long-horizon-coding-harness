@@ -11,6 +11,8 @@ The continuation problem has two parts: retain enough implementation context to 
 
 Native entrypoints are `Agent._compact_conversation`, `_compaction_history_parts` and `_generate_folded_session_memory` in [agent.py](../agents/agent.py); serialization is in [session_memory.py](../agents/session_memory.py). Research policies are [EvidenceFoldingLoop](../benchmarks/folding_checkpoint.py) and [ContinuationFoldingLoop](../benchmarks/continuation_folding.py).
 
+Provider response completion is now a shared native runtime policy: incomplete tool batches are rejected, truncated responses receive at most two recovery attempts per Agent instance, and missing finish markers cannot certify completion. Benchmark loops reuse the same protection while retaining their own decision and token admission. This is separate from summary-capacity retry and does not resolve the late-stage stagnation recorded below.
+
 The continuation policy also observes consecutive model responses without repository changes. It can advise the model to implement a small working path. This is a prompt-level intervention; it does not force an edit or prove that reading is unnecessary.
 
 ## Recorded failure and repair
