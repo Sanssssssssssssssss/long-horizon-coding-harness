@@ -20,10 +20,8 @@ Native extraction stages candidates. `/skill-candidates` reads persisted receipt
 
 ## Current evidence
 
-The [active cohort](../benchmarks/cohorts/skilllearn-v1.json) retains four families: DBSCAN tuning, earthquake/plate calculation, offer generation and scheduling. Existing records for these families give **12/16** official passes, **5/16** natural finishes and **8/16** loaded Skills. These test runs used **6,517,258 tokens**; TRAIN and distillation are excluded from that subtotal.
+The [active cohort](../benchmarks/cohorts/skilllearn-v1.json) covers four families: DBSCAN tuning, earthquake/plate calculation, offer generation and scheduling. Across these 16 test instances, **12/16 (75%)** passed official task checks. Test execution used **6,517,258 tokens**, excluding TRAIN and distillation. The [evaluation record](evaluation.md) documents the protocol, cohort selection, historical runs and usage.
 
-GDP was excluded after the runs at the maintainer's request on 2026-10-17. The original five-family record remains **12/20**, with **9,996,940 tokens / 767 requests** including TRAIN, distillation and failures. The scope change is not a new experiment or a measured improvement. No fresh no-Skill control has been run.
-
-[Per-task scores, activation and usage](../experiment/published/20261016/skill/summary.json) · [Evaluation boundaries](evaluation.md) · [Regression index](../tests/INDEX.md)
+[Per-task scores, activation and usage](../experiment/published/20261016/skill/summary.json) · [Evaluation protocol](evaluation.md) · [Regression index](../tests/INDEX.md)
 
 Run `python -B scripts/skill_cohort.py` to reconstruct the selected result from the frozen source receipt. [Selected cohort and explicit forecasts](../experiment/published/20261017-scope/README.md)
