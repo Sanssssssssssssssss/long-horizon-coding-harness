@@ -25,3 +25,20 @@ The [active cohort](../benchmarks/cohorts/skilllearn-v1.json) covers four famili
 [Per-task scores, activation and usage](../experiment/published/20261016/skill/summary.json) · [Evaluation protocol](evaluation.md) · [Regression index](../tests/INDEX.md)
 
 Run `python -B scripts/skill_cohort.py` to reconstruct the selected result from the frozen source receipt. [Selected cohort and explicit forecasts](../experiment/published/20261017-scope/README.md)
+
+## Comparison with published methods
+
+The four-family comparison below covers DBSCAN tuning, earthquake/plate calculation, offer generation and scheduling. Each family receives equal weight. Published references are recomputed from [SkillLearnBench, Table 8](https://arxiv.org/html/2604.20087v1#A6.T8).
+
+| System or Skill generation method | Four-family accuracy | Evidence |
+|---|---:|---|
+| **Long-Horizon Coding Harness** | **75.00%** | Recorded execution: 12/16 test instances |
+| One-Shot | 49.45% | Mean of four published family scores |
+| Self Feedback | 48.75% | Mean of four published family scores |
+| Teacher Feedback | 36.81% | Mean of four published family scores |
+| Skill Creator | 40.00% | Mean of four published family scores |
+| Human-authored Skills | 81.67% | Mean of four published family scores |
+
+This is a comparison across studies. Our run uses DeepSeek V4.1 Flash on instances 2–5 of each family (16 instances); the paper uses Claude Sonnet 4.6 to solve all 22 instances in these families, including seed instances, and averages generated-Skill results across six generation models. Budgets and instance coverage differ, so these rows provide context rather than a controlled estimate of Skill improvement.
+
+For example, One-Shot is `(63.33 + 52.78 + 25.00 + 56.67) / 4 = 49.445%`, rounded to 49.45%. These four-family averages are derived from the paper's rounded cells; the [official leaderboard](https://cxcscmu.github.io/SkillLearnBench/leaderboard.html) reports the full 20-family benchmark.
