@@ -27,6 +27,8 @@ The runtime uses Python 3.12, asyncio, OpenAI/Anthropic SDKs, typed execution re
 
 Results cover the task scopes listed above. [Protocols, per-stage scores and run records](docs/evaluation.md) · [Published trace metadata and receipts](experiment/published/20261016/README.md)
 
+The [Skill method comparison](docs/skills.md#comparison-with-published-methods) places our four-family result alongside published One-Shot, Self Feedback, Teacher Feedback and Skill Creator results, with model and task scope for each study.
+
 The [active Skill cohort](benchmarks/cohorts/skilllearn-v1.json) selects DBSCAN tuning, earthquake/plate calculation, offer generation and scheduling. [Full-benchmark forecasts](experiment/published/20261017-scope/README.md) are planning estimates derived from this selected subset.
 
 ## Run

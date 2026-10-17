@@ -19,6 +19,8 @@
 
 表中成绩对应上述任务范围。[评测协议、阶段曲线与运行记录](docs/evaluation.md) · [可核对的公开日志](experiment/published/20261016/README.md)
 
+[Skill 方法对比](docs/skills.md#comparison-with-published-methods)列出本项目与 One-Shot、Self Feedback、Teacher Feedback、Skill Creator 的四类任务成绩，并说明各自的模型与测试范围。
+
 [当前场景清单](benchmarks/cohorts/skilllearn-v1.json)保留 DBSCAN、地震板块计算、Offer 生成和排程；[完整 benchmark 预测](experiment/published/20261017-scope/README.md)列出按任务类别推算的估计与条件。
 
 ```powershell
