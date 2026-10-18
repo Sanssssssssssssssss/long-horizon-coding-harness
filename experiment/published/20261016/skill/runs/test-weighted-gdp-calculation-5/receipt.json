@@ -1,0 +1,137 @@
+{
+  "task": "weighted-gdp-calculation-5",
+  "family": "weighted-gdp-calculation",
+  "instance": 5,
+  "split": "test",
+  "model": "deepseek/deepseek-v4.1-flash",
+  "protocol_sha256": "2ab2a5c8507fda899360984e5e06228544a03574faaf4450dc8b7333bc6aab63",
+  "skill_sha256": null,
+  "termination": {
+    "kind": "token_budget",
+    "detail": "request_reservation"
+  },
+  "decisions": {
+    "completed": 28,
+    "last_periodic": 0
+  },
+  "grade": {
+    "exit_code": 1,
+    "total": 25,
+    "passed": 10,
+    "cases": [
+      {
+        "id": "test_outputs.TestFileExists::test_excel_file_exists",
+        "status": "passed"
+      },
+      {
+        "id": "test_outputs.TestFileExists::test_excel_file_readable",
+        "status": "passed"
+      },
+      {
+        "id": "test_outputs.TestFileExists::test_sheet_structure",
+        "status": "passed"
+      },
+      {
+        "id": "test_outputs.TestStep1LookupFormulas::test_exports_have_data",
+        "status": "failure"
+      },
+      {
+        "id": "test_outputs.TestStep1LookupFormulas::test_imports_have_data",
+        "status": "failure"
+      },
+      {
+        "id": "test_outputs.TestStep1DataValues::test_exports_values",
+        "status": "failure"
+      },
+      {
+        "id": "test_outputs.TestStep1DataValues::test_imports_values",
+        "status": "failure"
+      },
+      {
+        "id": "test_outputs.TestStep2NetExportsCalculation::test_net_exports_pct_have_data",
+        "status": "failure"
+      },
+      {
+        "id": "test_outputs.TestStep2NetExportsCalculation::test_net_exports_pct_values",
+        "status": "failure"
+      },
+      {
+        "id": "test_outputs.TestStep2Statistics::test_statistics_have_data",
+        "status": "failure"
+      },
+      {
+        "id": "test_outputs.TestStep2Statistics::test_min_values",
+        "status": "failure"
+      },
+      {
+        "id": "test_outputs.TestStep2Statistics::test_max_values",
+        "status": "failure"
+      },
+      {
+        "id": "test_outputs.TestStep2Statistics::test_median_values",
+        "status": "failure"
+      },
+      {
+        "id": "test_outputs.TestStep2Statistics::test_mean_values",
+        "status": "failure"
+      },
+      {
+        "id": "test_outputs.TestStep2Statistics::test_percentile_values",
+        "status": "failure"
+      },
+      {
+        "id": "test_outputs.TestStep3WeightedMean::test_weighted_mean_has_data",
+        "status": "failure"
+      },
+      {
+        "id": "test_outputs.TestStep3WeightedMean::test_weighted_mean_values_reasonable",
+        "status": "failure"
+      },
+      {
+        "id": "test_outputs.TestStep3WeightedMean::test_weighted_mean_values",
+        "status": "failure"
+      },
+      {
+        "id": "test_outputs.TestNoExcelErrors::test_no_formula_errors",
+        "status": "passed"
+      },
+      {
+        "id": "test_outputs.TestSheetStructure::test_no_extra_sheets_added",
+        "status": "passed"
+      },
+      {
+        "id": "test_outputs.TestSheetStructure::test_required_sheets_exist",
+        "status": "passed"
+      },
+      {
+        "id": "test_outputs.TestFormattingPreserved::test_task_sheet_column_widths",
+        "status": "passed"
+      },
+      {
+        "id": "test_outputs.TestFormattingPreserved::test_data_sheet_column_widths",
+        "status": "passed"
+      },
+      {
+        "id": "test_outputs.TestNoMacros::test_no_vba_macros",
+        "status": "passed"
+      },
+      {
+        "id": "test_outputs.TestNoMacros::test_file_extension_xlsx",
+        "status": "passed"
+      }
+    ],
+    "skipped": 0,
+    "task_pass": false
+  },
+  "usage": {
+    "known_tokens": 467847,
+    "physical_requests": 35,
+    "unknown_usage_requests": 0,
+    "unknown_reserved_tokens": 0
+  },
+  "natural_finish": false,
+  "completion_complete": false,
+  "environment_status": "qualified",
+  "trace_source_run": "experiment/runs/20261016-skilllearn-20-v2/test-weighted-gdp-calculation-5",
+  "offline_regrade": false
+}
