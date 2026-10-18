@@ -1,35 +1,35 @@
 # Long-Horizon Coding Harness
 
-**Procedural memory and context folding for coding agents that work across many turns.**
+**Context folding, Skill evolution and trace-driven evaluation for long-running coding tasks.**
 
 [简体中文](README.zh-CN.md) · [Architecture](docs/architecture.md) · [Skills](docs/skills.md) · [Context folding](docs/context-folding.md) · [Evaluation](docs/evaluation.md)
 
 [![Checks](https://github.com/Sanssssssssssssssss/long-horizon-coding-harness/actions/workflows/checks.yml/badge.svg)](https://github.com/Sanssssssssssssssss/long-horizon-coding-harness/actions/workflows/checks.yml)
 
-Long tasks accumulate stale assumptions, repeated exploration and verification results that lose their original scope. This Python harness studies how to retain useful working context and reuse executable experience with a fixed model.
+The harness preserves task constraints and execution evidence across long coding sessions, then turns task feedback into reusable, versioned Skills. Its research focuses on improving task execution with a fixed model through procedural memory and inference-time context management.
 
-## Two research directions
+## Core mechanisms
 
 | Mechanism | Implementation |
 |---|---|
-| **Skills as procedural memory** | Extract procedures from feedback and execution receipts; keep provenance outside the instruction body; merge local corrections into versioned snapshots. Load a selected Skill against its source hash and a bounded context budget. Evaluate candidates through fresh baseline and candidate replay on frozen development/test splits. |
-| **Context folding** | Preserve task updates and complete tool exchanges; keep runtime evidence separate from generated summaries. Admit checkpoints against the full request budget, retain recoverable observations, and invalidate source views when execution or content changes. Experimental continuation policies preserve coverage gaps and the next edit. |
+| **RSI: experience distillation and Skill evolution** | Match failure and repair observations using execution IDs and test fingerprints. Distill reusable procedures with applicability conditions and verification rules; maintain versioned Skills through incremental merges, frozen replay and held-out promotion checks. Load relevant Skill bodies on demand with source-hash validation. |
+| **Long-horizon context folding** | Reproduce and adapt the inference-time mechanism from [Context Folding, ICML 2026](https://proceedings.mlr.press/v306/sun26x.html). Combine branch isolation, execution checkpoints and version-bound observation recovery; preserve the next action and task constraints within the full model-request budget. |
+| **Trace and layered evaluation** | Connect asynchronous spans with ContextVar; retain payloads and evidence through SHA-256 content addressing and atomic writes. Turn trace findings into [seven regression groups](tests/INDEX.md), API replays and independent task grading to guide Skill and folding updates. |
 
-The runtime uses Python 3.12, asyncio, OpenAI/Anthropic SDKs, typed execution records, JSONL traces and SHA-256 artifact identities. Rich powers the terminal interface; pytest, Git and container adapters support evaluation.
+Technology: **Python 3.12 / asyncio / native Agent runtime / OpenAI and Anthropic client SDKs / typed execution records / JSONL / SHA-256 / pytest / Git / Docker adapters**. Rich powers the terminal interface.
 
-## Recorded evidence
+## Recorded task results
 
 | Cohort | Result | Scope |
 |---|---|---|
-| SCB `circuit_eval`, continuous 8-stage development | Best recorded result: **561/566 (99.1%)** checks passed | One repository developed across eight stages, with official checks after each stage. |
+| SCB `circuit_eval`, continuous 8-stage development | **527/566 (93.1%)** checks passed | Code and conversation carried across eight stages in one repository; independent official checks after each stage. |
 | Four SkillLearnBench families | **12/16 (75%)** tasks passed official checks | DBSCAN tuning, earthquake/plate calculation, offer generation and scheduling; 16 test instances. |
-| Truncated-summary recovery | Same recorded input completed with an 8192-token retry cap; 5888 output tokens | One real API replay, plus 35 offline regressions; separate from the full-task score. |
 
-Results cover the task scopes listed above. [Protocols, per-stage scores and run records](docs/evaluation.md) · [Published trace metadata and receipts](experiment/published/20261016/README.md)
+The ordinary-summary SCB reference scored **500/566 (88.3%)**, a **4.8 percentage-point** difference. This is a comparison across configurations: candidate/reference token allocations were **15M/5M**, with different stage-response limits and request timeouts. [Evaluation protocol and per-stage records](docs/evaluation.md)
 
-The [Skill method comparison](docs/skills.md#comparison-with-published-methods) places our four-family result alongside published One-Shot, Self Feedback, Teacher Feedback and Skill Creator results, with model and task scope for each study.
+Evaluation covers code repair with SWE-bench Verified/Pro, terminal tasks with Terminal-Bench, continuous development with SCB, and Skill transfer with SkillLearnBench. Trace findings connect task outcomes to reproducible regression cases and candidate evaluation.
 
-The [active Skill cohort](benchmarks/cohorts/skilllearn-v1.json) selects DBSCAN tuning, earthquake/plate calculation, offer generation and scheduling. [Full-benchmark forecasts](experiment/published/20261017-scope/README.md) are planning estimates derived from this selected subset.
+[Published trace metadata and receipts](experiment/published/20261016/README.md) · [Skill cohort](benchmarks/cohorts/skilllearn-v1.json) · [Published method comparisons](docs/skills.md#comparison-with-published-methods)
 
 ## Run
 
@@ -46,6 +46,8 @@ Copy-Item .env.example .env
 
 On Linux/macOS, use `.venv/bin/python`, `.venv/bin/sans` and `cp`. `/plan`, `/skills`, `/skill-candidates`, `/compact`, `/trace` and `/exit` are available. Use `sans --version` to identify an installation. [Configuration and operation](docs/running.md)
 
+The CLI runs the native Agent. Benchmark callers select folding policies and task evaluators; [Skill configuration](docs/skills.md) describes candidate staging and promotion. [Security](SECURITY.md) documents tool permissions and process isolation.
+
 ## Repository
 
 ```text
@@ -57,8 +59,6 @@ docs/         Maintainer and user documentation
 experiment/   Published evidence, regression fixtures and ignored local runs
 ```
 
-The default CLI uses the native runtime. `ContinuationFoldingLoop` is an experimental benchmark policy; its results do not imply that it is the CLI default. Candidate promotion and executable grading require the configured research adapters. Permissions constrain tool use; they are not an OS sandbox.
-
 [Testing](TESTING.md) · [Changelog](CHANGELOG.md) · [Releases](docs/releases.md) · [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md) · [Source provenance](SNAPSHOT_NOTICE.md) · [Attribution](THIRD_PARTY_NOTICES.md)
 
-The repository is publicly viewable. Upstream attribution is retained; no project-wide redistribution license is asserted.
+Source provenance, publication scope and licensing status are documented in the source and attribution notices above.
