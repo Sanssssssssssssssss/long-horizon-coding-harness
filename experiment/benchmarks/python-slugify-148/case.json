@@ -1,0 +1,18 @@
+{
+  "name": "python-slugify-148",
+  "source_url": "https://github.com/un33k/python-slugify/pull/148",
+  "source_revision": "26b81c2e224ebb65c7fba40d37d17d762be3782f",
+  "source_tree": "43ec23b410c4e1a5cc17a803522f30589c880fdd",
+  "upstream_fix": "243354893ee8cc270aaae82eff5fe3ae37481439",
+  "source_archive": "experiment/cache/benchmark/python-slugify-148/source.tar",
+  "source_sha256": "87ed894e95cd34da9966d2400efcf4ef8dbc8c0ffbf4a9678d244d4459e611aa",
+  "image": "harness-benchmark-slugify148:v2",
+  "toolchain_image": "harness-benchmark-python311:20260908",
+  "toolchain_id": "sha256:a7f21aed4da83f33993c34a775f522af6250a06c58489221d0603b22e1052051",
+  "existing_tests": 81,
+  "regression_tests": 82,
+  "regression_failures": 1,
+  "not_swe_bench": true,
+  "previously_solved_locally": false,
+  "instruction_sha256": "71cf976d9f4151a2e82670fcae3dc8c5db4f3408e7bdf204da8c85b1b0e2a98c"
+}
