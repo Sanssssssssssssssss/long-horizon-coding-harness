@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "panel_id": "evidence-bound-canary-v1",
+  "thinking": true,
+  "trial_budget": {
+    "max_model_calls": 30,
+    "max_tool_calls": 40,
+    "model_call_timeout_seconds": 360,
+    "agent_timeout_multiplier": 4,
+    "environment_build_timeout_multiplier": 2
+  },
+  "waves": [
+    {
+      "wave": 1,
+      "tasks": [
+        {"suite": "swebench_verified", "instance_id": "scikit-learn__scikit-learn-13328"}
+      ]
+    }
+  ]
+}

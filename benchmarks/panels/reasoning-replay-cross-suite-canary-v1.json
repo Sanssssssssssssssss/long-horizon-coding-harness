@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "panel_id": "reasoning-replay-cross-suite-canary-v1",
+  "thinking": true,
+  "trial_budget": {
+    "max_model_calls": 200,
+    "max_tool_calls": 300,
+    "model_call_timeout_seconds": 360,
+    "agent_timeout_multiplier": 8
+  },
+  "waves": [
+    {
+      "wave": 1,
+      "tasks": [
+        {"suite": "swebench_verified", "instance_id": "matplotlib__matplotlib-25332"},
+        {"suite": "swebench_pro", "instance_id": "instance_flipt-io__flipt-36e62baffae2132f78f9d34dc300a9baa2d7ae0e"},
+        {"suite": "terminal_bench", "instance_id": "terminal-bench/fix-git", "image_digest": "sha256:16948b980df9d96de616a205f5acca1c5d395de83ff4f8ffabcafacb93226f2e"}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "panel_id": "freeze200-cap300-reasoning-off-canary-v1",
+  "thinking": false,
+  "trial_budget": {
+    "max_model_calls": 200,
+    "max_tool_calls": 300,
+    "model_call_timeout_seconds": 180
+  },
+  "sources": {
+    "swebench_verified": {
+      "dataset": "SWE-bench/SWE-bench_Verified",
+      "revision": "78f471bf655a3137b2e8a75af1501690ec009ec3",
+      "split": "test",
+      "harbor_dataset": "swe-bench/swe-bench-verified",
+      "harbor_ref": "sha256:b934b0cc3dc800fe945eaf9f1623329db97ee3133c706d20644524c7759fb341"
+    }
+  },
+  "waves": [
+    {
+      "wave": 1,
+      "tasks": [
+        {"suite": "swebench_verified", "instance_id": "sympy__sympy-20438"}
+      ]
+    }
+  ]
+}

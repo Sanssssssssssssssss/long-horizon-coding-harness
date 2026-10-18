@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "panel_id": "runtime-infra-canary-v1",
+  "thinking": true,
+  "trial_budget": {
+    "max_model_calls": 200,
+    "max_tool_calls": 300,
+    "model_call_timeout_seconds": 360,
+    "agent_timeout_multiplier": 8,
+    "environment_build_timeout_multiplier": 2
+  },
+  "waves": [
+    {
+      "wave": 1,
+      "tasks": [
+        {"suite": "swebench_verified", "instance_id": "sphinx-doc__sphinx-10614"}
+      ]
+    }
+  ]
+}
