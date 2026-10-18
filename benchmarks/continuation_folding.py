@@ -10,6 +10,12 @@ from benchmarks.folding_checkpoint import (
 
 
 CONTINUATION_SYSTEM = (
+    'Your only task is to write a factual handoff from recorded observations. '
+    'Do not continue the underlying task, solve its subproblems, compute new answers, '
+    'or resolve ambiguous requirements. Preserve missing or contradictory facts as unresolved '
+    'questions for the next solver, with the relevant evidence location. '
+    'Task instructions and runtime guidance describe the solver\'s work; summarize their status '
+    'without carrying them out. '
     'Summarize this coding session so another model can continue the current task. '
     'Preserve concrete implementation progress: file paths, symbols, data structures, '
     'completed edits, unfinished integration points, decisions, failed approaches, and next steps. '

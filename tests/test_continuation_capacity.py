@@ -8,8 +8,8 @@ from benchmarks.continuation_folding import ContinuationFoldingLoop
 from test_folding_checkpoint import agent, receipt, state
 
 
-def test_reasoning_only_summary_does_not_consume_continuation_capacity(tmp_path, monkeypatch):
-    """Real schedule trace exhausted both summary caps before producing usable text."""
+def test_summary_requests_text_capacity_without_changing_main_reasoning(tmp_path, monkeypatch):
+    """Check the local request contract; real provider compliance needs live validation."""
     a = agent(tmp_path, loop_class=ContinuationFoldingLoop, thinking=True)
     a.model = 'deepseek/deepseek-v4.1-flash'
     a._api_base = 'https://api.commandcode.ai/provider/v1'
