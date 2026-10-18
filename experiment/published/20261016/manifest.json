@@ -1,0 +1,349 @@
+{
+  "entries": [
+    {
+      "path": "context/baseline/events.jsonl",
+      "sha256": "38daf9288ec29bb676b0003fd708db2c0286a52414ca085609bd0a8c35be2bef",
+      "bytes": 599808
+    },
+    {
+      "path": "context/baseline/receipt.json",
+      "sha256": "de8cd14143b670277060d45ffa5cdf1d7d2b68af04b5ebcb91af82cd0f082ab9",
+      "bytes": 563854
+    },
+    {
+      "path": "context/best/events.jsonl",
+      "sha256": "6e72a22d795c384ca00571ccfb4326ef2e2539a4fcea67730e3e9d68270499bb",
+      "bytes": 1635923
+    },
+    {
+      "path": "context/best/receipt.json",
+      "sha256": "e73256cbdb14e93b96dd87a2aa30730e504b6d7e4ef6bc802a83634ef555171b",
+      "bytes": 563753
+    },
+    {
+      "path": "context/capacity-replay/events.jsonl",
+      "sha256": "56c95eab9046ca2e7d9594b8b80c7056bb99448b3b74568f46ce147c96c5d954",
+      "bytes": 2954
+    },
+    {
+      "path": "context/capacity-replay/receipt.json",
+      "sha256": "695254918b36893e185988e4b81a511fd3f1bf27da18db962e843bb3f63897dd",
+      "bytes": 584
+    },
+    {
+      "path": "context/comparison.json",
+      "sha256": "92c0bd0260f8f306bf26b9e87c7f0342dd4786543adeae7eb1136829b6161570",
+      "bytes": 52291
+    },
+    {
+      "path": "context/current/events.jsonl",
+      "sha256": "bfb85e33561056baa00c2f8eb8649b83b0e2c1bcaa5563c2a920c88de6ed3be7",
+      "bytes": 1719203
+    },
+    {
+      "path": "context/current/receipt.json",
+      "sha256": "aa396475ab0a3bd1e89b590a8671f81bc3281a1b27e1c19d0dc5cd36cf9c3501",
+      "bytes": 563652
+    },
+    {
+      "path": "context/diagnostics/capacity-application.json",
+      "sha256": "5c6db65f6e35df5314868346357cfbb3e6e55ddc2ff94185cee7ea0c5c3fc509",
+      "bytes": 558
+    },
+    {
+      "path": "context/diagnostics/ROUND-USAGE.json",
+      "sha256": "c1b71729e3ed51b8e5e4fb4fc628dc9b1ddb89d094f1a4a3357d2fc6fbac34e8",
+      "bytes": 2393
+    },
+    {
+      "path": "context/diagnostics/stage8-stall-case.json",
+      "sha256": "91adbd614e9f784120d1ec73f56102fde6188086ff40561aed98ea09c7c8c72f",
+      "bytes": 2337
+    },
+    {
+      "path": "context/diagnostics/summary-costs.json",
+      "sha256": "066f5e450fa0f46431b27e1e8d39ff44475c830977885eaf8216baa60448c37d",
+      "bytes": 431
+    },
+    {
+      "path": "context/diagnostics/trace-audit.json",
+      "sha256": "085fc89ac47894146b89ea6aa6cfa99f5431e73d78a1236aaafaf3a151efc018",
+      "bytes": 50276
+    },
+    {
+      "path": "context/diagnostics/truncated-summary-case.json",
+      "sha256": "f5317528b1827f62547c9c78fe19aa57e4bd0c64020d81909485764c3bc01126",
+      "bytes": 2132
+    },
+    {
+      "path": "context/previous/events.jsonl",
+      "sha256": "aefaa08cfc747743711408e4edf8f6010ed7dc5cff76c7a0ad09b4ce7334d009",
+      "bytes": 1724553
+    },
+    {
+      "path": "context/previous/receipt.json",
+      "sha256": "7e7130bd0f8ad585004589939c51375b4d6651ba59acb16818931c435ff6cee8",
+      "bytes": 563693
+    },
+    {
+      "path": "provenance.json",
+      "sha256": "d1c3e65d6942a24f28791d52b648cf0dc390a375e8a72f7ecafe9efe00542e95",
+      "bytes": 16879
+    },
+    {
+      "path": "skill/20261016-skilllearn-20-protocol.json",
+      "sha256": "0591001f1dc1f45fe47cea127a8aba7f5c3689fed0fab23799fdaffd1f87f175",
+      "bytes": 6504
+    },
+    {
+      "path": "skill/20261016-skilllearn-20-v2-protocol.json",
+      "sha256": "bfd93bbfb4cd1973b23dd5fd4cc472e54aa7c907b409fbfac7d2004fac547497",
+      "bytes": 6571
+    },
+    {
+      "path": "skill/runs/test-dbscan-parameter-tuning-2/events.jsonl",
+      "sha256": "eb5746eb3b36eaadc39eecc32fa6af2e2bccabfdc2fc40adc2cba49473344490",
+      "bytes": 158969
+    },
+    {
+      "path": "skill/runs/test-dbscan-parameter-tuning-2/receipt.json",
+      "sha256": "477d1c9b96c0524f5f3d4bce719d7aecab3cd36318e4862ca1cf3ba1c7a02703",
+      "bytes": 2011
+    },
+    {
+      "path": "skill/runs/test-dbscan-parameter-tuning-3/events.jsonl",
+      "sha256": "a2187be1aa19dd5f5aa15037813213e92571bcd57c92af6a9bb89aeb21b4b1ed",
+      "bytes": 167188
+    },
+    {
+      "path": "skill/runs/test-dbscan-parameter-tuning-3/receipt.json",
+      "sha256": "202c72c59519d530d81cac878ef724d76feb4bb47864eb87dbf7d99ea0f94a55",
+      "bytes": 1941
+    },
+    {
+      "path": "skill/runs/test-dbscan-parameter-tuning-4/events.jsonl",
+      "sha256": "40852efbf8f47d9e487187b3a2723a448b3626ef6d53577016011bd3622fe4dc",
+      "bytes": 168497
+    },
+    {
+      "path": "skill/runs/test-dbscan-parameter-tuning-4/receipt.json",
+      "sha256": "d0adfc8e128c4bcd55cc02b9498024842095b005c1bf3cd48bee6466604ff247",
+      "bytes": 2011
+    },
+    {
+      "path": "skill/runs/test-dbscan-parameter-tuning-5/events.jsonl",
+      "sha256": "c9dbd760ddb775cf8b496cc37a950d0d825c87a81a5b1392822c580cbfe0abf7",
+      "bytes": 168555
+    },
+    {
+      "path": "skill/runs/test-dbscan-parameter-tuning-5/receipt.json",
+      "sha256": "4034d65c7fd9dc3bf43486ed53b4c602f352d6ee8cc550e31fb2d948531e63e5",
+      "bytes": 2011
+    },
+    {
+      "path": "skill/runs/test-earthquake-plate-calculation-2/events.jsonl",
+      "sha256": "34487a6f13b154b38fc554c6358c799e14559bf0a461deab20977711b38b9973",
+      "bytes": 171167
+    },
+    {
+      "path": "skill/runs/test-earthquake-plate-calculation-2/receipt.json",
+      "sha256": "f0ee42ac952e5f7a4c118b847ab0835b4c3e1634dfdfe061efc2d57f2d760650",
+      "bytes": 1976
+    },
+    {
+      "path": "skill/runs/test-earthquake-plate-calculation-3/events.jsonl",
+      "sha256": "890940ce58739c302da272f49efa53840a1fe661deb7c58820eb182432592ed1",
+      "bytes": 121360
+    },
+    {
+      "path": "skill/runs/test-earthquake-plate-calculation-3/receipt.json",
+      "sha256": "630c7be007cb37891b3008580d45d54e1cad15cbc3f223de233c570706a429db",
+      "bytes": 1908
+    },
+    {
+      "path": "skill/runs/test-earthquake-plate-calculation-4/events.jsonl",
+      "sha256": "96f3f95056677499f9aaff8f091fb2895dd1eb4909a280d2f7523842e002d366",
+      "bytes": 87528
+    },
+    {
+      "path": "skill/runs/test-earthquake-plate-calculation-4/receipt.json",
+      "sha256": "f39264536c0704c050ac18859e0cf3102cdc83054d0943c3270c759868f35026",
+      "bytes": 1984
+    },
+    {
+      "path": "skill/runs/test-earthquake-plate-calculation-5/events.jsonl",
+      "sha256": "40275a5f1c21825992cf2e80d2c587283cae73e06b5fbc00d78ae96b0eb03b62",
+      "bytes": 181146
+    },
+    {
+      "path": "skill/runs/test-earthquake-plate-calculation-5/receipt.json",
+      "sha256": "d985134535a7eda6c504bb3f8f93e6bea0c4d43f7fb250a08475b516c670f73f",
+      "bytes": 1969
+    },
+    {
+      "path": "skill/runs/test-offer-letter-generator-2/events.jsonl",
+      "sha256": "3c4f76abb7ba2d06dab172617760a721b6348cfb90a8a854b9bc05e7b4b32fa3",
+      "bytes": 147357
+    },
+    {
+      "path": "skill/runs/test-offer-letter-generator-2/receipt.json",
+      "sha256": "c3a4e6591c25e0d54245a4b301063a996b3668346489db2e637909b5683bf0b1",
+      "bytes": 4422
+    },
+    {
+      "path": "skill/runs/test-offer-letter-generator-3/events.jsonl",
+      "sha256": "4fdb9de433ccafe503c4e09d62a1b554c53a7d8e40e738391fa64bc95e241016",
+      "bytes": 104951
+    },
+    {
+      "path": "skill/runs/test-offer-letter-generator-3/receipt.json",
+      "sha256": "637e3969ecc7545ce51377c40c562ae6c04f009793200f4c239433894c1e1b1e",
+      "bytes": 4422
+    },
+    {
+      "path": "skill/runs/test-offer-letter-generator-4/events.jsonl",
+      "sha256": "8321d7ed9b09e8fc4343c147452f9c32bee64e62c7f4ea54a7f49010d16af6f6",
+      "bytes": 177152
+    },
+    {
+      "path": "skill/runs/test-offer-letter-generator-4/receipt.json",
+      "sha256": "929f2cd69a06d1e3b9e1bb224e7a0b941cd3cd723245ec9d8b0e688cd7786a40",
+      "bytes": 4492
+    },
+    {
+      "path": "skill/runs/test-offer-letter-generator-5/events.jsonl",
+      "sha256": "af003daaa2c10545e3f70edd1dc22456d6470d91ea32271c2be009556935a772",
+      "bytes": 82768
+    },
+    {
+      "path": "skill/runs/test-offer-letter-generator-5/receipt.json",
+      "sha256": "f249b79e742ad9027b0eba7234801539fa711791091efc98e42b2121e9a968e5",
+      "bytes": 4422
+    },
+    {
+      "path": "skill/runs/test-schedule-planning-2/events.jsonl",
+      "sha256": "2449a02be9e46f85209b1134380a997a85539c7e805da1c4993b7d7a88163f77",
+      "bytes": 172825
+    },
+    {
+      "path": "skill/runs/test-schedule-planning-2/receipt.json",
+      "sha256": "84f3f2d7d41860504eba16147a3497b1741c62a3feb3d7e88cc9699c2e1be9db",
+      "bytes": 1195
+    },
+    {
+      "path": "skill/runs/test-schedule-planning-3/events.jsonl",
+      "sha256": "c3808359760196e4242ecc89badf692da3c083ff51e029a6641616ec86d93e83",
+      "bytes": 158799
+    },
+    {
+      "path": "skill/runs/test-schedule-planning-3/receipt.json",
+      "sha256": "35e85856a1501c44fe38bff7a45e761296d3e4b2109368f0d3ea029101f2c910",
+      "bytes": 1196
+    },
+    {
+      "path": "skill/runs/test-schedule-planning-4/events.jsonl",
+      "sha256": "c4ea6afcfda842b5f1267b4ce333f0321e12701ba4cd077bc938d75c651570dc",
+      "bytes": 164069
+    },
+    {
+      "path": "skill/runs/test-schedule-planning-4/receipt.json",
+      "sha256": "2906bba6111878b77a57beead7a71afd3369af4c7460e3e846edb6be72a7d750",
+      "bytes": 1199
+    },
+    {
+      "path": "skill/runs/test-schedule-planning-5/events.jsonl",
+      "sha256": "9475d0e4bab28c06259f69e67adde46313909ee7d3a9c74df8de0051424c5cd1",
+      "bytes": 170015
+    },
+    {
+      "path": "skill/runs/test-schedule-planning-5/receipt.json",
+      "sha256": "be60551b6b8604872305b3c56472a883677e4bf354ea5917521c52efdd072611",
+      "bytes": 1196
+    },
+    {
+      "path": "skill/runs/test-weighted-gdp-calculation-3/events.jsonl",
+      "sha256": "ea8fc1adb796a99de4ff0e461e9033b6e02baa33bd41d40b2b5f5917205dcc2d",
+      "bytes": 162942
+    },
+    {
+      "path": "skill/runs/test-weighted-gdp-calculation-3/receipt.json",
+      "sha256": "37bf873db8e163b2431598173b6da49ce2a7d78c2a690fc4841367795dfc270f",
+      "bytes": 4299
+    },
+    {
+      "path": "skill/runs/test-weighted-gdp-calculation-4/events.jsonl",
+      "sha256": "e7d54674041e0de6c55dcfc877026a5625f20947632113bff2feb4ef037c9377",
+      "bytes": 145613
+    },
+    {
+      "path": "skill/runs/test-weighted-gdp-calculation-4/receipt.json",
+      "sha256": "55deefad11f33cc80a5415993a1a6b72a4b858e55a9332c6f1720d710e3bac32",
+      "bytes": 4308
+    },
+    {
+      "path": "skill/runs/test-weighted-gdp-calculation-5/events.jsonl",
+      "sha256": "94cc6c3b0ab4ed7d2b13050027ac186a0c8b1e8f74d6a72c273f8d74c613071d",
+      "bytes": 158577
+    },
+    {
+      "path": "skill/runs/test-weighted-gdp-calculation-5/receipt.json",
+      "sha256": "ae23723552dae44d4bfbf41bb53108df3a86766de0908079ec5371210eb9c356",
+      "bytes": 4069
+    },
+    {
+      "path": "skill/runs/test-weighted-gdp-calculation-6/events.jsonl",
+      "sha256": "b55339b65587807fa0cf97d66952590c51367a74dcb52b50dd4b10b7ae7755f9",
+      "bytes": 160337
+    },
+    {
+      "path": "skill/runs/test-weighted-gdp-calculation-6/receipt.json",
+      "sha256": "d346fde5ada1a811f7c73c884290b9003650955d1f95128f0d219a802cfbcb14",
+      "bytes": 4308
+    },
+    {
+      "path": "skill/runs/train-earthquake-plate-calculation-1/events.jsonl",
+      "sha256": "51a309322235ec3c56697e9129b922c7f87df14b0066d8a8da299d8dcec1c045",
+      "bytes": 165702
+    },
+    {
+      "path": "skill/runs/train-earthquake-plate-calculation-1/receipt.json",
+      "sha256": "6d487351b6bb59437c92a1efb39b7f6a1de5f7aa490ef00370c3148102b3fe51",
+      "bytes": 1910
+    },
+    {
+      "path": "skill/runs/train-offer-letter-generator-1/events.jsonl",
+      "sha256": "99d180bf8f3832fe5662d4bf3213b91bdb77b8dafaee425ad6f5fc975ac4aac6",
+      "bytes": 90680
+    },
+    {
+      "path": "skill/runs/train-offer-letter-generator-1/receipt.json",
+      "sha256": "72e04c4872bf1556196b87c822f957723e7a900c69914760bac4394b40890706",
+      "bytes": 3877
+    },
+    {
+      "path": "skill/runs/train-schedule-planning-1/events.jsonl",
+      "sha256": "5361b15c3c0f902fdbc0deceec8801c5c247d541f34e7fc54cb800ce8ee7e9f4",
+      "bytes": 164124
+    },
+    {
+      "path": "skill/runs/train-schedule-planning-1/receipt.json",
+      "sha256": "01a6d2b04e3cabc6b69fca6431ca8c3a213944777757f7ea66f4131729a5b848",
+      "bytes": 1136
+    },
+    {
+      "path": "skill/runs/train-weighted-gdp-calculation-1/events.jsonl",
+      "sha256": "23b0836f5b821863da14d60c42707858dcc6f0fce272e44f51df83d767491761",
+      "bytes": 155894
+    },
+    {
+      "path": "skill/runs/train-weighted-gdp-calculation-1/receipt.json",
+      "sha256": "1c3eded8488588254adb78b3cc06de168667719dd736d72aa907b127539f01c2",
+      "bytes": 4295
+    },
+    {
+      "path": "skill/summary.json",
+      "sha256": "9a94fa46355a79032ba53138dba8494466a32960ea5b0a18695fe89d19e7bb5e",
+      "bytes": 13343
+    }
+  ]
+}
