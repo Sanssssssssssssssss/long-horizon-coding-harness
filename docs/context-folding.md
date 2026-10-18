@@ -2,6 +2,10 @@
 
 The continuation problem has two parts: retain enough implementation context to make the next edit, and preserve the authority and scope of execution evidence. These are represented separately.
 
+The research basis is [Scaling Long-Horizon Agent via Context Folding (ICML 2026)](https://proceedings.mlr.press/v306/sun26x.html). This repository reproduces and adapts its inference-time branch/return mechanism: a subtask runs in a separate conversation and returns a compact outcome while workspace changes persist. The paper also introduces FoldGRPO training; our recorded experiments use fixed models and focus on runtime context management.
+
+Our extensions bind recoverable observations to source versions, retain authoritative execution checkpoints, and admit the complete next request against the available budget. [ContextFoldingAgent](../benchmarks/context_folding.py) implements branch orchestration; the continuation policies below build on the shared folding loop.
+
 | Layer | Behavior |
 |---|---|
 | Native conversation boundary | Preserve the canonical request, later user updates and whole assistant/tool exchanges. Budget both the summary and retained tail. Reject incomplete or inadmissible replacements while retaining raw history. |
