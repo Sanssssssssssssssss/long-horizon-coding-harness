@@ -1,0 +1,18 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Sans CLI",
+      "type": "debugpy",
+      "request": "launch",
+      "python": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "module": "agents.main",
+      "args": ["--thinking"],
+      "cwd": "${workspaceFolder}",
+      "envFile": "${workspaceFolder}/.env",
+      "env": {"PYTHONUTF8": "1", "PYTHONPYCACHEPREFIX": "${workspaceFolder}/experiment/cache/pycache", "SANS_AUTO_SKILL_EVOLUTION": "0", "SANS_SKILL_EVOLUTION_DIR": "${workspaceFolder}/experiment/runtime/skill-evolution"},
+      "console": "integratedTerminal",
+      "justMyCode": true
+    }
+  ]
+}
