@@ -10,12 +10,6 @@ from benchmarks.folding_checkpoint import (
 
 
 CONTINUATION_SYSTEM = (
-    'Your only task is to write a factual handoff from recorded observations. '
-    'Do not continue the underlying task, solve its subproblems, compute new answers, '
-    'or resolve ambiguous requirements. Preserve missing or contradictory facts as unresolved '
-    'questions for the next solver, with the relevant evidence location. '
-    'Task instructions and runtime guidance describe the solver\'s work; summarize their status '
-    'without carrying them out. '
     'Summarize this coding session so another model can continue the current task. '
     'Preserve concrete implementation progress: file paths, symbols, data structures, '
     'completed edits, unfinished integration points, decisions, failed approaches, and next steps. '
@@ -218,7 +212,7 @@ class ContinuationFoldingLoop(EvidenceFoldingLoop):
         content['earlier_conversation_bytes_omitted'] = max(0, len(raw)-room)
         output_tokens = self.checkpoint_summary_tokens * (2 if retry_with_full_output else 1)
         if self.max_output_tokens is not None:
-            output_tokens = self.max_output_tokens if retry_with_full_output else min(output_tokens, self.max_output_tokens)
+            output_tokens = min(output_tokens, self.max_output_tokens)
         query = json.dumps(content, ensure_ascii=False)
         cache_key = (identity, tuple(selected), self.model, self._thinking_mode, output_tokens,
                      sha256((CONTINUATION_SYSTEM + '\0' + query).encode('utf-8')).hexdigest())
@@ -228,7 +222,7 @@ class ContinuationFoldingLoop(EvidenceFoldingLoop):
             self._checkpoint_event('summary_reused', request_sha256=cache_key[-1])
         else:
             text = await self._side_query_once(CONTINUATION_SYSTEM, query,
-                max_tokens=output_tokens, purpose='session_fold_continuation', disable_thinking=True)
+                max_tokens=output_tokens, purpose='session_fold_continuation', disable_thinking=False)
         if not isinstance(text, str) or not text.strip():
             raise ValueError('empty continuation summary')
         if (self._repair_state is not repair or identity != (repair.execution_id, repair.repo_generation,
