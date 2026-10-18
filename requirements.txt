@@ -1,0 +1,5 @@
+anthropic>=0.25.0
+# SDK 3.x stream shutdown must pass tests/test_cli.py before upgrading.
+openai>=2.54.0,<3
+python-dotenv>=1.0.0
+rich>=13.0.0
