@@ -66,7 +66,7 @@ def test_explicit_output_bound_scales_headroom_without_changing_default():
     assert default._compaction_reserve_tokens() == COMPACTION_RESERVE_TOKENS
 
 
-def test_gateway_side_query_disables_reasoning_with_supported_off_value(monkeypatch):
+def test_gateway_deepseek_side_query_uses_native_thinking_toggle(monkeypatch):
     from types import SimpleNamespace
     agent = Agent(api_base="https://api.commandcode.ai/provider/v1", api_key="test",
         model="deepseek/deepseek-v4.1-flash", custom_system_prompt="fixed", custom_tools=[],
@@ -79,7 +79,7 @@ def test_gateway_side_query_disables_reasoning_with_supported_off_value(monkeypa
     monkeypatch.setattr(agent._openai_client.chat.completions, "create", respond)
     assert asyncio.run(agent._side_query_once("fixed", "fixed", max_tokens=2048,
                      purpose="session_fold", disable_thinking=True)) == "OK"
-    assert captured[0]["extra_body"]["reasoning_effort"] == "off"
+    assert captured[0]["extra_body"] == {"reasoning_effort": "low", "thinking": {"type": "disabled"}}
     assert captured[0]["max_tokens"] == 2048
     assert agent._openai_request_extra_body()["reasoning_effort"] == "low"
 

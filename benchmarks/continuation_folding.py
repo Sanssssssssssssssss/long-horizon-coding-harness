@@ -212,7 +212,7 @@ class ContinuationFoldingLoop(EvidenceFoldingLoop):
         content['earlier_conversation_bytes_omitted'] = max(0, len(raw)-room)
         output_tokens = self.checkpoint_summary_tokens * (2 if retry_with_full_output else 1)
         if self.max_output_tokens is not None:
-            output_tokens = min(output_tokens, self.max_output_tokens)
+            output_tokens = self.max_output_tokens if retry_with_full_output else min(output_tokens, self.max_output_tokens)
         query = json.dumps(content, ensure_ascii=False)
         cache_key = (identity, tuple(selected), self.model, self._thinking_mode, output_tokens,
                      sha256((CONTINUATION_SYSTEM + '\0' + query).encode('utf-8')).hexdigest())
@@ -222,7 +222,7 @@ class ContinuationFoldingLoop(EvidenceFoldingLoop):
             self._checkpoint_event('summary_reused', request_sha256=cache_key[-1])
         else:
             text = await self._side_query_once(CONTINUATION_SYSTEM, query,
-                max_tokens=output_tokens, purpose='session_fold_continuation', disable_thinking=False)
+                max_tokens=output_tokens, purpose='session_fold_continuation', disable_thinking=True)
         if not isinstance(text, str) or not text.strip():
             raise ValueError('empty continuation summary')
         if (self._repair_state is not repair or identity != (repair.execution_id, repair.repo_generation,

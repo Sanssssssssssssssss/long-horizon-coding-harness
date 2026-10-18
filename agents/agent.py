@@ -621,7 +621,10 @@ class Agent:
             extra_body = dict(self._openai_extra_body) if disable_thinking else self._openai_request_extra_body()
             if disable_thinking and self._model_supports_thinking():
                 if "api.commandcode.ai" in (self._api_base or "").lower():
-                    extra_body["reasoning_effort"] = "off"
+                    if "deepseek" in self.model.lower():
+                        extra_body["thinking"] = {"type": "disabled"}
+                    else:
+                        extra_body["reasoning_effort"] = "off"
                 elif "developer.amd.com.cn" in (self._api_base or "").lower():
                     template = dict(extra_body.get("chat_template_kwargs") or {})
                     template["thinking"] = False
