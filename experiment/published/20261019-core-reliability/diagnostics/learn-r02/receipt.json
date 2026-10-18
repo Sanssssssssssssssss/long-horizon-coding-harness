@@ -1,0 +1,11 @@
+{
+  "status": "failed",
+  "error": "ValueError",
+  "message": "execution candidate cites an unregistered receipt",
+  "usage": {
+    "known_tokens": 8146,
+    "physical_requests": 1,
+    "unknown_usage_requests": 0,
+    "unknown_reserved_tokens": 0
+  }
+}

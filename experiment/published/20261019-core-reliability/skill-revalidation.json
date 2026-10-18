@@ -1,0 +1,15 @@
+{
+  "source": "learn-r02",
+  "training_task": "offer-letter-generator-1",
+  "training_official_checks": {
+    "passed": 25,
+    "total": 25
+  },
+  "additional_API_calls": 0,
+  "result": "Same retained API output accepted after unique trusted receipt mapping; candidate staged for held-out evaluation.",
+  "candidate_sha256": "8e263aa6828f92f9c3df7c8d39c99f4bf7dd6306addfa51169e88187c1e4671d",
+  "input_sha256": "cc7a6b8a57e0902cd617bde7920b338273b25475252e88a9ee85fcc60ee15164",
+  "output_sha256": "1dd30de9de499dc743f9776db26c2a7842d275469cb531b2a900c1f19b7c4329",
+  "test_feedback_used_for_extraction": false,
+  "automatic_promotion": false
+}

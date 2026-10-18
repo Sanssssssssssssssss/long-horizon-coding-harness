@@ -12,6 +12,8 @@ A Skill stores reusable operating instructions with a versioned identity. The me
 
 The executable-memory research adapter can retain validated helper attachments and replay their source dependencies. Reusing a parser function is insufficient when its imported globals change; dependencies belong to the frozen artifact identity.
 
+Dialogue and exported evidence can use different receipt IDs. Extraction resolves an original ID only when the trusted execution window maps it to exactly one scoped receipt. Unknown and ambiguous IDs remain rejected; resolving an ID does not establish a repair without a matching verification transition.
+
 Evaluation must distinguish a discovered Skill, a loaded body, an observed invocation and a correctly completed task. A stored high score cannot replace fresh matched replay. Automatic extraction and an available promotion interface do not establish a fully validated autonomous learning deployment.
 
 The example configuration disables automatic evolution for initial use. Set `SANS_AUTO_SKILL_EVOLUTION=1` only when feedback-driven local updates are intended. Evolution and session state remain local; see [running](running.md).

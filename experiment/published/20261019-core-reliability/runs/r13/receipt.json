@@ -1,0 +1,140 @@
+{
+  "round": "r13",
+  "task": "offer-letter-generator-4",
+  "protocol_sha256": "839f405c7557c1ccc718c92b859bbfe5f899b4122b9456649cb8e929d380f8ab",
+  "grade": {
+    "exit_code": 0,
+    "total": 29,
+    "passed": 29,
+    "cases": [
+      {
+        "id": "test_outputs::test_no_remaining_placeholders",
+        "status": "passed"
+      },
+      {
+        "id": "test_outputs::test_split_placeholder_replaced[DOC_ID]",
+        "status": "passed"
+      },
+      {
+        "id": "test_outputs::test_split_placeholder_replaced[DATE]",
+        "status": "passed"
+      },
+      {
+        "id": "test_outputs::test_split_placeholder_replaced[COMPANY_NAME]",
+        "status": "passed"
+      },
+      {
+        "id": "test_outputs::test_split_placeholder_replaced[CANDIDATE_FULL_NAME]",
+        "status": "passed"
+      },
+      {
+        "id": "test_outputs::test_split_placeholder_replaced[CITY]",
+        "status": "passed"
+      },
+      {
+        "id": "test_outputs::test_split_placeholder_replaced[STATE]",
+        "status": "passed"
+      },
+      {
+        "id": "test_outputs::test_split_placeholder_replaced[ZIP_CODE]",
+        "status": "passed"
+      },
+      {
+        "id": "test_outputs::test_split_placeholder_replaced[POSITION]",
+        "status": "passed"
+      },
+      {
+        "id": "test_outputs::test_split_placeholder_replaced[DEPARTMENT]",
+        "status": "passed"
+      },
+      {
+        "id": "test_outputs::test_split_placeholder_replaced[RESPONSE_DEADLINE]",
+        "status": "passed"
+      },
+      {
+        "id": "test_outputs::test_split_placeholder_replaced[HR_NAME]",
+        "status": "passed"
+      },
+      {
+        "id": "test_outputs::test_split_placeholder_replaced[PTO_DAYS]",
+        "status": "passed"
+      },
+      {
+        "id": "test_outputs::test_repeated_placeholders_replaced_everywhere[DOC_ID-2]",
+        "status": "passed"
+      },
+      {
+        "id": "test_outputs::test_repeated_placeholders_replaced_everywhere[COMPANY_NAME-5]",
+        "status": "passed"
+      },
+      {
+        "id": "test_outputs::test_repeated_placeholders_replaced_everywhere[CANDIDATE_FULL_NAME-3]",
+        "status": "passed"
+      },
+      {
+        "id": "test_outputs::test_nested_table_value[POSITION]",
+        "status": "passed"
+      },
+      {
+        "id": "test_outputs::test_nested_table_value[DEPARTMENT]",
+        "status": "passed"
+      },
+      {
+        "id": "test_outputs::test_nested_table_value[START_DATE]",
+        "status": "passed"
+      },
+      {
+        "id": "test_outputs::test_nested_table_value[BASE_SALARY]",
+        "status": "passed"
+      },
+      {
+        "id": "test_outputs::test_nested_table_value[SIGNING_BONUS]",
+        "status": "passed"
+      },
+      {
+        "id": "test_outputs::test_nested_table_value[EQUITY_SHARES]",
+        "status": "passed"
+      },
+      {
+        "id": "test_outputs::test_nested_table_value[MANAGER_NAME]",
+        "status": "passed"
+      },
+      {
+        "id": "test_outputs::test_additional_required_field_present[STREET_ADDRESS]",
+        "status": "passed"
+      },
+      {
+        "id": "test_outputs::test_additional_required_field_present[HR_TITLE]",
+        "status": "passed"
+      },
+      {
+        "id": "test_outputs::test_header_footer_value[DOC_ID]",
+        "status": "passed"
+      },
+      {
+        "id": "test_outputs::test_header_footer_value[COMPANY_NAME]",
+        "status": "passed"
+      },
+      {
+        "id": "test_outputs::test_header_footer_value[CANDIDATE_FULL_NAME]",
+        "status": "passed"
+      },
+      {
+        "id": "test_outputs::test_conditional_section",
+        "status": "passed"
+      }
+    ],
+    "skipped": 0,
+    "task_pass": true
+  },
+  "natural_finish": true,
+  "termination": null,
+  "usage": {
+    "known_tokens": 379078,
+    "physical_requests": 31,
+    "unknown_usage_requests": 0,
+    "unknown_reserved_tokens": 0
+  },
+  "error": null,
+  "runner_error": null
+}

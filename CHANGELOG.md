@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- DeepSeek side queries on CommandCode use the native `thinking` toggle. Provider support for the toggle must be checked from returned usage.
+- Skill extraction resolves original receipt IDs through unique mappings in the trusted execution window. Unknown or ambiguous references remain rejected, and repair claims still require a matching failure-to-pass transition.
+
 ## 0.1.0 — 2026-10-17
 
 First versioned runtime package from the public research snapshot.

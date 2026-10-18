@@ -4,6 +4,8 @@ Tracked offline suites, grouped by the behavior they protect. Results belong to 
 
 [test_native_response.py](test_native_response.py) covers native OpenAI/Anthropic SDK streaming, discarded incomplete tool batches, bounded recovery, unknown finish markers and call-limit exhaustion using local HTTP transports.
 
+[test_skill_evidence.py](test_skill_evidence.py) covers original receipt IDs, unique scoped mappings and rejection of ambiguous references or unsupported repair claims.
+
 | Boundary | Suites |
 |---|---|
 | Context and continuation | [test_user_updates.py](test_user_updates.py), [test_folding_budget.py](test_folding_budget.py), [test_folding_sources.py](test_folding_sources.py), [test_user_source_records.py](test_user_source_records.py), [test_checkpoints.py](test_checkpoints.py), [test_context_folding.py](test_context_folding.py), [test_context_pressure_admission.py](test_context_pressure_admission.py), [test_continuation_folding.py](test_continuation_folding.py), [test_folding_checkpoint.py](test_folding_checkpoint.py), [test_folding_constraints.py](test_folding_constraints.py), [test_folding_effectiveness.py](test_folding_effectiveness.py), [test_observed_pages.py](test_observed_pages.py), [test_observed_window_admission.py](test_observed_window_admission.py), [test_observed_window_packing.py](test_observed_window_packing.py), [test_session_memory.py](test_session_memory.py), [test_task_epoch.py](test_task_epoch.py), [test_working_set.py](test_working_set.py) |

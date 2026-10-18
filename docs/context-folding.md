@@ -17,6 +17,8 @@ Native entrypoints are `Agent._compact_conversation`, `_compaction_history_parts
 
 Provider response completion is now a shared native runtime policy: incomplete tool batches are rejected, truncated responses receive at most two recovery attempts per Agent instance, and missing finish markers cannot certify completion. Benchmark loops reuse the same protection while retaining their own decision and token admission. Summary-capacity retry has its own output budget and cache identity.
 
+DeepSeek side queries use the native thinking toggle on CommandCode. Returned reasoning usage establishes whether the provider honored it; requesting a mode does not establish that the provider used it.
+
 The continuation policy also observes consecutive model responses without repository changes. It can advise the model to implement a small working path. This is a prompt-level intervention; it does not force an edit or prove that reading is unnecessary.
 
 ## Recorded results

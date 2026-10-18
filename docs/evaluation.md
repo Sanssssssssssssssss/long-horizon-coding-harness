@@ -1,5 +1,7 @@
 # Evaluation and evidence
 
+[Core reliability maintenance study](../experiment/published/20261019-core-reliability/README.md): 13 real business-task runs with frozen revisions, a matched Skill transfer pair, retained failures and explicit rollback of inconclusive folding candidates. This development study is recorded separately from the benchmark cohorts below.
+
 All published results below come from recorded runs. Scores, natural completion, Skill exposure and model usage have separate denominators. CI verifies code and evidence integrity; paid task execution is explicitly launched by the maintainer.
 
 ## Long-task cohort
