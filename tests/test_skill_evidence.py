@@ -47,3 +47,32 @@ def test_failed_execution_survives_without_final_answer(tmp_path):
     assert window is not None and window['latest_assistant']==''
     assert [row['id'] for row in window['execution_evidence']]==[f'{agent.session_id}:{state.execution_id}:task-a:e1']
     assert window['execution_evidence'][0]['test_failure_observed']
+
+
+@pytest.mark.parametrize('ambiguous', [False, True])
+def test_original_receipt_reference_requires_unique_trusted_mapping(ambiguous):
+    """A real TRAIN extraction cited the receipt shown in dialogue instead of its export scope."""
+    evidence = [{'id': 'run-a:task:execution:e24', 'original_evidence_id': 'execution:e24'}]
+    if ambiguous:
+        evidence.append({'id': 'run-b:task:execution:e24', 'original_evidence_id': 'execution:e24'})
+    async def query(system, payload):
+        return json.dumps({'skills': [{'name': 'document-template', 'description': 'Fill document templates',
+            'instructions': 'Inspect saved headers and footers for unresolved tokens.',
+            'source': 'execution', 'evidence_ids': ['execution:e24'], 'claim_kind': 'procedure'}]})
+    call = extract_online_skill_candidate(messages=[], side_query=query, execution_evidence=evidence)
+    if ambiguous:
+        with pytest.raises(ValueError, match='unregistered receipt'):
+            asyncio.run(call)
+    else:
+        candidate = asyncio.run(call)
+        assert candidate.evidence_ids == ['run-a:task:execution:e24']
+
+
+def test_receipt_alias_does_not_certify_a_repair():
+    async def query(system, payload):
+        return json.dumps({'skills': [{'name': 'repair', 'description': 'Repair template traversal',
+            'instructions': 'Traverse headers.', 'source': 'execution',
+            'evidence_ids': ['execution:e24'], 'claim_kind': 'check_repair'}]})
+    with pytest.raises(ValueError, match='matching trusted transition'):
+        asyncio.run(extract_online_skill_candidate(messages=[], side_query=query,
+            execution_evidence=[{'id': 'run-a:execution:e24', 'original_evidence_id': 'execution:e24'}]))

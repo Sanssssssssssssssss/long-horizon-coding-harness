@@ -197,6 +197,17 @@ async def extract_online_skill_candidate(
         return None
     if candidate.source == "execution":
         known = {str(row["id"]) for row in execution_evidence or [] if row.get("id")}
+        # Dialogue uses original IDs; exported receipts add run/task scope. Resolve
+        # only explicit, unique mappings supplied by the trusted execution window.
+        aliases: dict[str, set[str]] = {}
+        for row in execution_evidence or []:
+            original = row.get("original_evidence_id")
+            if isinstance(original, str) and original and row.get("id"):
+                aliases.setdefault(original, set()).add(str(row["id"]))
+        candidate.evidence_ids = [
+            next(iter(aliases[value])) if value not in known and len(aliases.get(value, ())) == 1 else value
+            for value in candidate.evidence_ids
+        ]
         if not candidate.evidence_ids or not set(candidate.evidence_ids).issubset(known):
             raise ValueError("execution candidate cites an unregistered receipt")
         if not _supported_claim(candidate, payload["execution_relations"]):
