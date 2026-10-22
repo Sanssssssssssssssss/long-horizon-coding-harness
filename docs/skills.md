@@ -12,11 +12,19 @@ A Skill stores reusable operating instructions with a versioned identity. The me
 
 The executable-memory research adapter can retain validated helper attachments and replay their source dependencies. Reusing a parser function is insufficient when its imported globals change; dependencies belong to the frozen artifact identity.
 
+Dialogue and exported evidence can use different receipt IDs. Extraction resolves an original ID only when the trusted execution window maps it to exactly one scoped receipt. Unknown and ambiguous IDs remain rejected; resolving an ID does not establish a repair without a matching verification transition.
+
 Evaluation must distinguish a discovered Skill, a loaded body, an observed invocation and a correctly completed task. A stored high score cannot replace fresh matched replay. Automatic extraction and an available promotion interface do not establish a fully validated autonomous learning deployment.
 
 The example configuration disables automatic evolution for initial use. Set `SANS_AUTO_SKILL_EVOLUTION=1` only when feedback-driven local updates are intended. Evolution and session state remain local; see [running](running.md).
 
 Native extraction stages candidates. `/skill-candidates` reads persisted receipts and checks their candidate and active-file hashes, showing pending, active or changed identities without model calls. An embedding application can pass `Agent(skill_task_evaluator=async_evaluate)`; the callback receives the staged snapshot and must return the complete task-level receipt required by `promote_staged_skill`. It owns the isolated task execution and budget. Missing, incomplete or mismatched evaluation leaves the candidate staged. `/skill-eval` is response-replay analysis and does not activate staged candidates.
+
+Promotion binds the candidate to its originating workspace, then hashes and installs the same captured bytes. Native creation, updates, activation and rollback share an OS file lock and compare the current content hash before replacement. Each activation first saves the evaluation receipt and exact previous bytes. `/skill-history` inspects these records; `/skill-rollback <activation-id>` restores the previous snapshot only while the active content still matches that activation. Manual file edits outside the runtime require coordination.
+
+Learning windows have stable identities in the existing project session checkpoint. Enabled background learning saves a queued window before extraction; failures retain its evidence, attempts and error history. Explicit session resume restores pending work without making a model request. `/skill-learning` shows its state, and `/extract_now` retries the oldest unfinished window. Successful extraction consumes only the matching window. Clearing a conversation cancels old learning work while retaining retryable evidence.
+
+The default CLI stages candidates. An embedding application's task evaluator can complete matched evaluation and activation automatically; CLI users can supply a trusted local task receipt with `/skill-promote <candidate-id> <evaluation.json>`. This command validates the existing task, oracle, score and snapshot checks. Receipt import trusts its local evaluator and does not execute the benchmark itself. Rollback is explicit; task outcomes do not automatically revert active Skills.
 
 ## Current evidence
 

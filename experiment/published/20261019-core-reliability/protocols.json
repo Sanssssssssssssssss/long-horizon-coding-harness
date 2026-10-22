@@ -1,0 +1,275 @@
+[
+  {
+    "round": "r01",
+    "task": "schedule-planning-4",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "policy": "continuation",
+    "image_id": "sha256:9c4b0e9246253645a7919801b96ad8d4a2c0712bfcfa97e95127d661aadcd859",
+    "skill_sha256": "bf9878582cca2ef0fd5f4a88b4b8a530e4a730035b6925681e12aa968c8adfd1",
+    "limits": {
+      "tokens": 500000,
+      "decisions": 36,
+      "calls": 48,
+      "input_tokens": 32768,
+      "output_tokens": 8192,
+      "timeout": 240
+    },
+    "qualification_sha256": "8849d9351718f0c7ce1cb7c56f52f19c29315a60c8ba6f7c6bfb0341253af8c6",
+    "runner_sha256": "9dfdce2a5faa83ca998229c505951b60e0072c5b630c6b9c0cbb57af945d9845",
+    "adapter_sha256": "309fa01ca867d463f010c1f7e3a9ca79c20891a12159a99f762a1294ad879646",
+    "source_identity_sha256": "bdfc8167992e7f45385cc3a826a8fa6e82b6ba56c446a0f2b7d81fcf81ae366e",
+    "protocol_sha256": "9745d3b9c40188c7b80f5b9967eb0fd631edce90bf16feb9ac56d240970d47a3"
+  },
+  {
+    "round": "r02",
+    "task": "offer-letter-generator-1",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "policy": "continuation",
+    "image_id": "sha256:faf187994e7f8cdf0dd6dae963c987660034c45034959baa5b60e2314eeedcd1",
+    "skill_sha256": null,
+    "limits": {
+      "tokens": 500000,
+      "decisions": 36,
+      "calls": 48,
+      "input_tokens": 32768,
+      "output_tokens": 8192,
+      "timeout": 240
+    },
+    "qualification_sha256": "31e1afca94b7e01e507a0733e9b2fcb6adab267daf37b0c1bbaa40d3b0b2276b",
+    "runner_sha256": "55234399b2065dac3bcadf85d82451620be94b9e533335aa290743cf8b1ca417",
+    "adapter_sha256": "309fa01ca867d463f010c1f7e3a9ca79c20891a12159a99f762a1294ad879646",
+    "source_identity_sha256": "bdfc8167992e7f45385cc3a826a8fa6e82b6ba56c446a0f2b7d81fcf81ae366e",
+    "protocol_sha256": "c518bd90a49a44b9886835372567453b8426c200b72928204bb97f6ac20509cd"
+  },
+  {
+    "round": "r03",
+    "task": "schedule-planning-4",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "policy": "continuation",
+    "image_id": "sha256:9c4b0e9246253645a7919801b96ad8d4a2c0712bfcfa97e95127d661aadcd859",
+    "skill_sha256": "bf9878582cca2ef0fd5f4a88b4b8a530e4a730035b6925681e12aa968c8adfd1",
+    "limits": {
+      "tokens": 500000,
+      "decisions": 36,
+      "calls": 48,
+      "input_tokens": 32768,
+      "output_tokens": 8192,
+      "timeout": 240
+    },
+    "qualification_sha256": "8849d9351718f0c7ce1cb7c56f52f19c29315a60c8ba6f7c6bfb0341253af8c6",
+    "runner_sha256": "55234399b2065dac3bcadf85d82451620be94b9e533335aa290743cf8b1ca417",
+    "adapter_sha256": "309fa01ca867d463f010c1f7e3a9ca79c20891a12159a99f762a1294ad879646",
+    "source_identity_sha256": "9c0450b9dd824add072ccd535f21d8b3d779a7c52796402d5daf78b957b1ce31",
+    "protocol_sha256": "d00ac1bc4a0261da131ad450c7862c7f277eb4d36adb40cca34f71d0b5198de8"
+  },
+  {
+    "round": "r04",
+    "task": "offer-letter-generator-1",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "policy": "continuation",
+    "image_id": "sha256:faf187994e7f8cdf0dd6dae963c987660034c45034959baa5b60e2314eeedcd1",
+    "skill_sha256": null,
+    "limits": {
+      "tokens": 500000,
+      "decisions": 36,
+      "calls": 48,
+      "input_tokens": 32768,
+      "output_tokens": 8192,
+      "timeout": 240
+    },
+    "qualification_sha256": "31e1afca94b7e01e507a0733e9b2fcb6adab267daf37b0c1bbaa40d3b0b2276b",
+    "runner_sha256": "55234399b2065dac3bcadf85d82451620be94b9e533335aa290743cf8b1ca417",
+    "adapter_sha256": "309fa01ca867d463f010c1f7e3a9ca79c20891a12159a99f762a1294ad879646",
+    "source_identity_sha256": "9c0450b9dd824add072ccd535f21d8b3d779a7c52796402d5daf78b957b1ce31",
+    "protocol_sha256": "ac98fe442bd145550a7192276cb31fddf366a995d36a77e6b14c1b2783ecfcf9"
+  },
+  {
+    "round": "r05",
+    "task": "schedule-planning-4",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "policy": "continuation",
+    "image_id": "sha256:9c4b0e9246253645a7919801b96ad8d4a2c0712bfcfa97e95127d661aadcd859",
+    "skill_sha256": "bf9878582cca2ef0fd5f4a88b4b8a530e4a730035b6925681e12aa968c8adfd1",
+    "limits": {
+      "tokens": 500000,
+      "decisions": 36,
+      "calls": 48,
+      "input_tokens": 32768,
+      "output_tokens": 8192,
+      "timeout": 240
+    },
+    "qualification_sha256": "8849d9351718f0c7ce1cb7c56f52f19c29315a60c8ba6f7c6bfb0341253af8c6",
+    "runner_sha256": "55234399b2065dac3bcadf85d82451620be94b9e533335aa290743cf8b1ca417",
+    "adapter_sha256": "309fa01ca867d463f010c1f7e3a9ca79c20891a12159a99f762a1294ad879646",
+    "source_identity_sha256": "c4e86c7d473c2251d9c6b3062224d94f215a81f6a31bdb91d638c9f8b01148f9",
+    "protocol_sha256": "032cb05bad5b2419b1b1cc2cc54cdf7d0970165ee6be2b515eb9ade9c3fd8185"
+  },
+  {
+    "round": "r06",
+    "task": "offer-letter-generator-1",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "policy": "continuation",
+    "image_id": "sha256:faf187994e7f8cdf0dd6dae963c987660034c45034959baa5b60e2314eeedcd1",
+    "skill_sha256": null,
+    "limits": {
+      "tokens": 500000,
+      "decisions": 36,
+      "calls": 48,
+      "input_tokens": 32768,
+      "output_tokens": 8192,
+      "timeout": 240
+    },
+    "qualification_sha256": "31e1afca94b7e01e507a0733e9b2fcb6adab267daf37b0c1bbaa40d3b0b2276b",
+    "runner_sha256": "55234399b2065dac3bcadf85d82451620be94b9e533335aa290743cf8b1ca417",
+    "adapter_sha256": "309fa01ca867d463f010c1f7e3a9ca79c20891a12159a99f762a1294ad879646",
+    "source_identity_sha256": "c4e86c7d473c2251d9c6b3062224d94f215a81f6a31bdb91d638c9f8b01148f9",
+    "protocol_sha256": "c5a2db1e6a1989b2653c9c03802aebd4c1320b004f9e403a6d1af03211203fc4"
+  },
+  {
+    "round": "r07",
+    "task": "offer-letter-generator-4",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "policy": "continuation",
+    "image_id": "sha256:8044b7f2fc1d6df54bb52afb4682567e834a22a96c787f80dba8e6067bd80704",
+    "skill_sha256": null,
+    "limits": {
+      "tokens": 500000,
+      "decisions": 36,
+      "calls": 48,
+      "input_tokens": 32768,
+      "output_tokens": 8192,
+      "timeout": 240
+    },
+    "qualification_sha256": "30ee58d38a99fe1c0509924d12e909de0388710ff6a7f00c74f80bbb492dc17d",
+    "runner_sha256": "55234399b2065dac3bcadf85d82451620be94b9e533335aa290743cf8b1ca417",
+    "adapter_sha256": "309fa01ca867d463f010c1f7e3a9ca79c20891a12159a99f762a1294ad879646",
+    "source_identity_sha256": "c4e86c7d473c2251d9c6b3062224d94f215a81f6a31bdb91d638c9f8b01148f9",
+    "protocol_sha256": "af823e8db79718b9a41cf0937b66e367a50034d4bd0a4b8b9b6050c01b9001c4"
+  },
+  {
+    "round": "r08",
+    "task": "offer-letter-generator-4",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "policy": "continuation",
+    "image_id": "sha256:8044b7f2fc1d6df54bb52afb4682567e834a22a96c787f80dba8e6067bd80704",
+    "skill_sha256": null,
+    "limits": {
+      "tokens": 500000,
+      "decisions": 36,
+      "calls": 48,
+      "input_tokens": 32768,
+      "output_tokens": 8192,
+      "timeout": 240
+    },
+    "qualification_sha256": "30ee58d38a99fe1c0509924d12e909de0388710ff6a7f00c74f80bbb492dc17d",
+    "runner_sha256": "55234399b2065dac3bcadf85d82451620be94b9e533335aa290743cf8b1ca417",
+    "adapter_sha256": "309fa01ca867d463f010c1f7e3a9ca79c20891a12159a99f762a1294ad879646",
+    "source_identity_sha256": "55413317cbf379ccaaf8eabff860f8cd9826281b4db229ef5e7e8cd6757bce79",
+    "protocol_sha256": "b81113e90c616afa4c19ac416e7602563409adef4c00dfaf562871f6d0367b90"
+  },
+  {
+    "round": "r09",
+    "task": "offer-letter-generator-4",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "policy": "continuation",
+    "image_id": "sha256:8044b7f2fc1d6df54bb52afb4682567e834a22a96c787f80dba8e6067bd80704",
+    "skill_sha256": "8e263aa6828f92f9c3df7c8d39c99f4bf7dd6306addfa51169e88187c1e4671d",
+    "limits": {
+      "tokens": 500000,
+      "decisions": 36,
+      "calls": 48,
+      "input_tokens": 32768,
+      "output_tokens": 8192,
+      "timeout": 240
+    },
+    "qualification_sha256": "30ee58d38a99fe1c0509924d12e909de0388710ff6a7f00c74f80bbb492dc17d",
+    "runner_sha256": "55234399b2065dac3bcadf85d82451620be94b9e533335aa290743cf8b1ca417",
+    "adapter_sha256": "309fa01ca867d463f010c1f7e3a9ca79c20891a12159a99f762a1294ad879646",
+    "source_identity_sha256": "55413317cbf379ccaaf8eabff860f8cd9826281b4db229ef5e7e8cd6757bce79",
+    "protocol_sha256": "e3dc57a5577527aae5800f1b8e1633109d490eac8c91441d2f9e439cf4e07c1f"
+  },
+  {
+    "round": "r10",
+    "task": "schedule-planning-4",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "policy": "continuation",
+    "image_id": "sha256:9c4b0e9246253645a7919801b96ad8d4a2c0712bfcfa97e95127d661aadcd859",
+    "skill_sha256": "bf9878582cca2ef0fd5f4a88b4b8a530e4a730035b6925681e12aa968c8adfd1",
+    "limits": {
+      "tokens": 500000,
+      "decisions": 36,
+      "calls": 48,
+      "input_tokens": 32768,
+      "output_tokens": 8192,
+      "timeout": 240
+    },
+    "qualification_sha256": "8849d9351718f0c7ce1cb7c56f52f19c29315a60c8ba6f7c6bfb0341253af8c6",
+    "runner_sha256": "55234399b2065dac3bcadf85d82451620be94b9e533335aa290743cf8b1ca417",
+    "adapter_sha256": "309fa01ca867d463f010c1f7e3a9ca79c20891a12159a99f762a1294ad879646",
+    "source_identity_sha256": "55413317cbf379ccaaf8eabff860f8cd9826281b4db229ef5e7e8cd6757bce79",
+    "protocol_sha256": "d8b15e5895825d10d0893f0335d8c25d4340ed7a798ebb3f10ec91ce9bb2fe3c"
+  },
+  {
+    "round": "r11",
+    "task": "dbscan-parameter-tuning-2",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "policy": "continuation",
+    "image_id": "sha256:1a34d9a0998e72daf5961789ed0f1e0560e4f321dd085e90be0f089a13b1b4ee",
+    "skill_sha256": "cb3c357bd557fe6007337fab0df114ba86559bae8956a777d8d4224f0559c7ea",
+    "limits": {
+      "tokens": 500000,
+      "decisions": 36,
+      "calls": 48,
+      "input_tokens": 32768,
+      "output_tokens": 8192,
+      "timeout": 240
+    },
+    "qualification_sha256": "3e17b16ad5c2b62a2af910594e5fc794a2a31e27726d98e2eff8487341a39d47",
+    "runner_sha256": "55234399b2065dac3bcadf85d82451620be94b9e533335aa290743cf8b1ca417",
+    "adapter_sha256": "309fa01ca867d463f010c1f7e3a9ca79c20891a12159a99f762a1294ad879646",
+    "source_identity_sha256": "55413317cbf379ccaaf8eabff860f8cd9826281b4db229ef5e7e8cd6757bce79",
+    "protocol_sha256": "1be1e2e4e6b1648cf82755536c494716464356b36633c05b4011c44ca9b665fe"
+  },
+  {
+    "round": "r12",
+    "task": "schedule-planning-4",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "policy": "continuation",
+    "image_id": "sha256:9c4b0e9246253645a7919801b96ad8d4a2c0712bfcfa97e95127d661aadcd859",
+    "skill_sha256": "bf9878582cca2ef0fd5f4a88b4b8a530e4a730035b6925681e12aa968c8adfd1",
+    "limits": {
+      "tokens": 500000,
+      "decisions": 36,
+      "calls": 48,
+      "input_tokens": 32768,
+      "output_tokens": 8192,
+      "timeout": 240
+    },
+    "qualification_sha256": "8849d9351718f0c7ce1cb7c56f52f19c29315a60c8ba6f7c6bfb0341253af8c6",
+    "runner_sha256": "55234399b2065dac3bcadf85d82451620be94b9e533335aa290743cf8b1ca417",
+    "adapter_sha256": "309fa01ca867d463f010c1f7e3a9ca79c20891a12159a99f762a1294ad879646",
+    "source_identity_sha256": "9393caab91c984e7e0718af7078b9b7d8f160043a652c005c5cf1f42394de892",
+    "protocol_sha256": "47c445ac14f715aa4d05bb4f0dbcca1b16463082ebfbe56fb5d10818a8d8501e"
+  },
+  {
+    "round": "r13",
+    "task": "offer-letter-generator-4",
+    "model": "deepseek/deepseek-v4.1-flash",
+    "policy": "continuation",
+    "image_id": "sha256:8044b7f2fc1d6df54bb52afb4682567e834a22a96c787f80dba8e6067bd80704",
+    "skill_sha256": "8e263aa6828f92f9c3df7c8d39c99f4bf7dd6306addfa51169e88187c1e4671d",
+    "limits": {
+      "tokens": 500000,
+      "decisions": 36,
+      "calls": 48,
+      "input_tokens": 32768,
+      "output_tokens": 8192,
+      "timeout": 240
+    },
+    "qualification_sha256": "30ee58d38a99fe1c0509924d12e909de0388710ff6a7f00c74f80bbb492dc17d",
+    "runner_sha256": "55234399b2065dac3bcadf85d82451620be94b9e533335aa290743cf8b1ca417",
+    "adapter_sha256": "309fa01ca867d463f010c1f7e3a9ca79c20891a12159a99f762a1294ad879646",
+    "source_identity_sha256": "45301f5d8d5c05633c82c5a61e1d51f31f7ca6a72793ae04ea5202ab17bee444",
+    "protocol_sha256": "839f405c7557c1ccc718c92b859bbfe5f899b4122b9456649cb8e929d380f8ab"
+  }
+]

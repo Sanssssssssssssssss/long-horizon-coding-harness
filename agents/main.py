@@ -7,6 +7,7 @@ import asyncio
 import json
 import os
 import signal
+import shlex
 import sys
 import uuid
 from contextlib import nullcontext
@@ -253,6 +254,41 @@ async def run_repl(agent: Agent) -> None:
             print_info("\n".join(f"{row['skill']}: {row['status']}\n  {row['receipt']}" for row in candidates)
                        or "No staged Skill candidates.")
             continue
+        if inp == "/skill-learning":
+            rows = agent.skill_learning_status()
+            print_info("\n".join(f"{row['id']}: {row['status']} (attempts={row['attempts']})" for row in rows)
+                       or "No pending Skill learning.")
+            continue
+        if inp == "/skill-history":
+            from .skill_activation import list_skill_activations
+            rows = list_skill_activations()
+            print_info("\n".join(f"{row['id']}  {row['skill']}: {row['action']} / {row['status']}" for row in rows)
+                       or "No Skill activations.")
+            continue
+        if inp.startswith(("/skill-promote ", "/skill-rollback ")):
+            try:
+                if agent.permission_mode == "plan":
+                    raise ValueError("Skill activation is unavailable in plan mode")
+                arguments = [part.strip('\"') for part in shlex.split(inp, posix=False)]
+                if arguments[0] == "/skill-promote" and len(arguments) == 3:
+                    import re
+                    from .skill_evolution import get_evolution_dir
+                    from .online_skill_evolution import promote_staged_skill
+                    if not re.fullmatch(r"[0-9a-f]{64}", arguments[1]):
+                        raise ValueError("Use the candidate directory ID shown by /skill-candidates")
+                    staged = json.loads((get_evolution_dir() / "candidates" / arguments[1] / "stage.json").read_text(encoding="utf-8"))
+                    evaluation = json.loads(Path(arguments[2]).read_text(encoding="utf-8"))
+                    result = promote_staged_skill(staged, evaluation)
+                elif arguments[0] == "/skill-rollback" and len(arguments) == 2:
+                    from .skill_activation import rollback_skill_activation
+                    result = rollback_skill_activation(arguments[1])
+                else:
+                    raise ValueError("Use /skill-promote <candidate-id> <evaluation.json> or /skill-rollback <activation-id>")
+                agent._refresh_runtime_system_prompt()
+                print_info(json.dumps(result, ensure_ascii=False, indent=2))
+            except (OSError, ValueError, KeyError, TypeError, RuntimeError) as error:
+                print_error(str(error))
+            continue
         if inp == "/skill-eval":
             side_query = agent._build_side_query(max_tokens=2400, purpose="evaluator_assist")
             print_info(await format_online_skill_eval_async(side_query=side_query))
@@ -427,6 +463,10 @@ REPL commands:
   /skills             List available skills
   /skill-stats        Show skill usage and evolution stats
   /skill-candidates   Inspect pending and active Skill candidates (offline)
+  /skill-learning     Inspect queued, failed and completed learning windows
+  /skill-history      Inspect Skill activation and rollback receipts
+  /skill-promote      Apply a trusted task evaluation: <candidate-id> <evaluation.json>
+  /skill-rollback     Restore a previous Skill snapshot: <activation-id>
   /skill-eval         Evaluate response replay quality (uses the model API)
   /extract_now        Extract the current pending online skill window: /extract_now [hint]
   /skill-feedback     Record feedback: /skill-feedback <skill> <rating> [note]

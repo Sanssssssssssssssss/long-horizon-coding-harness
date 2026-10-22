@@ -1,0 +1,35 @@
+{
+  "round": "r12",
+  "task": "schedule-planning-4",
+  "protocol_sha256": "47c445ac14f715aa4d05bb4f0dbcca1b16463082ebfbe56fb5d10818a8d8501e",
+  "grade": {
+    "exit_code": 1,
+    "total": 2,
+    "passed": 0,
+    "cases": [
+      {
+        "id": "test_outputs::test_outputs",
+        "status": "failure"
+      },
+      {
+        "id": "test_outputs::test_email_recipients",
+        "status": "failure"
+      }
+    ],
+    "skipped": 0,
+    "task_pass": false
+  },
+  "natural_finish": false,
+  "termination": {
+    "kind": "token_budget",
+    "detail": "request_reservation"
+  },
+  "usage": {
+    "known_tokens": 448026,
+    "physical_requests": 32,
+    "unknown_usage_requests": 0,
+    "unknown_reserved_tokens": 0
+  },
+  "error": null,
+  "runner_error": null
+}

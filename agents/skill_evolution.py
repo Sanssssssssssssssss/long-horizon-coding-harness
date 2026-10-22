@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import Any
 
 from .frontmatter import format_frontmatter, parse_frontmatter
+from .skill_activation import replace_skill_snapshot
 
 
 USAGE_LOG = "usage.jsonl"
@@ -325,9 +326,9 @@ def create_skill_file(
     if tools:
         meta["allowed-tools"] = tools
 
-    skill_dir.mkdir(parents=True, exist_ok=False)
+    skill_dir.mkdir(parents=True, exist_ok=True)
     body = _skill_body(instructions, evidence)
-    skill_file.write_text(format_frontmatter(meta, body), encoding="utf-8")
+    replace_skill_snapshot(skill_file, "", format_frontmatter(meta, body).encode("utf-8"))
 
     event = {
         "event": "create",
@@ -378,7 +379,8 @@ def evolve_skill_file(
     if not skill_file:
         return {"ok": False, "error": f"Skill not found: {skill_name}"}
 
-    raw = skill_file.read_text(encoding="utf-8")
+    original = skill_file.read_bytes()
+    raw = original.decode("utf-8").replace("\r\n", "\n").replace("\r", "\n")
     parsed = parse_frontmatter(raw)
     meta = dict(parsed.meta)
     resolved_name = meta.get("name") or skill_file.parent.name
@@ -427,7 +429,7 @@ def evolve_skill_file(
     meta["version"] = _bump_patch(meta.get("version"))
     meta["last-evolved"] = _utc_now()
     meta["evolution-count"] = str(_parse_int(meta.get("evolution-count"), 0) + 1)
-    skill_file.write_text(format_frontmatter(meta, new_body), encoding="utf-8")
+    replace_skill_snapshot(skill_file, hashlib.sha256(original).hexdigest(), format_frontmatter(meta, new_body).encode("utf-8"))
 
     event = {
         "event": "evolve",

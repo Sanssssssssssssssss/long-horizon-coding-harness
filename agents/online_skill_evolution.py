@@ -197,6 +197,17 @@ async def extract_online_skill_candidate(
         return None
     if candidate.source == "execution":
         known = {str(row["id"]) for row in execution_evidence or [] if row.get("id")}
+        # Dialogue uses original IDs; exported receipts add run/task scope. Resolve
+        # only explicit, unique mappings supplied by the trusted execution window.
+        aliases: dict[str, set[str]] = {}
+        for row in execution_evidence or []:
+            original = row.get("original_evidence_id")
+            if isinstance(original, str) and original and row.get("id"):
+                aliases.setdefault(original, set()).add(str(row["id"]))
+        candidate.evidence_ids = [
+            next(iter(aliases[value])) if value not in known and len(aliases.get(value, ())) == 1 else value
+            for value in candidate.evidence_ids
+        ]
         if not candidate.evidence_ids or not set(candidate.evidence_ids).issubset(known):
             raise ValueError("execution candidate cites an unregistered receipt")
         if not _supported_claim(candidate, payload["execution_relations"]):
@@ -243,7 +254,8 @@ def _stage_candidate(
     baseline_hash = hashlib.sha256(before).hexdigest() if active.is_file() else ""
     if action == "add" and baseline_hash:
         return {"ok": False, "action": "add", "error": "Skill already exists", "skill": name}
-    identity = hashlib.sha256(json.dumps({"candidate": asdict(candidate), "decision": decision,
+    workspace = str(Path.cwd().resolve())
+    identity = hashlib.sha256(json.dumps({"candidate": asdict(candidate), "decision": decision, "workspace": workspace,
                                          "baseline": baseline_hash, "active": str(active)},
                                         sort_keys=True, ensure_ascii=False).encode("utf-8")).hexdigest()
     proposal = get_evolution_dir() / "candidates" / identity / "SKILL.md"
@@ -258,7 +270,8 @@ def _stage_candidate(
                 or saved.get("proposed_action") != action or saved.get("skill") != name
                 or saved.get("candidate_file") != str(proposal) or saved.get("evidence_ids") != candidate.evidence_ids
                 or saved.get("source") != candidate.source or saved.get("candidate_sha256") != _file_hash(proposal)
-                or saved.get("baseline_sha256") != baseline_hash or saved.get("active_file") != str(active)):
+                or saved.get("baseline_sha256") != baseline_hash or saved.get("active_file") != str(active)
+                or saved.get("workspace") != workspace):
             return {"ok": False, "action": "staging_failed", "skill": name, "error": "staged candidate or receipt changed"}
         return saved
     else:
@@ -281,7 +294,7 @@ def _stage_candidate(
                     "when-to-use": candidate.when_to_use, "context": "inline", "user-invocable": "false"}
             proposal.write_text(format_frontmatter(meta, _skill_body(candidate.instructions, candidate.evidence)), encoding="utf-8")
     staged = {"ok": True, "action": "staged", "skill": name, "proposed_action": action,
-            "candidate_file": str(proposal), "active_file": str(active),
+            "candidate_file": str(proposal), "active_file": str(active), "workspace": workspace,
             "candidate_sha256": _file_hash(proposal), "baseline_sha256": baseline_hash,
             "evidence_ids": candidate.evidence_ids, "source": candidate.source,
             "evidence": candidate.evidence, "rationale": str(decision.get("reason") or ""),
@@ -304,7 +317,9 @@ def list_staged_skills() -> list[dict[str, Any]]:
                 raise ValueError("invalid candidate receipt")
             active_hash = _file_hash(Path(staged["active_file"]))
             status = "pending_evaluation"
-            if _file_hash(proposal) != staged["candidate_sha256"]:
+            if staged.get("workspace") != str(Path.cwd().resolve()):
+                status = "foreign_or_legacy_workspace"
+            elif _file_hash(proposal) != staged["candidate_sha256"]:
                 status = "candidate_changed"
             elif active_hash == staged["candidate_sha256"]:
                 status = "active"
@@ -325,6 +340,8 @@ def promote_staged_skill(staged: dict[str, Any], evaluation: dict[str, Any] | No
     def reject(reason: str) -> dict[str, Any]:
         return {**staged, "action": "staged", "promotion": {"promoted": False, "status": "unobserved", "reason": reason}}
 
+    if staged.get("workspace") != str(Path.cwd().resolve()):
+        return reject("candidate must be staged in this workspace")
     evaluation = evaluation or {}
     if not isinstance(evaluation, dict) or evaluation.get("completed") is not True or evaluation.get("task_level") is not True:
         return reject("completed task-level evaluation is required")
@@ -379,14 +396,20 @@ def promote_staged_skill(staged: dict[str, Any], evaluation: dict[str, Any] | No
     if not decision["promoted"]:
         return {**staged, "action": "staged", "promotion": decision}
     active, proposal = Path(staged["active_file"]), Path(staged["candidate_file"])
-    if _file_hash(active) != staged["baseline_sha256"] or _file_hash(proposal) != staged["candidate_sha256"]:
+    try:
+        candidate_bytes = proposal.read_bytes()
+    except OSError:
+        return reject("candidate snapshot could not be read after evaluation")
+    if (_file_hash(active) != staged["baseline_sha256"]
+            or hashlib.sha256(candidate_bytes).hexdigest() != staged["candidate_sha256"]):
         return reject("active or candidate snapshot changed after evaluation")
-    active.parent.mkdir(parents=True, exist_ok=True)
-    temporary = active.with_suffix(".candidate")
-    temporary.write_bytes(proposal.read_bytes())
-    os.replace(temporary, active)
+    try:
+        from .skill_activation import install_evaluated_skill
+        activation = install_evaluated_skill(staged, evaluation, candidate_bytes)
+    except (ValueError, RuntimeError) as error:
+        return reject(str(error))
     reset_skill_cache()
-    return {**staged, "action": staged["proposed_action"], "promotion": decision, "file": str(active)}
+    return {**staged, "action": staged["proposed_action"], "promotion": decision, "file": str(active), **activation}
 
 
 async def maintain_online_skill_candidate(

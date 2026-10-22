@@ -80,7 +80,7 @@ def test_openai_side_query_records_exact_usage_and_purpose(tmp_path: Path) -> No
 
     assert asyncio.run(exercise()) == "folded answer"
     assert calls[0]["max_tokens"] == 99
-    assert calls[0]["extra_body"] == {"reasoning_effort": "off"}
+    assert calls[0]["extra_body"] == {"thinking": {"type": "disabled"}}
 
     events = read_trace(trace.trace_path)
     started = [event for event in events if event["event_type"] == "model.call.start"]

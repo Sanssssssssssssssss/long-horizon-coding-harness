@@ -12,10 +12,17 @@ Our extensions bind recoverable observations to source versions, retain authorit
 | Execution checkpoint | Select required receipts deterministically using execution and repository identity. Summarized hypotheses and implementation notes remain unverified proposals. |
 | Recoverable observations | Store large outputs by reference. Track observed source pages against execution identity and content SHA; invalidate views when content changes and admit bodies against the complete request budget. |
 | Experimental continuation | Carry next actions, edit anchors, unresolved entrypoints and accurate retained-tail metadata. Avoid a new paid summary for an identical validated input. Retry truncated summaries with bounded extra output capacity. |
+| Recoverable conversation history | Archive the removed message prefix by SHA-256 before replacing context. Keep its reference in the checkpoint wrapper and session snapshot; recover pages through `read_observation` after explicit resume. |
 
 Native entrypoints are `Agent._compact_conversation`, `_compaction_history_parts` and `_generate_folded_session_memory` in [agent.py](../agents/agent.py); serialization is in [session_memory.py](../agents/session_memory.py). Research policies are [EvidenceFoldingLoop](../benchmarks/folding_checkpoint.py) and [ContinuationFoldingLoop](../benchmarks/continuation_folding.py).
 
+A successful fold retains the removed messages, their tool-call pairs and the previous checkpoint reference under `experiment/runtime/sessions/history/`. Archive writes must succeed before context replacement. Reads check workspace identity, byte count and content hash, and use the existing paged observation interface. Restored text is historical context and cannot certify current code or restore an old repair state. If an original tool result contained only a preview, the archive retains that preview and reference; the complete payload remains in its original trace.
+
 Provider response completion is now a shared native runtime policy: incomplete tool batches are rejected, truncated responses receive at most two recovery attempts per Agent instance, and missing finish markers cannot certify completion. Benchmark loops reuse the same protection while retaining their own decision and token admission. Summary-capacity retry has its own output budget and cache identity.
+
+In the shared research folding loop, an auxiliary summary can be denied before dispatch because its reservation exceeds the remaining token budget. If the original complete solve request still fits both input and token limits, the loop preserves raw history and restores the termination state from before that summary attempt. Unknown usage, a dispatched request or an inadmissible solve request prevents this recovery. The check does not charge or refund usage; continuation still passes the normal request admission checks.
+
+DeepSeek side queries use the native thinking toggle on CommandCode. Returned reasoning usage establishes whether the provider honored it; requesting a mode does not establish that the provider used it.
 
 The continuation policy also observes consecutive model responses without repository changes. It can advise the model to implement a small working path. This is a prompt-level intervention; it does not force an edit or prove that reading is unnecessary.
 

@@ -13,7 +13,12 @@ flowchart LR
     Skills[Selected Skill body] --> Agent
     Agent --> Trace[Trace and usage ledger]
     Trace --> Research[Frozen experiments]
-    Research --> Candidates[Skill candidates and folding policies]
+    Agent --> Learning[Persisted learning windows]
+    Learning --> Candidates[Versioned Skill candidates]
+    Research --> Evaluation[Matched task evaluation]
+    Candidates --> Evaluation
+    Evaluation --> Activation[Guarded activation and rollback]
+    Activation --> Skills
 ```
 
 | Boundary | Source | Responsibility |
@@ -23,6 +28,7 @@ flowchart LR
 | Execution facts | [tool_result.py](../agents/tool_result.py), [repair_state.py](../agents/repair_state.py), [verification.py](../agents/verification.py) | Structured tool outcomes, task/execution identity, scoped checks and current-code verification |
 | Context | [session_memory.py](../agents/session_memory.py), [observed_pages.py](../agents/observed_pages.py), [working_set.py](../agents/working_set.py) | Conversation boundaries and bounded, versioned observations |
 | Procedural memory | [skills.py](../agents/skills.py), [skill_evolution.py](../agents/skill_evolution.py), [online_skill_evolution.py](../agents/online_skill_evolution.py) | Discovery, loading, updates and execution-grounded extraction |
+| Memory lifecycle | [session.py](../agents/session.py), [skill_activation.py](../agents/skill_activation.py) | Atomic learning checkpoints, workspace scope, evaluated version installation and guarded rollback |
 | Candidate evaluation | [online_skill_eval.py](../agents/online_skill_eval.py) | Frozen replay samples, current baseline, candidate ranking and promotion records |
 | Observability | [telemetry.py](../agents/telemetry.py) | Correlated events, content-addressed payloads and provider usage |
 | Experiments | [context_folding.py](../benchmarks/context_folding.py), [folding_checkpoint.py](../benchmarks/folding_checkpoint.py), [continuation_folding.py](../benchmarks/continuation_folding.py) | Opt-in context strategies and deterministic evidence projection |

@@ -1,0 +1,21 @@
+{
+  "kind": "offline replay of a real failed business trace; not a new business score",
+  "source_run": "20261019-core-10-rounds/r12",
+  "source_official_score": "0/2",
+  "request_seq": 88,
+  "request_sha256": "fc64bf1874bd1666accb1fd53d93594711c3ad6511104134b59b05063874d0a8",
+  "summary_seq": 105,
+  "summary_sha256": "4695defc0c57832d5e4be6a42a5cb40ad478b1103e80ba28d34e82da740293cf",
+  "archived_messages": 10,
+  "retained_tail_messages": 10,
+  "archive_bytes": 18850,
+  "archive_sha256": "07dd7faa0350dd00f61faa32efbdb5d479157e0c7d272bc385977364961a414a",
+  "source_messages_match": true,
+  "recent_tail_match": true,
+  "resumed_reader_works": true,
+  "current_verification_restored": false,
+  "reader_chars": 16179,
+  "physical_api_calls": 0,
+  "api_tokens": 0,
+  "boundary": "Stores original message text, including existing previews; separate old execution blobs are not re-imported."
+}

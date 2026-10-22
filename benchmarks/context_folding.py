@@ -331,6 +331,24 @@ class _FoldingLoop(Agent):
     def _next_request_reservation(self):
         return self._history_request_reservation(self._openai_messages if self.use_openai else self._anthropic_messages)
 
+    def _recoverable_compaction_rejection(self, error, *, model_calls_before):
+        if super()._recoverable_compaction_rejection(error, model_calls_before=model_calls_before):
+            return True
+        reason = self.termination_reason or {}
+        budget = self.token_budget
+        if (not isinstance(error, _BudgetExceeded) or reason.get('kind') != 'token_budget'
+                or reason.get('detail') != 'request_reservation' or budget.get('blocked')
+                or self._operation_counts['model_calls'] != model_calls_before):
+            return False
+        # A denied auxiliary request spent nothing. Keep the raw solve available
+        # only when its complete request still passes both admission limits.
+        messages = self._openai_messages if self.use_openai else self._anthropic_messages
+        if (self.max_input_tokens_per_call is not None
+                and self._conversation_input_estimate(messages) > self.max_input_tokens_per_call):
+            return False
+        return (budget['limit'] is None
+                or budget['charged'] + self._next_request_reservation() <= budget['limit'])
+
     def _preflight_model_input(self, *, messages, tools, system=None, output_limit=None):
         super()._preflight_model_input(messages=messages, tools=tools, system=system, output_limit=output_limit)
         reserve = self._request_reservation(messages=messages, tools=tools, system=system, output_limit=output_limit)

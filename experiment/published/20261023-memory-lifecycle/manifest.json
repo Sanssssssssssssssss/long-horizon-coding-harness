@@ -1,0 +1,24 @@
+{
+  "entries": [
+    {
+      "path": "fold-replay.json",
+      "sha256": "9255d28ef9122e1e897917ed67a5948f412c5a4a50ff6a1cf1afcaf9d5b26ed1",
+      "bytes": 916
+    },
+    {
+      "path": "README.md",
+      "sha256": "b04d97d91e549cea5ecef77c41313fc897f402771d616b064a403e0cb80717c0",
+      "bytes": 2351
+    },
+    {
+      "path": "regression-cases.json",
+      "sha256": "287a24aecdd07f13261091ca3e6b4c334a66d9722edecaa979821d568494001d",
+      "bytes": 6796
+    },
+    {
+      "path": "validation.json",
+      "sha256": "11974094e9fa1599714356c9b6c1505780fd0bd0b73a5aebf9c07a31e740b2f5",
+      "bytes": 14699
+    }
+  ]
+}
