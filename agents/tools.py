@@ -25,7 +25,7 @@ shell_runner: ContextVar = ContextVar("shell_runner", default=None)
 #权限模式
 PermissionMode = str  # "default" | "plan" | "acceptEdits" | "bypassPermissions" | "dontAsk"
 
-READ_TOOLS = {"read_file", "list_files", "grep_search", "compact_context", "update_plan"}
+READ_TOOLS = {"read_file", "list_files", "grep_search", "read_observation", "compact_context", "update_plan"}
 EDIT_TOOLS = {"write_file", "edit_file", "skill_evolve", "skill_create"}
 
 
@@ -102,7 +102,28 @@ UPDATE_WORK_STATE_TOOL: ToolDef = {
 
 
 #工具定义
+READ_OBSERVATION_TOOL: ToolDef = {
+    "name": "read_observation",
+    "description": "Read original tool output by this task's evidence_id, or archived session context by a fold: reference from a checkpoint. Archived context is historical, not current verification. Uses zero-based line offsets.",
+    "input_schema": {
+        "type": "object",
+        "properties": {
+            "evidence_id": {"type": "string"},
+            "part": {"type": "string", "enum": ["input", "output"], "default": "output",
+                     "description": "Use input to recover an original command, or source metadata for a fold: reference."},
+            "offset": {"type": "integer", "minimum": 0, "default": 0},
+            "limit": {"type": "integer", "minimum": 1, "maximum": 1000, "default": 200},
+            "char_offset": {"type": "integer", "minimum": 0, "default": 0,
+                            "description": "Character offset within the selected line window; use next_char_offset for very long lines."},
+        },
+        "required": ["evidence_id"],
+        "additionalProperties": False,
+    },
+}
+
+
 tool_definitions: list[ToolDef] = [
+    deepcopy(READ_OBSERVATION_TOOL),
     {
         "name": "read_file",
         "description": "Read a window of a file with line numbers. Defaults to the first 200 lines.",
@@ -362,24 +383,7 @@ def get_solver_tool_definitions(profile: str) -> list[ToolDef]:
         },
     })
     tools.append(deepcopy(UPDATE_WORK_STATE_TOOL))
-    tools.append({
-        "name": "read_observation",
-        "description": "Read original tool output by this task's evidence_id, including output omitted from previews or folded history. Uses zero-based line offsets.",
-        "input_schema": {
-            "type": "object",
-            "properties": {
-                "evidence_id": {"type": "string"},
-                "part": {"type": "string", "enum": ["input", "output"], "default": "output",
-                         "description": "Use input to recover the exact original command after history is folded."},
-                "offset": {"type": "integer", "minimum": 0, "default": 0},
-                "limit": {"type": "integer", "minimum": 1, "maximum": 1000, "default": 200},
-                "char_offset": {"type": "integer", "minimum": 0, "default": 0,
-                                "description": "Character offset within the selected line window; use next_char_offset for very long lines."},
-            },
-            "required": ["evidence_id"],
-            "additionalProperties": False,
-        },
-    })
+    tools.append(deepcopy(READ_OBSERVATION_TOOL))
     return tools
 
 

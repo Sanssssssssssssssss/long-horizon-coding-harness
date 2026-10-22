@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Persist enabled Skill learning across explicit session resume, including failed attempts and retryable evidence. `/skill-learning` exposes state and `/extract_now` retries unfinished work.
+- Bind candidates to their workspace, serialize native Skill writes with OS locks, and preserve evaluation receipts and previous bytes before activation. Add `/skill-promote`, `/skill-history` and guarded `/skill-rollback`.
+- Archive removed conversation prefixes before folding. Valid history references survive session resume and support paged reads through the native observation tool.
+- Publish [lifecycle validation](experiment/published/20261023-memory-lifecycle/README.md): 1,001 Windows regressions passed, 1 skipped; CLI, offline smoke and fresh wheel installation passed. The real extraction request was blocked by provider credits; its failed window survived process restart.
 - Skill promotion installs the exact candidate bytes checked against the evaluation receipt, using a unique temporary file with failure cleanup.
 - Interrupted chats and failed manual Skill extraction retain the preceding pending learning window; successful extraction cannot discard a newer window.
 - Research folding loops can continue after an auxiliary summary reservation is denied when the complete original solve request remains admissible. Unknown usage and exhausted budgets still prevent continuation.

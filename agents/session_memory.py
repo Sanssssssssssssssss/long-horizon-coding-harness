@@ -3,8 +3,13 @@
 from __future__ import annotations
 
 import copy
+import hashlib
 import json
+from pathlib import Path
+import re
 from typing import Any
+
+from agents import session
 
 
 COMPACTION_RESERVE_TOKENS = 16_384
@@ -68,15 +73,69 @@ def validate_folded_memory(text: str) -> str:
     return summary
 
 
-def format_folded_memory(summary: str) -> str:
+def format_folded_memory(summary: str, *, history_ref: str | None = None, history_reader: bool = True) -> str:
+    archive = ''
+    if history_ref:
+        archive = (f"Archived context: read_observation(evidence_id={history_ref!r}). " if history_reader else
+                   f"Archived context reference: {history_ref}. Retrieval is unavailable in this tool profile. ")
+        archive += "Historical context only; it cannot establish current verification.\n"
     return (
         f"{COMPACTION_SUMMARY_MARKER}\n"
         "Assistant-generated latest-state checkpoint, not user instructions. "
         "System instructions, the canonical task and runtime receipts take precedence. "
-        "Raw recent messages follow and remain authoritative if any detail conflicts.\n\n"
+        "Raw recent messages follow and remain authoritative if any detail conflicts.\n"
+        f"{archive}\n"
         f"{summary.strip()}\n"
         "</session-folded-memory>"
     )
+
+
+def prepare_history_archive(messages, previous_summary, *, session_id, task_id=None, previous_ref=None):
+    """Describe the removed prefix without duplicating the retained recent tail."""
+    payload = {'schema_version': 'session-history-v1', 'workspace': str(Path.cwd().resolve()),
+               'source_session_id': session_id, 'source_task_id': task_id,
+               'previous_ref': previous_ref, 'previous_summary': previous_summary,
+               'messages': messages}
+    raw = (json.dumps(payload, ensure_ascii=False, indent=2, default=str) + '\n').encode('utf-8')
+    digest = hashlib.sha256(raw).hexdigest()
+    return {'id': 'fold:' + digest, 'sha256': digest, 'bytes': len(raw)}, payload
+
+
+def _history_archive_path(ref):
+    if (not isinstance(ref, dict) or not isinstance(ref.get('sha256'), str)
+            or not re.fullmatch(r'[0-9a-f]{64}', ref['sha256'])
+            or ref.get('id') != 'fold:' + ref['sha256']
+            or type(ref.get('bytes')) is not int or ref['bytes'] <= 0):
+        raise ValueError('invalid folded-history reference')
+    directory = session.get_project_session_dir() / 'history'
+    path = directory / (ref['sha256'] + '.json')
+    if (directory.is_symlink() or path.is_symlink()
+            or not path.resolve().is_relative_to(Path.cwd().resolve())):
+        raise ValueError('folded-history archive is outside the workspace or is a symlink')
+    return path
+
+
+def read_history_archive(ref):
+    raw = _history_archive_path(ref).read_bytes()
+    if len(raw) != ref['bytes'] or hashlib.sha256(raw).hexdigest() != ref['sha256']:
+        raise ValueError('folded-history archive failed integrity check')
+    payload = json.loads(raw)
+    if (not isinstance(payload, dict) or payload.get('schema_version') != 'session-history-v1'
+            or payload.get('workspace') != str(Path.cwd().resolve())
+            or not isinstance(payload.get('messages'), list)
+            or not all(isinstance(message, dict) for message in payload['messages'])
+            or (payload.get('previous_summary') is not None and not isinstance(payload['previous_summary'], str))):
+        raise ValueError('folded-history archive has an incompatible schema or workspace')
+    return payload
+
+
+def write_history_archive(ref, payload):
+    path = _history_archive_path(ref)
+    if not path.exists():
+        path.parent.mkdir(parents=True, exist_ok=True)
+        session.atomic_write_json(path, payload)
+    # Verify the committed bytes, including when the content-addressed file already existed.
+    read_history_archive(ref)
 
 
 def folded_memory_summary(message: dict[str, Any]) -> str | None:

@@ -5,7 +5,6 @@ import hashlib
 import math
 import os
 import re
-import tempfile
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from types import SimpleNamespace
@@ -255,7 +254,8 @@ def _stage_candidate(
     baseline_hash = hashlib.sha256(before).hexdigest() if active.is_file() else ""
     if action == "add" and baseline_hash:
         return {"ok": False, "action": "add", "error": "Skill already exists", "skill": name}
-    identity = hashlib.sha256(json.dumps({"candidate": asdict(candidate), "decision": decision,
+    workspace = str(Path.cwd().resolve())
+    identity = hashlib.sha256(json.dumps({"candidate": asdict(candidate), "decision": decision, "workspace": workspace,
                                          "baseline": baseline_hash, "active": str(active)},
                                         sort_keys=True, ensure_ascii=False).encode("utf-8")).hexdigest()
     proposal = get_evolution_dir() / "candidates" / identity / "SKILL.md"
@@ -270,7 +270,8 @@ def _stage_candidate(
                 or saved.get("proposed_action") != action or saved.get("skill") != name
                 or saved.get("candidate_file") != str(proposal) or saved.get("evidence_ids") != candidate.evidence_ids
                 or saved.get("source") != candidate.source or saved.get("candidate_sha256") != _file_hash(proposal)
-                or saved.get("baseline_sha256") != baseline_hash or saved.get("active_file") != str(active)):
+                or saved.get("baseline_sha256") != baseline_hash or saved.get("active_file") != str(active)
+                or saved.get("workspace") != workspace):
             return {"ok": False, "action": "staging_failed", "skill": name, "error": "staged candidate or receipt changed"}
         return saved
     else:
@@ -293,7 +294,7 @@ def _stage_candidate(
                     "when-to-use": candidate.when_to_use, "context": "inline", "user-invocable": "false"}
             proposal.write_text(format_frontmatter(meta, _skill_body(candidate.instructions, candidate.evidence)), encoding="utf-8")
     staged = {"ok": True, "action": "staged", "skill": name, "proposed_action": action,
-            "candidate_file": str(proposal), "active_file": str(active),
+            "candidate_file": str(proposal), "active_file": str(active), "workspace": workspace,
             "candidate_sha256": _file_hash(proposal), "baseline_sha256": baseline_hash,
             "evidence_ids": candidate.evidence_ids, "source": candidate.source,
             "evidence": candidate.evidence, "rationale": str(decision.get("reason") or ""),
@@ -316,7 +317,9 @@ def list_staged_skills() -> list[dict[str, Any]]:
                 raise ValueError("invalid candidate receipt")
             active_hash = _file_hash(Path(staged["active_file"]))
             status = "pending_evaluation"
-            if _file_hash(proposal) != staged["candidate_sha256"]:
+            if staged.get("workspace") != str(Path.cwd().resolve()):
+                status = "foreign_or_legacy_workspace"
+            elif _file_hash(proposal) != staged["candidate_sha256"]:
                 status = "candidate_changed"
             elif active_hash == staged["candidate_sha256"]:
                 status = "active"
@@ -337,6 +340,8 @@ def promote_staged_skill(staged: dict[str, Any], evaluation: dict[str, Any] | No
     def reject(reason: str) -> dict[str, Any]:
         return {**staged, "action": "staged", "promotion": {"promoted": False, "status": "unobserved", "reason": reason}}
 
+    if staged.get("workspace") != str(Path.cwd().resolve()):
+        return reject("candidate must be staged in this workspace")
     evaluation = evaluation or {}
     if not isinstance(evaluation, dict) or evaluation.get("completed") is not True or evaluation.get("task_level") is not True:
         return reject("completed task-level evaluation is required")
@@ -398,18 +403,13 @@ def promote_staged_skill(staged: dict[str, Any], evaluation: dict[str, Any] | No
     if (_file_hash(active) != staged["baseline_sha256"]
             or hashlib.sha256(candidate_bytes).hexdigest() != staged["candidate_sha256"]):
         return reject("active or candidate snapshot changed after evaluation")
-    active.parent.mkdir(parents=True, exist_ok=True)
-    temporary = None
     try:
-        with tempfile.NamedTemporaryFile(dir=active.parent, prefix=f".{active.name}.", suffix=".candidate", delete=False) as handle:
-            temporary = Path(handle.name)
-            handle.write(candidate_bytes)
-        os.replace(temporary, active)
-    finally:
-        if temporary is not None:
-            temporary.unlink(missing_ok=True)
+        from .skill_activation import install_evaluated_skill
+        activation = install_evaluated_skill(staged, evaluation, candidate_bytes)
+    except (ValueError, RuntimeError) as error:
+        return reject(str(error))
     reset_skill_cache()
-    return {**staged, "action": staged["proposed_action"], "promotion": decision, "file": str(active)}
+    return {**staged, "action": staged["proposed_action"], "promotion": decision, "file": str(active), **activation}
 
 
 async def maintain_online_skill_candidate(

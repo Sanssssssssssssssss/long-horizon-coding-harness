@@ -36,8 +36,11 @@ from agents.session_memory import (
     compaction_cut_index,
     folded_memory_summary,
     format_folded_memory,
+    prepare_history_archive,
+    read_history_archive,
     serialize_compaction_history,
     validate_folded_memory,
+    write_history_archive,
 )
 from agents.session import save_folded_session_memory, save_session
 from agents.subagent import get_sub_agent_config
@@ -308,6 +311,7 @@ class Agent:
         self.context_window = max_input_tokens_per_call or _get_context_windows(model)
         self.effective_window = self.context_window
         self.session_id = uuid.uuid4().hex[:8]
+        self._session_workspace = Path.cwd().resolve()
         self._current_user_source: str | None = None
         self.session_start_time= time.strftime("%Y-%m-%dT%H:%M:%SZ",time.gmtime())
 
@@ -376,8 +380,12 @@ class Agent:
         self._loaded_skill_context = ""
         self._loaded_skill_receipt: dict[str, Any] | None = None
         self._pending_skill_extraction_window: dict[str, Any] | None = None
+        self._skill_learning_records: list[dict[str, Any]] = []
+        self._skill_learning_running: dict[str, asyncio.Task] = {}
+        self._skill_learning_epoch = 0
         self._background_skill_tasks: set[asyncio.Task] = set()
         self._folded_session_memories: list[dict[str, Any]] = []
+        self._folded_history_refs: list[dict[str, Any]] = []
         self._fold_last_time: float = 0.0
         self._fold_count: int = 0
         self._failed_compaction_signature: str | None = None
@@ -824,15 +832,18 @@ class Agent:
         self._turn_output_buffer = None
         if self._skills_enabled and not self._aborted:
             # Keep the previous learning window until this turn can hand it off.
-            ready_skill_extraction_window = self._pop_pending_skill_extraction_window(original_user_message)
-            self._schedule_background_skill_task(self._run_skill_usage_tracking(original_user_message, assistant_text))
-            if ready_skill_extraction_window:
-                self._schedule_background_skill_task(self._run_online_skill_evolution(ready_skill_extraction_window))
+            learning_enabled = self._online_evolution_enabled() and self.permission_mode != "plan"
+            ready_skill_extraction_window = self._pop_pending_skill_extraction_window(original_user_message) if learning_enabled else None
+            if learning_enabled:
+                self._schedule_background_skill_task(self._run_skill_usage_tracking(original_user_message, assistant_text))
+            record = self._queue_skill_learning(ready_skill_extraction_window) if ready_skill_extraction_window else None
             self._set_pending_skill_extraction_window(
                 original_user_message=original_user_message,
                 assistant_text=assistant_text,
                 retrieved_reference=self._last_retrieved_skill_reference,
             )
+            if record:
+                self._schedule_background_skill_task(self._process_skill_learning(record))
         if self._session_persistence_enabled:
             print_divider()
             self._auto_save()
@@ -1465,7 +1476,7 @@ class Agent:
             self._background_skill_tasks.discard(done_task)
             try:
                 done_task.result()
-            except Exception:
+            except (Exception, asyncio.CancelledError):
                 pass
 
         task.add_done_callback(_done)
@@ -1474,6 +1485,78 @@ class Agent:
         tasks = [task for task in self._background_skill_tasks if not task.done()]
         if tasks:
             await asyncio.gather(*tasks, return_exceptions=True)
+
+    def _queue_skill_learning(self, window: dict[str, Any]) -> dict[str, Any]:
+        window.setdefault("window_id", uuid.uuid4().hex)
+        window.setdefault("session_id", self.session_id)
+        for record in self._skill_learning_records:
+            if record["id"] == window["window_id"]:
+                return record
+        record = {"id": window["window_id"], "window": copy.deepcopy(window),
+                  "status": "pending", "attempts": 0, "failures": []}
+        self._skill_learning_records.append(record)
+        return record
+
+    def skill_learning_status(self) -> list[dict[str, Any]]:
+        rows = [{"id": row["id"], "status": "running" if row["id"] in self._skill_learning_running else row["status"],
+                 "attempts": row["attempts"], "failures": len(row["failures"])} for row in self._skill_learning_records]
+        pending = self._pending_skill_extraction_window
+        if pending and not any(row["id"] == pending.get("window_id") for row in rows):
+            rows.append({"id": pending.get("window_id"), "status": "waiting_feedback", "attempts": 0, "failures": 0})
+        return rows
+
+    async def _process_skill_learning(self, record: dict[str, Any], *, interactive_confirm: bool = False) -> dict[str, Any]:
+        if not self._online_evolution_enabled() or self.permission_mode == "plan":
+            return {"ok": False, "action": "disabled"}
+        identity = record["id"]
+        if identity in self._skill_learning_running:
+            return {"ok": False, "action": "busy", "error": "this learning window is already running"}
+        epoch = self._skill_learning_epoch
+        cancelled = False
+        cleared_pending = None
+        self._skill_learning_running[identity] = asyncio.current_task()
+        try:
+            if record["status"] == "completed":
+                result = dict(record["result"])
+            else:
+                record["attempts"] += 1
+                record["status"] = "pending"
+                if self._session_persistence_enabled:
+                    self._auto_save(strict=True)
+                result = await self._run_online_skill_evolution(copy.deepcopy(record["window"]),
+                                                                interactive_confirm=interactive_confirm)
+        except asyncio.CancelledError:
+            cancelled = True
+            result = {"ok": False, "action": "cancelled", "error": "learning cancelled; evidence retained"}
+        except Exception as error:
+            result = {"ok": False, "action": "failed", "error": str(error)}
+        finally:
+            self._skill_learning_running.pop(identity, None)
+        if epoch != self._skill_learning_epoch:
+            result = {"ok": False, "action": "interrupted", "error": "conversation cleared during learning"}
+        if result.get("ok"):
+            record["status"] = "completed"
+            record["result"] = {key: result[key] for key in ("ok", "action", "skill", "candidate_sha256", "activation_id") if key in result}
+            record.pop("window", None)
+            pending = self._pending_skill_extraction_window
+            if pending and pending.get("window_id") == identity:
+                cleared_pending = pending
+                self._pending_skill_extraction_window = None
+        else:
+            record["status"] = "failed"
+            record["failures"].append({"attempt": record["attempts"], "action": result.get("action"),
+                                       "error": result.get("error", "learning did not complete")})
+        try:
+            if self._session_persistence_enabled:
+                self._auto_save(strict=True)
+        except Exception as error:
+            if cleared_pending is not None and self._pending_skill_extraction_window is None:
+                self._pending_skill_extraction_window = cleared_pending
+            print_error(f"Learning checkpoint could not be saved: {error}")
+            result = {"ok": False, "action": "persistence_failed", "error": str(error)}
+        if cancelled:
+            raise asyncio.CancelledError
+        return result
 
     def _pop_pending_skill_extraction_window(self, next_user_feedback: str) -> dict[str, Any] | None:
         pending = self._pending_skill_extraction_window
@@ -1522,6 +1605,7 @@ class Agent:
             )
         ]
         self._pending_skill_extraction_window = {
+            "window_id": uuid.uuid4().hex,
             "messages": [
                 {"role": "user", "content": original_user_message},
                 *recent[-11:],
@@ -1555,17 +1639,28 @@ class Agent:
         except Exception:
             return {"ok": False, "action": "unavailable"}
 
+        epoch = self._skill_learning_epoch
+        def guarded(callback):
+            async def invoke(*args, **kwargs):
+                if epoch != self._skill_learning_epoch:
+                    raise asyncio.CancelledError
+                result = await callback(*args, **kwargs)
+                if epoch != self._skill_learning_epoch:
+                    raise asyncio.CancelledError
+                return result
+            return invoke
+
         result = await online_ingest(
             messages=messages,
-            side_query=side_query,
+            side_query=guarded(side_query),
             retrieved_reference=window.get("retrieved_reference") or None,
             hint=str(window.get("hint") or ""),
-            confirm_write=self._confirm_online_skill_write if interactive_confirm else self._confirm_background_online_skill_write,
+            confirm_write=guarded(self._confirm_online_skill_write if interactive_confirm else self._confirm_background_online_skill_write),
             target=os.environ.get("SANS_AUTO_SKILL_TARGET", "project"),
             required_target_skill=os.environ.get("SANS_EVOLUTION_TARGET_SKILL", ""),
             execution_evidence=window.get("execution_evidence") or [],
             replay_messages=window.get("replay_messages"),
-            task_evaluator=self._skill_task_evaluator,
+            task_evaluator=guarded(self._skill_task_evaluator) if self._skill_task_evaluator else None,
         )
         if self.trace:
             self.trace.event("skill.candidate_decision", component="skill", purpose="learning",
@@ -1606,26 +1701,37 @@ class Agent:
             return
 
     async def extract_now(self, hint: str = "") -> dict[str, Any]:
+        if not self._online_evolution_enabled() or self.permission_mode == "plan":
+            return {"ok": False, "action": "disabled", "error": "online Skill learning is disabled"}
         pending = self._pending_skill_extraction_window
-        if not pending:
+        record = next((row for row in self._skill_learning_records if row["status"] != "completed"), None)
+        if record is None and pending:
+            record = self._queue_skill_learning(pending)
+        if record is None:
             return {"ok": False, "error": "no pending online skill extraction window"}
-        window = dict(pending)
-        window["hint"] = hint
+        if record["id"] in self._skill_learning_running:
+            return {"ok": False, "action": "busy", "error": "this learning window is already running"}
+        window = record.get("window")
+        if window is None:
+            return await self._process_skill_learning(record, interactive_confirm=True)
         if hint.strip():
-            window["messages"] = [
-                *list(window.get("messages") or []),
-                {"role": "user", "content": hint.strip()},
-            ]
-        result = await self._run_online_skill_evolution(window, interactive_confirm=True)
-        if result.get("ok") and self._pending_skill_extraction_window is pending:
-            self._pending_skill_extraction_window = None
-        return result
+            window["hint"] = hint
+            message = {"role": "user", "content": hint.strip()}
+            if not window.get("messages") or window["messages"][-1] != message:
+                window["messages"] = [*list(window.get("messages") or []), message]
+        return await self._process_skill_learning(record, interactive_confirm=True)
 
 
     def clear_history(self)->None:
+        self._skill_learning_epoch += 1
+        if self._pending_skill_extraction_window:
+            self._queue_skill_learning(self._pending_skill_extraction_window)
+        for task in {*self._skill_learning_running.values(), *self._background_skill_tasks}:
+            task.cancel()
         self._anthropic_messages = []
         self._openai_messages = []
         self._pending_skill_extraction_window = None
+        self._folded_history_refs = []
         self._last_retrieved_skill_reference = None
         self._last_retrieved_skill_hits = []
         self._loaded_skill_context = ""
@@ -1644,6 +1750,8 @@ class Agent:
         self.total_provider_reported_cost = 0.0
         self._provider_cost_complete = True
         self.last_input_token_count = 0
+        if self._session_persistence_enabled:
+            self._auto_save(strict=True)
         print_info("Conversation cleared.")
 
     def show_cost(self):
@@ -1715,12 +1823,52 @@ class Agent:
 
     #恢复会话信息
     def restore_session(self, data:dict)->None:
+        if self._skill_learning_running:
+            raise RuntimeError("cannot restore a session while learning is running")
+        learning = data.get("skillLearning")
+        metadata = data.get("metadata") or {}
+        if metadata.get("cwd") and Path(metadata["cwd"]).resolve() != self._session_workspace:
+            raise ValueError("session belongs to a different workspace")
+        if learning is not None:
+            session_id = metadata.get("id")
+            if (not metadata.get("cwd") or not isinstance(session_id, str)
+                    or not re.fullmatch(r"[\w-]+", session_id)
+                    or not isinstance(learning, dict) or learning.get("version") != 1):
+                raise ValueError("invalid learning checkpoint or workspace identity")
+            pending, records = learning.get("pending"), learning.get("records")
+            if not isinstance(records, list) or pending is not None and not isinstance(pending, dict):
+                raise ValueError("invalid learning checkpoint")
+            identities = set()
+            for row in records:
+                if (not isinstance(row, dict) or not isinstance(row.get("id"), str) or not row["id"]
+                        or row["id"] in identities or row.get("status") not in {"pending", "failed", "completed"}
+                        or type(row.get("attempts")) is not int or row["attempts"] < 0
+                        or not isinstance(row.get("failures"), list)):
+                    raise ValueError("invalid learning record")
+                identities.add(row["id"])
+                if row["status"] == "completed" and (not isinstance(row.get("result"), dict)
+                        or row["result"].get("ok") is not True):
+                    raise ValueError("invalid completed learning receipt")
+                if row["status"] != "completed" and (not isinstance(row.get("window"), dict)
+                        or row["window"].get("window_id") != row["id"]):
+                    raise ValueError("invalid learning window identity")
+            windows = [row["window"] for row in records if row["status"] != "completed"]
+            if pending:
+                windows.append(pending)
+            if any(not window.get("window_id") or window.get("session_id") != session_id
+                   or not isinstance(window.get("messages"), list) for window in windows):
+                raise ValueError("learning window belongs to a different session")
+            self.session_id = session_id
+            self.session_start_time = metadata.get("startTime", self.session_start_time)
+            self._pending_skill_extraction_window = copy.deepcopy(pending)
+            self._skill_learning_records = copy.deepcopy(records)
         if data.get("anthropicMessages"):
             self._anthropic_messages = self._normalize_anthropic_messages(_sanitize_for_utf8(data["anthropicMessages"]))
         if data.get("openaiMessages"):
             self._openai_messages = _sanitize_for_utf8(data["openaiMessages"])
         if isinstance(data.get("foldedSessionMemories"), list):
             self._folded_session_memories = _sanitize_for_utf8(data["foldedSessionMemories"])
+        self._restore_folded_history_refs(data.get("foldedHistoryRefs"))
         print_info(f"Session restored ({self._get_message_count()} messages).")
 
 
@@ -1780,22 +1928,31 @@ class Agent:
     def _get_message_count(self) -> int:
         return len(self._openai_messages) if self.use_openai else len(self._anthropic_messages)
 
-    def _auto_save(self) -> None:
+    def _auto_save(self, *, strict: bool = False) -> bool:
         try:
+            if Path.cwd().resolve() != self._session_workspace:
+                raise ValueError("session workspace changed; checkpoint was not written")
             save_session(self.session_id, {
                 "metadata": {
                     "id": self.session_id,
                     "model": self.model,
-                    "cwd": str(Path.cwd()),
+                    "cwd": str(self._session_workspace),
                     "startTime": self.session_start_time,
                     "messageCount": self._get_message_count(),
                 },
                 "anthropicMessages": _sanitize_for_utf8(self._anthropic_messages) if not self.use_openai else None,
                 "openaiMessages": _sanitize_for_utf8(self._openai_messages) if self.use_openai else None,
                 "foldedSessionMemories": _sanitize_for_utf8(self._folded_session_memories),
+                "foldedHistoryRefs": _sanitize_for_utf8(self._folded_history_refs),
+                "skillLearning": {"version": 1, "pending": self._pending_skill_extraction_window,
+                                  "records": self._skill_learning_records},
             })
-        except Exception:
-            pass
+            return True
+        except Exception as error:
+            if strict:
+                raise
+            logging.warning("session checkpoint could not be saved: %s", error)
+            return False
 
     def _conversation_input_estimate(self, messages: list[dict[str, Any]]) -> int:
         active_tools = get_active_tool_definitions(self.tools)
@@ -2015,10 +2172,12 @@ class Agent:
             return False
         candidate = self._folded_history(canonical, history, summary, retained_tail,
                                          canonical_is_first=start == 1)
+        archive = self._prepare_folded_history_archive(history, previous_summary, candidate, summary)
         admission = self._compaction_candidate_fits(candidate, trigger=trigger)
         if admission is not True:
             return admission
-        self._record_folded_session_memory(trigger, summary)
+        if not self._record_folded_session_memory(trigger, summary, archive=archive):
+            return False
         self._record_fold_event()
         self._anthropic_messages = candidate
         self.last_input_token_count = 0
@@ -2043,10 +2202,12 @@ class Agent:
             return False
         candidate = [system_msg, *self._folded_history(canonical, history, summary, retained_tail,
                                                        canonical_is_first=start == 2)]
+        archive = self._prepare_folded_history_archive(history, previous_summary, candidate, summary)
         admission = self._compaction_candidate_fits(candidate, trigger=trigger)
         if admission is not True:
             return admission
-        self._record_folded_session_memory(trigger, summary)
+        if not self._record_folded_session_memory(trigger, summary, archive=archive):
+            return False
         self._record_fold_event()
         self._openai_messages = candidate
         self.last_input_token_count=0
@@ -2094,12 +2255,45 @@ class Agent:
                 return content
         return None
 
-    def _record_folded_session_memory(self, trigger: str, summary: str) -> None:
+    def _prepare_folded_history_archive(self, history, previous_summary, candidate, summary):
+        previous_ref = self._folded_history_refs[-1]['id'] if previous_summary and self._folded_history_refs else None
+        archive = prepare_history_archive(history, previous_summary, session_id=self.session_id,
+            task_id=self._repair_task.task_id if self._repair_task else None, previous_ref=previous_ref)
+        for message in candidate:
+            if message.get('role') == 'assistant' and folded_memory_summary(message) is not None:
+                # Keep the reference in the wrapper, so JSON checkpoint bodies retain their schema.
+                reader = any(tool['name'] == 'read_observation' for tool in get_active_tool_definitions(self.tools))
+                message['content'] = format_folded_memory(summary, history_ref=archive[0]['id'], history_reader=reader)
+                break
+        return archive
+
+    def _restore_folded_history_refs(self, refs) -> None:
+        self._folded_history_refs = []
+        for ref in refs if isinstance(refs, list) else []:
+            try:
+                read_history_archive(ref)
+            except (OSError, ValueError, TypeError, KeyError) as error:
+                logging.warning('Skipped unavailable folded history: %s', error)
+                continue
+            if not any(item['id'] == ref['id'] for item in self._folded_history_refs):
+                self._folded_history_refs.append({key: ref[key] for key in ('id', 'sha256', 'bytes')})
+
+    def _record_folded_session_memory(self, trigger: str, summary: str, *, archive=None) -> bool:
+        if archive is not None:
+            ref, payload = archive
+            try:
+                write_history_archive(ref, payload)
+            except (OSError, ValueError, TypeError) as error:
+                logging.warning('Fold archive failed; preserving raw history: %s', error)
+                return False
+            if not any(item['id'] == ref['id'] for item in self._folded_history_refs):
+                self._folded_history_refs.append(ref)
         record = {
             "time": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
             "trigger": trigger,
             "session_id": self.session_id,
             "summary": summary,
+            **({'history_ref': archive[0]} if archive is not None else {}),
         }
         self._folded_session_memories.append(record)
         if self._session_persistence_enabled:
@@ -2107,6 +2301,7 @@ class Agent:
                 save_folded_session_memory(self.session_id, _sanitize_for_utf8(record))
             except Exception:
                 pass
+        return True
 
     def _run_compression_pipeline(self)->None:
         return None
@@ -2278,6 +2473,25 @@ class Agent:
 
     def _read_observation(self, inp: dict) -> str:
         evidence_id = inp.get("evidence_id")
+        if isinstance(evidence_id, str) and evidence_id.startswith('fold:'):
+            ref = next((item for item in self._folded_history_refs if item['id'] == evidence_id), None)
+            if ref is None:
+                return 'Error: unknown folded-history reference for this session.'
+            try:
+                archive = read_history_archive(ref)
+                scope = {key: archive.get(key) for key in ('source_session_id', 'source_task_id', 'previous_ref')}
+                part = inp.get('part', 'output')
+                if part not in {'input', 'output'}:
+                    raise ValueError('part must be input or output')
+                content = json.dumps(scope, ensure_ascii=False)
+                if part == 'output':
+                    previous = archive.get('previous_summary')
+                    content += ('\nPrevious unverified checkpoint:\n' + previous + '\n\n') if previous else '\n'
+                    content += serialize_compaction_history(archive['messages'])
+                return self._format_observation_page(evidence_id, content, inp,
+                    scope='historical_session_context; current_verification=false; ')
+            except (OSError, ValueError, KeyError, TypeError) as error:
+                return f'Error: cannot read folded history: {error}'
         if not isinstance(evidence_id, str) or evidence_id not in self._observations:
             return "Error: unknown evidence_id for this task."
         try:
@@ -2923,6 +3137,7 @@ class Agent:
         """清空历史信息，但是保留系统prompt."""
         self._anthropic_messages = []
         self._openai_messages = []
+        self._folded_history_refs = []
         if self.use_openai:
             self._openai_messages.append({"role": "system", "content": self._system_prompt})
         self.last_input_token_count = 0

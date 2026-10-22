@@ -1,0 +1,195 @@
+{
+  "kind": "offline regression",
+  "cases": [
+    {
+      "suite": "tests.test_fold_history_recovery",
+      "case": "test_fold_source_survives_resume_and_preserves_complete_tool_exchanges[openai]",
+      "status": "passed"
+    },
+    {
+      "suite": "tests.test_fold_history_recovery",
+      "case": "test_fold_source_survives_resume_and_preserves_complete_tool_exchanges[anthropic]",
+      "status": "passed"
+    },
+    {
+      "suite": "tests.test_fold_history_recovery",
+      "case": "test_archive_write_failure_preserves_raw_context",
+      "status": "passed"
+    },
+    {
+      "suite": "tests.test_fold_history_recovery",
+      "case": "test_repeated_folds_keep_history_chain_and_paged_reads",
+      "status": "passed"
+    },
+    {
+      "suite": "tests.test_fold_history_recovery",
+      "case": "test_reading_archived_success_claim_cannot_change_current_failed_verification",
+      "status": "passed"
+    },
+    {
+      "suite": "tests.test_fold_history_recovery",
+      "case": "test_archive_reads_refuse_tampering_scope_changes_and_unregistered_ids[contents]",
+      "status": "passed"
+    },
+    {
+      "suite": "tests.test_fold_history_recovery",
+      "case": "test_archive_reads_refuse_tampering_scope_changes_and_unregistered_ids[workspace]",
+      "status": "passed"
+    },
+    {
+      "suite": "tests.test_fold_history_recovery",
+      "case": "test_archive_reads_refuse_tampering_scope_changes_and_unregistered_ids[unregistered]",
+      "status": "passed"
+    },
+    {
+      "suite": "tests.test_fold_history_recovery",
+      "case": "test_history_reader_is_exposed_by_native_and_solver_profiles_without_widening_custom_tools[native]",
+      "status": "passed"
+    },
+    {
+      "suite": "tests.test_fold_history_recovery",
+      "case": "test_history_reader_is_exposed_by_native_and_solver_profiles_without_widening_custom_tools[B0]",
+      "status": "passed"
+    },
+    {
+      "suite": "tests.test_fold_history_recovery",
+      "case": "test_history_reader_is_exposed_by_native_and_solver_profiles_without_widening_custom_tools[B1]",
+      "status": "passed"
+    },
+    {
+      "suite": "tests.test_fold_history_recovery",
+      "case": "test_history_reader_is_exposed_by_native_and_solver_profiles_without_widening_custom_tools[restricted]",
+      "status": "passed"
+    },
+    {
+      "suite": "tests.test_skill_activation",
+      "case": "test_activation_retains_evaluation_and_exact_reversible_snapshot[add]",
+      "status": "passed"
+    },
+    {
+      "suite": "tests.test_skill_activation",
+      "case": "test_activation_retains_evaluation_and_exact_reversible_snapshot[merge]",
+      "status": "passed"
+    },
+    {
+      "suite": "tests.test_skill_activation",
+      "case": "test_rollback_refuses_a_newer_manual_edit",
+      "status": "passed"
+    },
+    {
+      "suite": "tests.test_skill_activation",
+      "case": "test_rollback_rejects_corrupt_snapshot_and_foreign_workspace",
+      "status": "passed"
+    },
+    {
+      "suite": "tests.test_skill_activation",
+      "case": "test_promotion_and_manual_updates_respect_the_same_lock",
+      "status": "passed"
+    },
+    {
+      "suite": "tests.test_skill_activation",
+      "case": "test_recovery_record_failure_prevents_activation",
+      "status": "passed"
+    },
+    {
+      "suite": "tests.test_skill_activation",
+      "case": "test_manual_update_rejects_a_snapshot_changed_during_merge",
+      "status": "passed"
+    },
+    {
+      "suite": "tests.test_skill_activation",
+      "case": "test_activation_requires_original_workspace_even_with_shared_store[True]",
+      "status": "passed"
+    },
+    {
+      "suite": "tests.test_skill_activation",
+      "case": "test_activation_requires_original_workspace_even_with_shared_store[False]",
+      "status": "passed"
+    },
+    {
+      "suite": "tests.test_skill_activation",
+      "case": "test_cli_applies_trusted_evaluation_and_can_restore_without_a_model_call[False]",
+      "status": "passed"
+    },
+    {
+      "suite": "tests.test_skill_activation",
+      "case": "test_cli_applies_trusted_evaluation_and_can_restore_without_a_model_call[True]",
+      "status": "passed"
+    },
+    {
+      "suite": "tests.test_skill_lifecycle",
+      "case": "test_last_window_survives_explicit_resume_without_model_calls",
+      "status": "passed"
+    },
+    {
+      "suite": "tests.test_skill_lifecycle",
+      "case": "test_failed_extraction_is_retried_after_restart_with_same_identity",
+      "status": "passed"
+    },
+    {
+      "suite": "tests.test_skill_lifecycle",
+      "case": "test_disk_failure_prevents_learning_request_and_keeps_evidence",
+      "status": "passed"
+    },
+    {
+      "suite": "tests.test_skill_lifecycle",
+      "case": "test_clear_cancels_old_learning_without_losing_failed_evidence",
+      "status": "passed"
+    },
+    {
+      "suite": "tests.test_skill_lifecycle",
+      "case": "test_workspace_mismatch_rejects_learning_state",
+      "status": "passed"
+    },
+    {
+      "suite": "tests.test_skill_lifecycle",
+      "case": "test_failed_atomic_session_replace_keeps_previous_checkpoint",
+      "status": "passed"
+    },
+    {
+      "suite": "tests.test_skill_lifecycle",
+      "case": "test_background_failure_is_preserved_alongside_newer_task",
+      "status": "passed"
+    },
+    {
+      "suite": "tests.test_skill_lifecycle",
+      "case": "test_completed_learning_retries_checkpoint_without_repeating_model",
+      "status": "passed"
+    },
+    {
+      "suite": "tests.test_skill_lifecycle",
+      "case": "test_clear_cancels_learning_before_background_coroutine_starts",
+      "status": "passed"
+    },
+    {
+      "suite": "tests.test_skill_lifecycle",
+      "case": "test_three_process_learning_resume_and_retry",
+      "status": "passed"
+    },
+    {
+      "suite": "tests.test_skill_lifecycle",
+      "case": "test_disabled_learning_keeps_only_latest_window_without_fake_failures[environment]",
+      "status": "passed"
+    },
+    {
+      "suite": "tests.test_skill_lifecycle",
+      "case": "test_disabled_learning_keeps_only_latest_window_without_fake_failures[plan]",
+      "status": "passed"
+    },
+    {
+      "suite": "tests.test_skill_lifecycle",
+      "case": "test_clear_rejects_late_results_before_learning_mutation[side_query]",
+      "status": "passed"
+    },
+    {
+      "suite": "tests.test_skill_lifecycle",
+      "case": "test_clear_rejects_late_results_before_learning_mutation[confirmation]",
+      "status": "passed"
+    },
+    {
+      "suite": "tests.test_skill_lifecycle",
+      "case": "test_clear_rejects_late_results_before_learning_mutation[task_evaluator]",
+      "status": "passed"
+    }
+  ]
+}

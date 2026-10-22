@@ -17,13 +17,18 @@ python -B -m agents.main --thinking
 | `/skills` | List discovered Skills |
 | `/skill-stats` | Inspect recorded Skill usage |
 | `/skill-candidates` | Inspect staged candidate identities and current activation state without API calls |
+| `/skill-learning` | Inspect persisted learning windows, attempts and retry state |
+| `/extract_now [hint]` | Retry the oldest unfinished learning window using the model API |
+| `/skill-promote <candidate-id> <evaluation.json>` | Activate a candidate using a trusted local task evaluation receipt |
+| `/skill-history` | Inspect version activation and rollback records |
+| `/skill-rollback <activation-id>` | Restore the recorded previous version if the active hash still matches |
 | `/compact` | Request context compaction |
 | `/trace` | Locate the current trace |
 | `/exit` | Exit the session |
 
 On Windows, invoke `.venv/Scripts/python.exe` directly. On Linux/macOS, use `.venv/bin/python`. VS Code tasks use `${workspaceFolder}` and the project interpreter.
 
-Sessions live under `experiment/runtime/sessions/`; CLI traces and usage summaries live under `experiment/runs/cli/`. Automatic Skill evolution is off in the example configuration. Enabling it allows extraction and staging; newly extracted candidates require a task evaluator before promotion. The standard CLI leaves them pending. Local user/project Skills are discovered by the runtime; inspect [skills.py](../agents/skills.py) for source precedence.
+Sessions live under `experiment/runtime/sessions/`; CLI traces and usage summaries live under `experiment/runs/cli/`. `sans --resume` restores the latest project session, including queued Skill evidence and valid folded-history references. Resume itself makes no model request. Automatic Skill evolution is off in the example configuration. Enabling it allows extraction and staging; candidates require a trusted task evaluation before promotion. Local user/project Skills are discovered by the runtime; inspect [skills.py](../agents/skills.py) for source precedence.
 
 For bounded execution, use `sans --max-model-calls 40 --max-tool-calls 120 --max-output-tokens 8192 --request-timeout 120 "your task"`. The model-call limit applies to the solve loop; optional memory, learning and evaluation side queries have their own accounting. `/skill-eval` invokes response replay and may use the model API; it does not replace task-level candidate evaluation.
 

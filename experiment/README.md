@@ -3,6 +3,7 @@
 | Location | Contents |
 |---|---|
 | [published/20261016](published/20261016/README.md) | Current scores, trace metadata, source hashes and manifest |
+| [published/20261023-memory-lifecycle](published/20261023-memory-lifecycle/README.md) | Recoverable learning, Skill activation and folded-history validation |
 | [fixtures/](fixtures/README.md) | Historical comparison implementations and recorded folding inputs for offline regressions |
 | `research/` | Ignored local research history; regression entrypoints live in `tests/` |
 | `runs/`, `runtime/` | Ignored local execution records, sessions and complete payloads |

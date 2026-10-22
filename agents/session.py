@@ -6,6 +6,8 @@ from pathlib import Path
 
 from typing import Any
 import json
+import os
+import tempfile
 
 SESSION_DIR = Path.home() / ".sans" / "sessions"
 
@@ -17,10 +19,27 @@ def get_project_session_dir() -> Path:
     return d
 
 
+def atomic_write_json(path: Path, data: dict[str, Any]) -> None:
+    path = Path(path)
+    payload = (json.dumps(data, ensure_ascii=False, indent=2, default=str) + "\n").encode("utf-8")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = None
+    try:
+        with tempfile.NamedTemporaryFile(dir=path.parent, prefix=f".{path.name}.", delete=False) as handle:
+            temporary = Path(handle.name)
+            handle.write(payload)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, path)
+    finally:
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
+
+
 def save_session(session_id: str, data: dict[str, Any]) -> None:
-    (get_project_session_dir() / f"{session_id}.json").write_text(
-        json.dumps(data, indent=2, default=str), encoding="utf-8"
-    )
+    if not session_id or Path(session_id).name != session_id or session_id in {".", ".."}:
+        raise ValueError("invalid session id")
+    atomic_write_json(get_project_session_dir() / f"{session_id}.json", data)
 
 
 def save_folded_session_memory(session_id: str, record: dict[str, Any]) -> None:
