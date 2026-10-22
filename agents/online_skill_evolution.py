@@ -5,6 +5,7 @@ import hashlib
 import math
 import os
 import re
+import tempfile
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from types import SimpleNamespace
@@ -390,12 +391,23 @@ def promote_staged_skill(staged: dict[str, Any], evaluation: dict[str, Any] | No
     if not decision["promoted"]:
         return {**staged, "action": "staged", "promotion": decision}
     active, proposal = Path(staged["active_file"]), Path(staged["candidate_file"])
-    if _file_hash(active) != staged["baseline_sha256"] or _file_hash(proposal) != staged["candidate_sha256"]:
+    try:
+        candidate_bytes = proposal.read_bytes()
+    except OSError:
+        return reject("candidate snapshot could not be read after evaluation")
+    if (_file_hash(active) != staged["baseline_sha256"]
+            or hashlib.sha256(candidate_bytes).hexdigest() != staged["candidate_sha256"]):
         return reject("active or candidate snapshot changed after evaluation")
     active.parent.mkdir(parents=True, exist_ok=True)
-    temporary = active.with_suffix(".candidate")
-    temporary.write_bytes(proposal.read_bytes())
-    os.replace(temporary, active)
+    temporary = None
+    try:
+        with tempfile.NamedTemporaryFile(dir=active.parent, prefix=f".{active.name}.", suffix=".candidate", delete=False) as handle:
+            temporary = Path(handle.name)
+            handle.write(candidate_bytes)
+        os.replace(temporary, active)
+    finally:
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
     reset_skill_cache()
     return {**staged, "action": staged["proposed_action"], "promotion": decision, "file": str(active)}
 

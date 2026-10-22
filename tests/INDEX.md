@@ -4,7 +4,7 @@ Tracked offline suites, grouped by the behavior they protect. Results belong to 
 
 [test_native_response.py](test_native_response.py) covers native OpenAI/Anthropic SDK streaming, discarded incomplete tool batches, bounded recovery, unknown finish markers and call-limit exhaustion using local HTTP transports.
 
-[test_skill_evidence.py](test_skill_evidence.py) covers original receipt IDs, unique scoped mappings and rejection of ambiguous references or unsupported repair claims.
+[test_skill_evidence.py](test_skill_evidence.py) covers original receipt IDs, unique scoped mappings, rejection of unsupported repair claims, and retention of pending experience after interrupted chats or failed manual extraction. [test_skill_promotion.py](test_skill_promotion.py) binds evaluated bytes to installation and checks temporary-file isolation and cleanup. [test_folding_budget.py](test_folding_budget.py) covers auxiliary reservation rejection and continuation admission under both provider protocols.
 
 | Boundary | Suites |
 |---|---|

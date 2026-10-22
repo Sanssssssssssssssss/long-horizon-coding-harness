@@ -76,3 +76,64 @@ def test_receipt_alias_does_not_certify_a_repair():
     with pytest.raises(ValueError, match='matching trusted transition'):
         asyncio.run(extract_online_skill_candidate(messages=[], side_query=query,
             execution_evidence=[{'id': 'run-a:execution:e24', 'original_evidence_id': 'execution:e24'}]))
+
+
+@pytest.mark.parametrize('failure', [asyncio.CancelledError, RuntimeError])
+def test_interrupted_chat_preserves_previous_learning_window(monkeypatch, failure):
+    async def run():
+        agent = Agent(api_base='http://unused.invalid', api_key='test', custom_system_prompt='fixed',
+                      custom_tools=[], is_sub_agent=True, skills_enabled=True)
+        previous = {'messages': [{'role': 'user', 'content': 'Preserve document headers.'}]}
+        agent._pending_skill_extraction_window = previous
+        monkeypatch.setattr(agent, '_augment_user_message_with_skill_context', lambda text: (text, None))
+        async def interrupted(_message):
+            raise failure()
+        monkeypatch.setattr(agent, '_chat_openai', interrupted)
+        try:
+            with pytest.raises(failure):
+                await agent._chat_impl('Check the saved document.')
+            assert agent._pending_skill_extraction_window is previous
+        finally:
+            await agent.shutdown()
+    asyncio.run(run())
+
+
+def test_failed_manual_extraction_can_retry_the_same_evidence(monkeypatch):
+    async def run():
+        agent = Agent(api_base='http://unused.invalid', api_key='test', custom_system_prompt='fixed',
+                      custom_tools=[], is_sub_agent=True)
+        previous = {'messages': [{'role': 'user', 'content': 'Preserve document headers.'}],
+                    'execution_evidence': [{'id': 'execution:e24'}]}
+        agent._pending_skill_extraction_window = previous
+        observed = []
+        async def extract(window, **kwargs):
+            observed.append(window)
+            return {'ok': len(observed) > 1, 'action': 'staged' if len(observed) > 1 else 'failed'}
+        monkeypatch.setattr(agent, '_run_online_skill_evolution', extract)
+        try:
+            assert not (await agent.extract_now())['ok']
+            assert agent._pending_skill_extraction_window is previous
+            assert (await agent.extract_now())['ok']
+            assert observed[0] == observed[1]
+            assert agent._pending_skill_extraction_window is None
+        finally:
+            await agent.shutdown()
+    asyncio.run(run())
+
+
+def test_finished_extraction_does_not_clear_a_newer_window(monkeypatch):
+    async def run():
+        agent = Agent(api_base='http://unused.invalid', api_key='test', custom_system_prompt='fixed',
+                      custom_tools=[], is_sub_agent=True)
+        agent._pending_skill_extraction_window = {'messages': [{'role': 'user', 'content': 'Previous task.'}]}
+        newer = {'messages': [{'role': 'user', 'content': 'Next task.'}]}
+        async def extract(_window, **kwargs):
+            agent._pending_skill_extraction_window = newer
+            return {'ok': True, 'action': 'staged'}
+        monkeypatch.setattr(agent, '_run_online_skill_evolution', extract)
+        try:
+            assert (await agent.extract_now())['ok']
+            assert agent._pending_skill_extraction_window is newer
+        finally:
+            await agent.shutdown()
+    asyncio.run(run())

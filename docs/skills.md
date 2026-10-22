@@ -20,6 +20,10 @@ The example configuration disables automatic evolution for initial use. Set `SAN
 
 Native extraction stages candidates. `/skill-candidates` reads persisted receipts and checks their candidate and active-file hashes, showing pending, active or changed identities without model calls. An embedding application can pass `Agent(skill_task_evaluator=async_evaluate)`; the callback receives the staged snapshot and must return the complete task-level receipt required by `promote_staged_skill`. It owns the isolated task execution and budget. Missing, incomplete or mismatched evaluation leaves the candidate staged. `/skill-eval` is response-replay analysis and does not activate staged candidates.
 
+Promotion hashes and installs the same captured candidate bytes through a unique temporary file and atomic replacement. Replacement failure preserves the active file and cleans up that temporary file. This binds installation to the evaluated snapshot; concurrent writers still require external coordination around the baseline check and replacement.
+
+An interrupted chat retains the preceding pending learning window. Manual extraction consumes that window only after success, and cannot clear a newer window created while extraction was running. Pending windows remain in memory; restart persistence and automatic rollback from later task outcomes are not implemented. The default CLI stages candidates without a task evaluator, so closing the deployment loop requires an embedding application to run the matched task evaluation before activation.
+
 ## Current evidence
 
 The [active cohort](../benchmarks/cohorts/skilllearn-v1.json) covers four families: DBSCAN tuning, earthquake/plate calculation, offer generation and scheduling. Across these 16 test instances, **12/16 (75%)** passed official task checks. Test execution used **6,517,258 tokens**, excluding TRAIN and distillation. The [evaluation record](evaluation.md) documents the protocol, cohort selection, historical runs and usage.

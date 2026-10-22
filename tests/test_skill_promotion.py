@@ -261,6 +261,58 @@ def test_matched_task_oracle_promotes_exact_staged_file(bank, action):
     assert "Validate empty input" in skills.get_skill_by_name("check-first").prompt_template
 
 
+def test_promotion_installs_the_verified_bytes_when_candidate_changes_after_read(bank, monkeypatch):
+    active = active_skill(bank)
+    staged = maintain(action="merge")
+    evaluation = receipt(bank, staged)
+    proposal = Path(staged["candidate_file"])
+    verified_bytes = proposal.read_bytes()
+    read_bytes = Path.read_bytes
+
+    def replace_after_read(path):
+        contents = read_bytes(path)
+        if path == proposal:
+            path.write_bytes(b"Unevaluated replacement procedure.")
+        return contents
+
+    monkeypatch.setattr(Path, "read_bytes", replace_after_read)
+    result = promote_staged_skill(staged, evaluation)
+    assert result["promotion"]["promoted"]
+    assert active.read_bytes() == verified_bytes
+
+
+def test_promotion_does_not_overwrite_another_temporary_file(bank):
+    active = active_skill(bank)
+    staged = maintain(action="merge")
+    other_writer = active.with_suffix(".candidate")
+    other_writer.write_bytes(b"Another writer's pending procedure.")
+
+    result = promote_staged_skill(staged, receipt(bank, staged))
+
+    assert result["promotion"]["promoted"]
+    assert other_writer.read_bytes() == b"Another writer's pending procedure."
+
+
+def test_failed_promotion_preserves_active_and_removes_temporary_file(bank, monkeypatch):
+    from agents import online_skill_evolution
+
+    active = active_skill(bank)
+    original = active.read_bytes()
+    staged = maintain(action="merge")
+    evaluation = receipt(bank, staged)
+    temporaries = []
+
+    def failed_replace(source, destination):
+        temporaries.append(Path(source))
+        raise OSError("replacement unavailable")
+
+    monkeypatch.setattr(online_skill_evolution.os, "replace", failed_replace)
+    with pytest.raises(OSError, match="replacement unavailable"):
+        promote_staged_skill(staged, evaluation)
+    assert active.read_bytes() == original
+    assert temporaries and all(not path.exists() for path in temporaries)
+
+
 @pytest.mark.parametrize("complete", [True, False])
 @pytest.mark.parametrize("entrypoint", ["ingest", "agent"])
 def test_online_ingest_uses_only_explicit_task_evaluator(bank, complete, entrypoint, monkeypatch):

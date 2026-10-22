@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Skill promotion installs the exact candidate bytes checked against the evaluation receipt, using a unique temporary file with failure cleanup.
+- Interrupted chats and failed manual Skill extraction retain the preceding pending learning window; successful extraction cannot discard a newer window.
+- Research folding loops can continue after an auxiliary summary reservation is denied when the complete original solve request remains admissible. Unknown usage and exhausted budgets still prevent continuation.
 - DeepSeek side queries on CommandCode use the native `thinking` toggle. Provider support for the toggle must be checked from returned usage.
 - Skill extraction resolves original receipt IDs through unique mappings in the trusted execution window. Unknown or ambiguous references remain rejected, and repair claims still require a matching failure-to-pass transition.
 

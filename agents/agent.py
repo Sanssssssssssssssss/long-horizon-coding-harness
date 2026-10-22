@@ -788,13 +788,11 @@ class Agent:
             if self.trace:
                 self.trace.event("verification.baseline_captured", component="state", purpose="initialization",
                                  attributes={"baseline_ref": self._baseline_ref, "repo_state": initial_repo_state})
-        ready_skill_extraction_window: dict[str, Any] | None = None
         self._last_retrieved_skill_reference = None
         self._last_retrieved_skill_hits = []
         self._loaded_skill_context = ""
         self._loaded_skill_receipt = None
         if self._skills_enabled:
-            ready_skill_extraction_window = self._pop_pending_skill_extraction_window(original_user_message)
             user_message, self._last_retrieved_skill_reference = self._augment_user_message_with_skill_context(
                 original_user_message
             )
@@ -825,6 +823,8 @@ class Agent:
         assistant_text = "".join(self._turn_output_buffer or []).strip()
         self._turn_output_buffer = None
         if self._skills_enabled and not self._aborted:
+            # Keep the previous learning window until this turn can hand it off.
+            ready_skill_extraction_window = self._pop_pending_skill_extraction_window(original_user_message)
             self._schedule_background_skill_task(self._run_skill_usage_tracking(original_user_message, assistant_text))
             if ready_skill_extraction_window:
                 self._schedule_background_skill_task(self._run_online_skill_evolution(ready_skill_extraction_window))
@@ -1617,7 +1617,8 @@ class Agent:
                 {"role": "user", "content": hint.strip()},
             ]
         result = await self._run_online_skill_evolution(window, interactive_confirm=True)
-        self._pending_skill_extraction_window = None
+        if result.get("ok") and self._pending_skill_extraction_window is pending:
+            self._pending_skill_extraction_window = None
         return result
 
 
@@ -1954,6 +1955,10 @@ class Agent:
         return await self._side_query_once(system, summary_prompt, max_tokens=summary_tokens,
                                            purpose="session_fold", disable_thinking=True)
 
+    def _recoverable_compaction_rejection(self, error: Exception, *, model_calls_before: int) -> bool:
+        return (isinstance(error, _BudgetExceeded) and self.termination_reason is not None
+                and self.termination_reason.get("kind") == "input_budget")
+
     async def _generate_folded_session_memory(
         self, history: list[dict[str, Any]], previous_summary: str | None = None,
         recent_context: list[dict[str, Any]] | None = None,
@@ -1966,6 +1971,7 @@ class Agent:
                 if self.max_model_calls is not None and self._operation_counts["model_calls"] >= self.max_model_calls - 1:
                     return None  # Preserve the final model call for continuation or an outcome report.
                 previous_termination = self.termination_reason
+                model_calls_before = self._operation_counts["model_calls"]
                 try:
                     summary = await self._run_compaction_query(
                         request_history, prompt, previous_summary, recent_context,
@@ -1973,11 +1979,11 @@ class Agent:
                     )
                     return validate_folded_memory(summary)
                 except Exception as error:
-                    if _is_context_window_error(error):
-                        if (isinstance(error, _BudgetExceeded) and self.termination_reason
-                                and self.termination_reason.get("kind") == "input_budget"):
-                            self.termination_reason = previous_termination
-                        logging.warning("session fold exceeded context; preserving raw history")
+                    recoverable = self._recoverable_compaction_rejection(error, model_calls_before=model_calls_before)
+                    if recoverable:
+                        self.termination_reason = previous_termination
+                    if recoverable or _is_context_window_error(error):
+                        logging.warning("session fold request rejected; preserving raw history")
                         return None
                     if isinstance(error, ValueError) and attempt == 0:
                         if isinstance(error, _IncompleteSideResult) and error.finish_reason in {"length", "max_tokens"}:
